@@ -3,10 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		262C261759D48EDE21644569 /* Pods_CryptoPrice_CryptoPriceUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E8499DC5AD64D7CD9635B46 /* Pods_CryptoPrice_CryptoPriceUITests.framework */; };
+		53D7E36ACC7CEACE1E535AD0 /* Pods_CryptoPrice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF8994B7AFE127ACAEDBC40 /* Pods_CryptoPrice.framework */; };
+		59AB88142467F8FB00765B46 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AB88132467F8FB00765B46 /* Constants.swift */; };
+		59AB88162468039200765B46 /* CurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AB88152468039200765B46 /* CurrencyViewController.swift */; };
+		59AB88182468057300765B46 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AB88172468057300765B46 /* CollectionViewCell.swift */; };
+		59AB881A24681A1600765B46 /* CustomCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AB881924681A1600765B46 /* CustomCurrency.swift */; };
 		59FA9B072467EF1A00635AD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FA9B062467EF1A00635AD1 /* AppDelegate.swift */; };
 		59FA9B092467EF1A00635AD1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FA9B082467EF1A00635AD1 /* ViewController.swift */; };
 		59FA9B0C2467EF1A00635AD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59FA9B0A2467EF1A00635AD1 /* Main.storyboard */; };
@@ -15,6 +21,7 @@
 		59FA9B142467EF1B00635AD1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59FA9B122467EF1B00635AD1 /* LaunchScreen.storyboard */; };
 		59FA9B1F2467EF1B00635AD1 /* CryptoPriceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FA9B1E2467EF1B00635AD1 /* CryptoPriceTests.swift */; };
 		59FA9B2A2467EF1B00635AD1 /* CryptoPriceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FA9B292467EF1B00635AD1 /* CryptoPriceUITests.swift */; };
+		A0DF59E52D1E0570AFCAC9E8 /* Pods_CryptoPriceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55F22B545CA365FDFA53A952 /* Pods_CryptoPriceTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +42,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		204816046B482F29C909E1BC /* Pods-CryptoPrice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoPrice.debug.xcconfig"; path = "Target Support Files/Pods-CryptoPrice/Pods-CryptoPrice.debug.xcconfig"; sourceTree = "<group>"; };
+		38E96B04E8A1E2739FB10639 /* Pods-CryptoPriceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoPriceTests.debug.xcconfig"; path = "Target Support Files/Pods-CryptoPriceTests/Pods-CryptoPriceTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3E8499DC5AD64D7CD9635B46 /* Pods_CryptoPrice_CryptoPriceUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoPrice_CryptoPriceUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		55F22B545CA365FDFA53A952 /* Pods_CryptoPriceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoPriceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		59AB88132467F8FB00765B46 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		59AB88152468039200765B46 /* CurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewController.swift; sourceTree = "<group>"; };
+		59AB88172468057300765B46 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		59AB881924681A1600765B46 /* CustomCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCurrency.swift; sourceTree = "<group>"; };
 		59FA9B032467EF1A00635AD1 /* CryptoPrice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoPrice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59FA9B062467EF1A00635AD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		59FA9B082467EF1A00635AD1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +64,11 @@
 		59FA9B252467EF1B00635AD1 /* CryptoPriceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoPriceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		59FA9B292467EF1B00635AD1 /* CryptoPriceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoPriceUITests.swift; sourceTree = "<group>"; };
 		59FA9B2B2467EF1B00635AD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		822A170387A6CC9539D7B2B4 /* Pods-CryptoPrice-CryptoPriceUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoPrice-CryptoPriceUITests.debug.xcconfig"; path = "Target Support Files/Pods-CryptoPrice-CryptoPriceUITests/Pods-CryptoPrice-CryptoPriceUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8B1F20B350FFF4FB6EED6B1D /* Pods-CryptoPrice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoPrice.release.xcconfig"; path = "Target Support Files/Pods-CryptoPrice/Pods-CryptoPrice.release.xcconfig"; sourceTree = "<group>"; };
+		8E0C6DC767C894C6A572263C /* Pods-CryptoPrice-CryptoPriceUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoPrice-CryptoPriceUITests.release.xcconfig"; path = "Target Support Files/Pods-CryptoPrice-CryptoPriceUITests/Pods-CryptoPrice-CryptoPriceUITests.release.xcconfig"; sourceTree = "<group>"; };
+		9DCE9723118FFE4054D62226 /* Pods-CryptoPriceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoPriceTests.release.xcconfig"; path = "Target Support Files/Pods-CryptoPriceTests/Pods-CryptoPriceTests.release.xcconfig"; sourceTree = "<group>"; };
+		EBF8994B7AFE127ACAEDBC40 /* Pods_CryptoPrice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoPrice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53D7E36ACC7CEACE1E535AD0 /* Pods_CryptoPrice.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0DF59E52D1E0570AFCAC9E8 /* Pods_CryptoPriceTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +92,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				262C261759D48EDE21644569 /* Pods_CryptoPrice_CryptoPriceUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05D659A24DF98D4451EC4BCB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				204816046B482F29C909E1BC /* Pods-CryptoPrice.debug.xcconfig */,
+				8B1F20B350FFF4FB6EED6B1D /* Pods-CryptoPrice.release.xcconfig */,
+				822A170387A6CC9539D7B2B4 /* Pods-CryptoPrice-CryptoPriceUITests.debug.xcconfig */,
+				8E0C6DC767C894C6A572263C /* Pods-CryptoPrice-CryptoPriceUITests.release.xcconfig */,
+				38E96B04E8A1E2739FB10639 /* Pods-CryptoPriceTests.debug.xcconfig */,
+				9DCE9723118FFE4054D62226 /* Pods-CryptoPriceTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		59FA9AFA2467EF1A00635AD1 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +119,8 @@
 				59FA9B1D2467EF1B00635AD1 /* CryptoPriceTests */,
 				59FA9B282467EF1B00635AD1 /* CryptoPriceUITests */,
 				59FA9B042467EF1A00635AD1 /* Products */,
+				05D659A24DF98D4451EC4BCB /* Pods */,
+				C01748300CECD9D9CEDF7804 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,8 +137,12 @@
 		59FA9B052467EF1A00635AD1 /* CryptoPrice */ = {
 			isa = PBXGroup;
 			children = (
+				59AB88132467F8FB00765B46 /* Constants.swift */,
 				59FA9B062467EF1A00635AD1 /* AppDelegate.swift */,
 				59FA9B082467EF1A00635AD1 /* ViewController.swift */,
+				59AB88152468039200765B46 /* CurrencyViewController.swift */,
+				59AB88172468057300765B46 /* CollectionViewCell.swift */,
+				59AB881924681A1600765B46 /* CustomCurrency.swift */,
 				59FA9B0A2467EF1A00635AD1 /* Main.storyboard */,
 				59FA9B102467EF1B00635AD1 /* Assets.xcassets */,
 				59FA9B122467EF1B00635AD1 /* LaunchScreen.storyboard */,
@@ -128,6 +170,16 @@
 			path = CryptoPriceUITests;
 			sourceTree = "<group>";
 		};
+		C01748300CECD9D9CEDF7804 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EBF8994B7AFE127ACAEDBC40 /* Pods_CryptoPrice.framework */,
+				3E8499DC5AD64D7CD9635B46 /* Pods_CryptoPrice_CryptoPriceUITests.framework */,
+				55F22B545CA365FDFA53A952 /* Pods_CryptoPriceTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +187,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 59FA9B2E2467EF1B00635AD1 /* Build configuration list for PBXNativeTarget "CryptoPrice" */;
 			buildPhases = (
+				B3273CFF62F0C002F191AF06 /* [CP] Check Pods Manifest.lock */,
 				59FA9AFF2467EF1A00635AD1 /* Sources */,
 				59FA9B002467EF1A00635AD1 /* Frameworks */,
 				59FA9B012467EF1A00635AD1 /* Resources */,
+				0A3E7A56D49730734DF14B0C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,6 +206,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 59FA9B312467EF1B00635AD1 /* Build configuration list for PBXNativeTarget "CryptoPriceTests" */;
 			buildPhases = (
+				B37130F1A2EDBCCF5175C206 /* [CP] Check Pods Manifest.lock */,
 				59FA9B162467EF1B00635AD1 /* Sources */,
 				59FA9B172467EF1B00635AD1 /* Frameworks */,
 				59FA9B182467EF1B00635AD1 /* Resources */,
@@ -170,9 +225,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 59FA9B342467EF1B00635AD1 /* Build configuration list for PBXNativeTarget "CryptoPriceUITests" */;
 			buildPhases = (
+				65FC56DC4749427BB280387A /* [CP] Check Pods Manifest.lock */,
 				59FA9B212467EF1B00635AD1 /* Sources */,
 				59FA9B222467EF1B00635AD1 /* Frameworks */,
 				59FA9B232467EF1B00635AD1 /* Resources */,
+				59747A8F9FEF1A95BE6F6268 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -254,6 +311,109 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0A3E7A56D49730734DF14B0C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CryptoPrice/Pods-CryptoPrice-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CryptoPrice/Pods-CryptoPrice-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CryptoPrice/Pods-CryptoPrice-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		59747A8F9FEF1A95BE6F6268 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CryptoPrice-CryptoPriceUITests/Pods-CryptoPrice-CryptoPriceUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CryptoPrice-CryptoPriceUITests/Pods-CryptoPrice-CryptoPriceUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CryptoPrice-CryptoPriceUITests/Pods-CryptoPrice-CryptoPriceUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		65FC56DC4749427BB280387A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CryptoPrice-CryptoPriceUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B3273CFF62F0C002F191AF06 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CryptoPrice-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B37130F1A2EDBCCF5175C206 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CryptoPriceTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		59FA9AFF2467EF1A00635AD1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -261,7 +421,11 @@
 			files = (
 				59FA9B092467EF1A00635AD1 /* ViewController.swift in Sources */,
 				59FA9B0F2467EF1A00635AD1 /* CryptoPrice.xcdatamodeld in Sources */,
+				59AB88182468057300765B46 /* CollectionViewCell.swift in Sources */,
 				59FA9B072467EF1A00635AD1 /* AppDelegate.swift in Sources */,
+				59AB88142467F8FB00765B46 /* Constants.swift in Sources */,
+				59AB88162468039200765B46 /* CurrencyViewController.swift in Sources */,
+				59AB881A24681A1600765B46 /* CustomCurrency.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +596,7 @@
 		};
 		59FA9B2F2467EF1B00635AD1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 204816046B482F29C909E1BC /* Pods-CryptoPrice.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				CODE_SIGN_STYLE = Automatic;
@@ -450,6 +615,7 @@
 		};
 		59FA9B302467EF1B00635AD1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B1F20B350FFF4FB6EED6B1D /* Pods-CryptoPrice.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				CODE_SIGN_STYLE = Automatic;
@@ -468,6 +634,7 @@
 		};
 		59FA9B322467EF1B00635AD1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38E96B04E8A1E2739FB10639 /* Pods-CryptoPriceTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -490,6 +657,7 @@
 		};
 		59FA9B332467EF1B00635AD1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9DCE9723118FFE4054D62226 /* Pods-CryptoPriceTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -512,6 +680,7 @@
 		};
 		59FA9B352467EF1B00635AD1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 822A170387A6CC9539D7B2B4 /* Pods-CryptoPrice-CryptoPriceUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -532,6 +701,7 @@
 		};
 		59FA9B362467EF1B00635AD1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E0C6DC767C894C6A572263C /* Pods-CryptoPrice-CryptoPriceUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
