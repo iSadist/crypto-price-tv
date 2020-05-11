@@ -90,6 +90,8 @@ class CurrencyViewController: UICollectionViewController, UICollectionViewDelega
         CustomCurrency.shared.code = currency.code
         CustomCurrency.shared.currency = currency.country
         
+        CustomCurrency.shared.currencies.append(Currency(currency: currency.country, code: currency.code, price: nil))
+        
         coordinator?.back()
     }
 }

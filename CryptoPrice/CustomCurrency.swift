@@ -10,6 +10,22 @@ import Foundation
 
 class CustomCurrency {
     static let shared = CustomCurrency()
+    
+    var currencies: [Currency] = []
     var currency: String?
     var code: String?
+    var price: String?
+}
+
+class Currency {
+    
+    init(currency: String?, code: String?, price: String?) {
+        self.currency = currency
+        self.code = code
+        self.price = price
+    }
+    
+    var currency: String?
+    var code: String?
+    var price: String?
 }

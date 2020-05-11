@@ -17,6 +17,8 @@
 		59AD8E2F24694C40006D5756 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AD8E2E24694C40006D5756 /* Coordinator.swift */; };
 		59AD8E31246950D6006D5756 /* MainScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AD8E30246950D6006D5756 /* MainScreenCoordinator.swift */; };
 		59AD8E33246952AD006D5756 /* CurrencyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AD8E32246952AD006D5756 /* CurrencyCoordinator.swift */; };
+		59AD8E3C24697861006D5756 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AD8E3B24697861006D5756 /* TableViewController.swift */; };
+		59AD8E3E24697A7B006D5756 /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AD8E3D24697A7B006D5756 /* CurrencyTableViewCell.swift */; };
 		59FA9B072467EF1A00635AD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FA9B062467EF1A00635AD1 /* AppDelegate.swift */; };
 		59FA9B092467EF1A00635AD1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FA9B082467EF1A00635AD1 /* ViewController.swift */; };
 		59FA9B0C2467EF1A00635AD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59FA9B0A2467EF1A00635AD1 /* Main.storyboard */; };
@@ -58,6 +60,8 @@
 		59AD8E2E24694C40006D5756 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		59AD8E30246950D6006D5756 /* MainScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenCoordinator.swift; sourceTree = "<group>"; };
 		59AD8E32246952AD006D5756 /* CurrencyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCoordinator.swift; sourceTree = "<group>"; };
+		59AD8E3B24697861006D5756 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		59AD8E3D24697A7B006D5756 /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
 		59FA9B032467EF1A00635AD1 /* CryptoPrice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoPrice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59FA9B062467EF1A00635AD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		59FA9B082467EF1A00635AD1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +138,8 @@
 			isa = PBXGroup;
 			children = (
 				59FA9B082467EF1A00635AD1 /* ViewController.swift */,
+				59AD8E3B24697861006D5756 /* TableViewController.swift */,
+				59AD8E3D24697A7B006D5756 /* CurrencyTableViewCell.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -456,8 +462,10 @@
 				59AD8E33246952AD006D5756 /* CurrencyCoordinator.swift in Sources */,
 				59FA9B0F2467EF1A00635AD1 /* CryptoPrice.xcdatamodeld in Sources */,
 				59AB88182468057300765B46 /* CollectionViewCell.swift in Sources */,
+				59AD8E3E24697A7B006D5756 /* CurrencyTableViewCell.swift in Sources */,
 				59FA9B072467EF1A00635AD1 /* AppDelegate.swift in Sources */,
 				59AB88142467F8FB00765B46 /* Constants.swift in Sources */,
+				59AD8E3C24697861006D5756 /* TableViewController.swift in Sources */,
 				59AD8E2C24694293006D5756 /* JSVStoryboarded.swift in Sources */,
 				59AB88162468039200765B46 /* CurrencyViewController.swift in Sources */,
 				59AB881A24681A1600765B46 /* CustomCurrency.swift in Sources */,

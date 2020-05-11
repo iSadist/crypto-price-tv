@@ -15,9 +15,8 @@ class ViewController: UIViewController, Storyboarded {
     private var coordinator: MainScreenCoordinator?
     let dateFormatter = DateFormatter()
 
-    @IBOutlet weak var customCodeLabel: UILabel!
-    @IBOutlet weak var customPriceLabel: UILabel!
     @IBOutlet weak var chart: LineChartView!
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,30 +69,26 @@ class ViewController: UIViewController, Storyboarded {
                 print(error)
             }
         }
-
-        if let customCode = CustomCurrency.shared.code {
-            customPriceLabel.isHidden = false
-            customCodeLabel.isHidden = false
-            customCodeLabel.text = CustomCurrency.shared.currency
-
-            AF.request("https://api.coindesk.com/v1/bpi/currentprice/\(customCode).json").responseJSON { (response) in
-                switch response.result {
-                case .success(let data):
-                    if let json = data as? [String: Any] {
-                        if let bpi = json["bpi"] as? [String: Any] {
-                            if let currencyInfo = bpi[customCode] as? [String: Any] {
-                                let rate = currencyInfo["rate"] as! String
-                                self.customPriceLabel.text = rate
+        
+        for currency in CustomCurrency.shared.currencies {
+            if let customCode = currency.code {
+                AF.request("https://api.coindesk.com/v1/bpi/currentprice/\(customCode).json").responseJSON { (response) in
+                    switch response.result {
+                    case .success(let data):
+                        if let json = data as? [String: Any] {
+                            if let bpi = json["bpi"] as? [String: Any] {
+                                if let currencyInfo = bpi[customCode] as? [String: Any] {
+                                    let rate = currencyInfo["rate"] as! String
+                                    currency.price = rate
+                                    self.tableView.reloadData()
+                                }
                             }
                         }
+                    case .failure(let error):
+                        print(error)
                     }
-                case .failure(let error):
-                    print(error)
                 }
             }
-        } else {
-            customPriceLabel.isHidden = true
-            customCodeLabel.isHidden = true
         }
     }
 }
@@ -101,5 +96,28 @@ class ViewController: UIViewController, Storyboarded {
 extension ViewController: IAxisValueFormatter {
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         dateFormatter.string(from: Date(timeIntervalSince1970: value))
+    }
+}
+
+extension ViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return CustomCurrency.shared.currencies.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "currencyCell", for: indexPath) as? CurrencyTableViewCell {
+            
+            let currency = CustomCurrency.shared.currencies[indexPath.row]
+            cell.codeLabel.text = currency.code
+            cell.priceLabel.text = currency.price
+            return cell
+        }
+
+        return tableView.dequeueReusableCell(withIdentifier: "currencyCell", for: indexPath)
     }
 }
