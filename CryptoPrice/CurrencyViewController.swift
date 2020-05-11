@@ -9,12 +9,12 @@
 import UIKit
 import Alamofire
 
-class CurrencyViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class CurrencyViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, Storyboarded {
+    var coordinator: CurrencyCoordinator?
     var currencies = [(code: String, country: String)]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         getCurrencies()
     }
     
@@ -23,7 +23,6 @@ class CurrencyViewController: UICollectionViewController, UICollectionViewDelega
             
             switch response.result {
             case .success(let data):
-                print("Success")
                 if let array = data as? [Any] {
                     
                     for entry in array {
@@ -91,6 +90,6 @@ class CurrencyViewController: UICollectionViewController, UICollectionViewDelega
         CustomCurrency.shared.code = currency.code
         CustomCurrency.shared.currency = currency.country
         
-        self.navigationController?.popViewController(animated: true)
+        coordinator?.back()
     }
 }

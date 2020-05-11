@@ -13,6 +13,10 @@
 		59AB88162468039200765B46 /* CurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AB88152468039200765B46 /* CurrencyViewController.swift */; };
 		59AB88182468057300765B46 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AB88172468057300765B46 /* CollectionViewCell.swift */; };
 		59AB881A24681A1600765B46 /* CustomCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AB881924681A1600765B46 /* CustomCurrency.swift */; };
+		59AD8E2C24694293006D5756 /* JSVStoryboarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AD8E2B24694293006D5756 /* JSVStoryboarded.swift */; };
+		59AD8E2F24694C40006D5756 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AD8E2E24694C40006D5756 /* Coordinator.swift */; };
+		59AD8E31246950D6006D5756 /* MainScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AD8E30246950D6006D5756 /* MainScreenCoordinator.swift */; };
+		59AD8E33246952AD006D5756 /* CurrencyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AD8E32246952AD006D5756 /* CurrencyCoordinator.swift */; };
 		59FA9B072467EF1A00635AD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FA9B062467EF1A00635AD1 /* AppDelegate.swift */; };
 		59FA9B092467EF1A00635AD1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FA9B082467EF1A00635AD1 /* ViewController.swift */; };
 		59FA9B0C2467EF1A00635AD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59FA9B0A2467EF1A00635AD1 /* Main.storyboard */; };
@@ -50,6 +54,10 @@
 		59AB88152468039200765B46 /* CurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewController.swift; sourceTree = "<group>"; };
 		59AB88172468057300765B46 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		59AB881924681A1600765B46 /* CustomCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCurrency.swift; sourceTree = "<group>"; };
+		59AD8E2B24694293006D5756 /* JSVStoryboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSVStoryboarded.swift; sourceTree = "<group>"; };
+		59AD8E2E24694C40006D5756 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		59AD8E30246950D6006D5756 /* MainScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenCoordinator.swift; sourceTree = "<group>"; };
+		59AD8E32246952AD006D5756 /* CurrencyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCoordinator.swift; sourceTree = "<group>"; };
 		59FA9B032467EF1A00635AD1 /* CryptoPrice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoPrice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59FA9B062467EF1A00635AD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		59FA9B082467EF1A00635AD1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +120,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		59AD8E2D2469430A006D5756 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				59AD8E2E24694C40006D5756 /* Coordinator.swift */,
+				59AD8E30246950D6006D5756 /* MainScreenCoordinator.swift */,
+				59AD8E32246952AD006D5756 /* CurrencyCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
 		59FA9AFA2467EF1A00635AD1 = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +155,7 @@
 		59FA9B052467EF1A00635AD1 /* CryptoPrice */ = {
 			isa = PBXGroup;
 			children = (
+				59AD8E2D2469430A006D5756 /* Coordinators */,
 				59AB88132467F8FB00765B46 /* Constants.swift */,
 				59FA9B062467EF1A00635AD1 /* AppDelegate.swift */,
 				59FA9B082467EF1A00635AD1 /* ViewController.swift */,
@@ -148,6 +167,7 @@
 				59FA9B122467EF1B00635AD1 /* LaunchScreen.storyboard */,
 				59FA9B152467EF1B00635AD1 /* Info.plist */,
 				59FA9B0D2467EF1A00635AD1 /* CryptoPrice.xcdatamodeld */,
+				59AD8E2B24694293006D5756 /* JSVStoryboarded.swift */,
 			);
 			path = CryptoPrice;
 			sourceTree = "<group>";
@@ -198,6 +218,8 @@
 			dependencies = (
 			);
 			name = CryptoPrice;
+			packageProductDependencies = (
+			);
 			productName = CryptoPrice;
 			productReference = 59FA9B032467EF1A00635AD1 /* CryptoPrice.app */;
 			productType = "com.apple.product-type.application";
@@ -273,6 +295,8 @@
 				Base,
 			);
 			mainGroup = 59FA9AFA2467EF1A00635AD1;
+			packageReferences = (
+			);
 			productRefGroup = 59FA9B042467EF1A00635AD1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -420,12 +444,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				59FA9B092467EF1A00635AD1 /* ViewController.swift in Sources */,
+				59AD8E31246950D6006D5756 /* MainScreenCoordinator.swift in Sources */,
+				59AD8E33246952AD006D5756 /* CurrencyCoordinator.swift in Sources */,
 				59FA9B0F2467EF1A00635AD1 /* CryptoPrice.xcdatamodeld in Sources */,
 				59AB88182468057300765B46 /* CollectionViewCell.swift in Sources */,
 				59FA9B072467EF1A00635AD1 /* AppDelegate.swift in Sources */,
 				59AB88142467F8FB00765B46 /* Constants.swift in Sources */,
+				59AD8E2C24694293006D5756 /* JSVStoryboarded.swift in Sources */,
 				59AB88162468039200765B46 /* CurrencyViewController.swift in Sources */,
 				59AB881A24681A1600765B46 /* CustomCurrency.swift in Sources */,
+				59AD8E2F24694C40006D5756 /* Coordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

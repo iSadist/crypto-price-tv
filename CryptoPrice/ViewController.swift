@@ -9,18 +9,19 @@
 import UIKit
 import Alamofire
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, Storyboarded {
     var timer: Timer?
+    private var coordinator: MainScreenCoordinator?
 
     @IBOutlet weak var usdPriceLabel: UILabel!
     @IBOutlet weak var eurPriceLabel: UILabel!
     @IBOutlet weak var gbpPriceLabel: UILabel!
-    
     @IBOutlet weak var customCodeLabel: UILabel!
     @IBOutlet weak var customPriceLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        coordinator = MainScreenCoordinator(navigationController: navigationController ?? UINavigationController())
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -30,6 +31,10 @@ class ViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         timer?.invalidate()
+    }
+
+    @IBAction func onMoreButtonPressed(_ sender: UIButton) {
+        coordinator?.more()
     }
     
     private func getLabel(for code: String) -> UILabel {
