@@ -13,6 +13,7 @@ import Charts
 class ViewController: UIViewController, Storyboarded {
     var timer: Timer?
     private var coordinator: MainScreenCoordinator?
+    let dateFormatter = DateFormatter()
 
     @IBOutlet weak var customCodeLabel: UILabel!
     @IBOutlet weak var customPriceLabel: UILabel!
@@ -21,6 +22,9 @@ class ViewController: UIViewController, Storyboarded {
     override func viewDidLoad() {
         super.viewDidLoad()
         coordinator = MainScreenCoordinator(navigationController: navigationController ?? UINavigationController())
+        dateFormatter.dateFormat = "yyyy'-'MM'-'dd"
+        
+        chart.xAxis.valueFormatter = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -39,31 +43,29 @@ class ViewController: UIViewController, Storyboarded {
     @objc private func updatePrice() {
         var dataPoints: [ChartDataEntry] = []
         
-        AF.request("https://api.coindesk.com/v1/bpi/historical/close.json").responseJSON { [weak self] (response) in
+        AF.request("https://api.coindesk.com/v1/bpi/historical/close.json").responseJSON { [unowned self] (response) in
             switch response.result {
             case .success(let data):
                 if let json = data as? [String: Any] {
                     if let bpi = json["bpi"] as? [String: Double] {
                         let sortedBPI = bpi.sorted { (previous, current) -> Bool in
-                            let dateFormatter = DateFormatter()
-                            dateFormatter.dateFormat = "yyyy'-'MM'-'dd"
-                            let previousDate = dateFormatter.date(from: previous.key)!
-                            let currentDate = dateFormatter.date(from: current.key)!
+                            let previousDate = self.dateFormatter.date(from: previous.key)!
+                            let currentDate = self.dateFormatter.date(from: current.key)!
                             return previousDate < currentDate
                         }
                         
-                        for (index, price) in sortedBPI.enumerated() {
-                            print(index, price.key)
-                            let chartDataEntry = ChartDataEntry(x: Double(index), y: price.value)
+                        for price in sortedBPI {
+                            let date = self.dateFormatter.date(from: price.key)!
+                            let chartDataEntry = ChartDataEntry(x: date.timeIntervalSince1970, y: price.value)
                             dataPoints.append(chartDataEntry)
                         }
                     }
                 }
                 
-                let line = LineChartDataSet(entries: dataPoints, label: "Price")
+                let line = LineChartDataSet(entries: dataPoints, label: "USD")
                 let data = LineChartData()
                 data.addDataSet(line)
-                self?.chart.data = data
+                self.chart.data = data
             case .failure(let error):
                 print(error)
             }
@@ -96,3 +98,8 @@ class ViewController: UIViewController, Storyboarded {
     }
 }
 
+extension ViewController: IAxisValueFormatter {
+    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        dateFormatter.string(from: Date(timeIntervalSince1970: value))
+    }
+}

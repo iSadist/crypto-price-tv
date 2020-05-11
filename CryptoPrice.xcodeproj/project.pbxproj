@@ -130,6 +130,14 @@
 			path = Coordinators;
 			sourceTree = "<group>";
 		};
+		59AD8E3A246975DE006D5756 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				59FA9B082467EF1A00635AD1 /* ViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		59FA9AFA2467EF1A00635AD1 = {
 			isa = PBXGroup;
 			children = (
@@ -155,10 +163,11 @@
 		59FA9B052467EF1A00635AD1 /* CryptoPrice */ = {
 			isa = PBXGroup;
 			children = (
+				59AD8E3A246975DE006D5756 /* Main */,
 				59AD8E2D2469430A006D5756 /* Coordinators */,
 				59AB88132467F8FB00765B46 /* Constants.swift */,
+				59AD8E2B24694293006D5756 /* JSVStoryboarded.swift */,
 				59FA9B062467EF1A00635AD1 /* AppDelegate.swift */,
-				59FA9B082467EF1A00635AD1 /* ViewController.swift */,
 				59AB88152468039200765B46 /* CurrencyViewController.swift */,
 				59AB88172468057300765B46 /* CollectionViewCell.swift */,
 				59AB881924681A1600765B46 /* CustomCurrency.swift */,
@@ -167,7 +176,6 @@
 				59FA9B122467EF1B00635AD1 /* LaunchScreen.storyboard */,
 				59FA9B152467EF1B00635AD1 /* Info.plist */,
 				59FA9B0D2467EF1A00635AD1 /* CryptoPrice.xcdatamodeld */,
-				59AD8E2B24694293006D5756 /* JSVStoryboarded.swift */,
 			);
 			path = CryptoPrice;
 			sourceTree = "<group>";
