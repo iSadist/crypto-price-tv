@@ -14,7 +14,7 @@ class ViewController: UIViewController, Storyboarded {
     var timer: Timer?
     var selectedCrypto: String = "bitcoin" {
         didSet {
-            topTitle.text = selectedCrypto
+            topTitle.text = selectedCrypto.capitalizingFirstLetter()
             updatePrice()
         }
     }
@@ -41,13 +41,13 @@ class ViewController: UIViewController, Storyboarded {
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        topTitle.text = selectedCrypto
     }
     
     override func viewDidAppear(_ animated: Bool) {
         timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(updatePrice), userInfo: nil, repeats: true)
         timer?.fire()
-        
-        topTitle.text = selectedCrypto
     }
     
     override func viewDidDisappear(_ animated: Bool) {
