@@ -11,7 +11,7 @@ import Foundation
 class CustomCurrency {
     static let shared = CustomCurrency()
     
-    var currencies: [Currency] = []
+    var currencies: [Currency] = [Currency(currency: "bitcoin", code: "BTC", price: nil)]
     var currency: String?
     var code: String?
     var price: String?

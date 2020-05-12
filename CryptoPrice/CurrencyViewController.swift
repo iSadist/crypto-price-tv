@@ -12,36 +12,19 @@ import Alamofire
 class CurrencyViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, Storyboarded {
     var coordinator: CurrencyCoordinator?
     var currencies = [(code: String, country: String)]()
+    var database: Database?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        database = Database(format: "yyyy'-'MM'-'dd")
         getCurrencies()
     }
     
     private func getCurrencies() {
-        AF.request(supportedCurrenciesURL).responseJSON { [weak self] (response) in
-            
-            switch response.result {
-            case .success(let data):
-                if let array = data as? [Any] {
-                    
-                    for entry in array {
-                        if let currency = entry as? [String: String] {
-                            let code = currency["currency"]!
-                            let country = currency["country"]!
-                            let tuple = (code, country)
-                            
-                            self?.currencies.append(tuple)
-                        }
-                    }
-                }
-                
-            case .failure(let error):
-                print(error)
-            }
-            
+        database?.getCryptocurrencies(completionHandler: { [weak self] (rates) in
+            self?.currencies = rates
             self?.collectionView.reloadData()
-        }
+        })
     }
     
     override func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {

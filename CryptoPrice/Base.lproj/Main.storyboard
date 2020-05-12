@@ -21,11 +21,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BAt-E3-2fU" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="90" y="110" width="1341" height="774"/>
+                                <rect key="frame" x="90" y="139" width="1341" height="745"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" sectionHeaderHeight="66" sectionFooterHeight="66" translatesAutoresizingMaskIntoConstraints="NO" id="Cwb-iO-U2a">
-                                <rect key="frame" x="1479" y="181" width="335" height="703"/>
+                                <rect key="frame" x="1479" y="210" width="335" height="674"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="currencyCell" id="DOw-Qc-PWA" customClass="CurrencyTableViewCell" customModule="CryptoPrice" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="66" width="335" height="66"/>
@@ -70,7 +70,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other currencies" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N8n-4x-xEA">
-                                <rect key="frame" x="1507" y="110" width="279" height="46"/>
+                                <rect key="frame" x="1507" y="139" width="279" height="46"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -83,20 +83,60 @@
                                     <action selector="onMoreButtonPressed:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="A4I-Mb-u5D"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="IgX-Xm-6xm">
+                                <rect key="frame" x="188" y="942.5" width="1145" height="70"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
+                                <segments>
+                                    <segment title="15 minutes"/>
+                                    <segment title="1 hour"/>
+                                    <segment title="6 hours"/>
+                                    <segment title="12 hours"/>
+                                    <segment title="1 day"/>
+                                </segments>
+                                <connections>
+                                    <action selector="onSelectedInterval:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="uJM-3A-jCb"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Interval" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SOc-Vz-G5c">
+                                <rect key="frame" x="721" y="904" width="79" height="30"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currency selected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iCb-1b-lls">
+                                <rect key="frame" x="608" y="68" width="305" height="46"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data from coincap.io" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Anm-n1-pwo">
+                                <rect key="frame" x="0.0" y="1052" width="211" height="28"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="BAt-E3-2fU" firstAttribute="top" secondItem="wu6-TO-1qx" secondAttribute="top" constant="50" id="3MH-ce-Pke"/>
+                            <constraint firstItem="iCb-1b-lls" firstAttribute="centerX" secondItem="BAt-E3-2fU" secondAttribute="centerX" id="6Ui-yI-WJo"/>
                             <constraint firstItem="N8n-4x-xEA" firstAttribute="centerX" secondItem="Cwb-iO-U2a" secondAttribute="centerX" id="8Dd-IZ-pt4"/>
+                            <constraint firstItem="Anm-n1-pwo" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="8ye-oZ-lh3"/>
+                            <constraint firstItem="SOc-Vz-G5c" firstAttribute="centerX" secondItem="IgX-Xm-6xm" secondAttribute="centerX" id="Bfe-kk-MTQ"/>
                             <constraint firstItem="N8n-4x-xEA" firstAttribute="top" secondItem="BAt-E3-2fU" secondAttribute="top" id="Dyg-dT-DJy"/>
                             <constraint firstItem="BAt-E3-2fU" firstAttribute="leading" secondItem="wu6-TO-1qx" secondAttribute="leading" id="EPp-Og-wTF"/>
+                            <constraint firstItem="IgX-Xm-6xm" firstAttribute="top" secondItem="SOc-Vz-G5c" secondAttribute="bottom" constant="8.5" id="HDj-Dc-JVR"/>
                             <constraint firstItem="Cwb-iO-U2a" firstAttribute="leading" secondItem="BAt-E3-2fU" secondAttribute="trailing" constant="48" id="KTN-FK-jVs"/>
                             <constraint firstItem="Cwb-iO-U2a" firstAttribute="width" secondItem="BAt-E3-2fU" secondAttribute="width" multiplier="0.249814" id="NgE-Rl-hDZ"/>
+                            <constraint firstItem="iCb-1b-lls" firstAttribute="top" secondItem="wu6-TO-1qx" secondAttribute="top" constant="8" id="Sc8-CW-9EG"/>
                             <constraint firstItem="wu6-TO-1qx" firstAttribute="trailing" secondItem="Cwb-iO-U2a" secondAttribute="trailing" constant="16" id="Vvg-PY-rb0"/>
                             <constraint firstItem="wu6-TO-1qx" firstAttribute="bottom" secondItem="B9T-IX-hTg" secondAttribute="bottom" id="YW0-lV-opg"/>
+                            <constraint firstItem="Anm-n1-pwo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ZaX-DY-U8j"/>
+                            <constraint firstItem="IgX-Xm-6xm" firstAttribute="centerX" secondItem="BAt-E3-2fU" secondAttribute="centerX" id="aGS-lx-w2N"/>
                             <constraint firstItem="B9T-IX-hTg" firstAttribute="top" secondItem="BAt-E3-2fU" secondAttribute="bottom" constant="50" id="bR3-EZ-XHj"/>
                             <constraint firstItem="Cwb-iO-U2a" firstAttribute="bottom" secondItem="BAt-E3-2fU" secondAttribute="bottom" id="bn7-xR-vAr"/>
                             <constraint firstItem="Cwb-iO-U2a" firstAttribute="top" secondItem="N8n-4x-xEA" secondAttribute="bottom" constant="25" id="dbM-mX-DCf"/>
+                            <constraint firstItem="BAt-E3-2fU" firstAttribute="top" secondItem="iCb-1b-lls" secondAttribute="bottom" constant="25" id="kvE-eZ-aCI"/>
+                            <constraint firstItem="IgX-Xm-6xm" firstAttribute="centerY" secondItem="B9T-IX-hTg" secondAttribute="centerY" id="p9p-MU-amB"/>
                             <constraint firstItem="B9T-IX-hTg" firstAttribute="centerX" secondItem="Cwb-iO-U2a" secondAttribute="centerX" id="vBh-xD-j3T"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wu6-TO-1qx"/>
@@ -105,6 +145,7 @@
                     <connections>
                         <outlet property="chart" destination="BAt-E3-2fU" id="Emx-SJ-60f"/>
                         <outlet property="tableView" destination="Cwb-iO-U2a" id="CWb-vo-Jiv"/>
+                        <outlet property="topTitle" destination="iCb-1b-lls" id="mIE-Vc-M6c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

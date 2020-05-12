@@ -12,9 +12,22 @@ import Charts
 
 class ViewController: UIViewController, Storyboarded {
     var timer: Timer?
+    var selectedCrypto: String = "bitcoin" {
+        didSet {
+            topTitle.text = selectedCrypto
+            updatePrice()
+        }
+    }
+    var selectedInterval: String = "h1" {
+        didSet {
+            updatePrice()
+        }
+    }
     private var coordinator: MainScreenCoordinator?
     let dateFormatter = DateFormatter()
+    var database: Database?
 
+    @IBOutlet weak var topTitle: UILabel!
     @IBOutlet weak var chart: LineChartView!
     @IBOutlet weak var tableView: UITableView!
     
@@ -22,13 +35,19 @@ class ViewController: UIViewController, Storyboarded {
         super.viewDidLoad()
         coordinator = MainScreenCoordinator(navigationController: navigationController ?? UINavigationController())
         dateFormatter.dateFormat = "yyyy'-'MM'-'dd"
+        database = Database(format: "yyyy'-'MM'-'dd")
         
         chart.xAxis.valueFormatter = self
+        
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
         timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(updatePrice), userInfo: nil, repeats: true)
         timer?.fire()
+        
+        topTitle.text = selectedCrypto
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -38,55 +57,34 @@ class ViewController: UIViewController, Storyboarded {
     @IBAction func onMoreButtonPressed(_ sender: UIButton) {
         coordinator?.more()
     }
+
+    @IBAction func onSelectedInterval(_ sender: UISegmentedControl) {
+        let selectedIndex = sender.selectedSegmentIndex
+        var interval = "h1"
+
+        switch selectedIndex {
+        case 0: interval = "m15"
+        case 1: interval = "h1"
+        case 2: interval = "h6"
+        case 3: interval = "h12"
+        case 4: interval = "d1"
+        default:
+            interval = "h1"
+        }
+
+        selectedInterval = interval
+    }
     
     @objc private func updatePrice() {
-        var dataPoints: [ChartDataEntry] = []
-        
-        AF.request("https://api.coindesk.com/v1/bpi/historical/close.json").responseJSON { [unowned self] (response) in
-            switch response.result {
-            case .success(let data):
-                if let json = data as? [String: Any] {
-                    if let bpi = json["bpi"] as? [String: Double] {
-                        let sortedBPI = bpi.sorted { (previous, current) -> Bool in
-                            let previousDate = self.dateFormatter.date(from: previous.key)!
-                            let currentDate = self.dateFormatter.date(from: current.key)!
-                            return previousDate < currentDate
-                        }
-                        
-                        for price in sortedBPI {
-                            let date = self.dateFormatter.date(from: price.key)!
-                            let chartDataEntry = ChartDataEntry(x: date.timeIntervalSince1970, y: price.value)
-                            dataPoints.append(chartDataEntry)
-                        }
-                    }
-                }
-                
-                let line = LineChartDataSet(entries: dataPoints, label: "USD")
-                let data = LineChartData()
-                data.addDataSet(line)
-                self.chart.data = data
-            case .failure(let error):
-                print(error)
-            }
+        database?.getHistorical(for: selectedCrypto, in: "USD", interval: selectedInterval) { (data) in
+            self.chart.data = data
         }
         
         for currency in CustomCurrency.shared.currencies {
-            if let customCode = currency.code {
-                AF.request("https://api.coindesk.com/v1/bpi/currentprice/\(customCode).json").responseJSON { (response) in
-                    switch response.result {
-                    case .success(let data):
-                        if let json = data as? [String: Any] {
-                            if let bpi = json["bpi"] as? [String: Any] {
-                                if let currencyInfo = bpi[customCode] as? [String: Any] {
-                                    let rate = currencyInfo["rate"] as! String
-                                    currency.price = rate
-                                    self.tableView.reloadData()
-                                }
-                            }
-                        }
-                    case .failure(let error):
-                        print(error)
-                    }
+            if let customCode = currency.currency {
+                database?.getCurrentPrice(for: customCode.lowercased().replacingOccurrences(of: " ", with: "-"), in: "USD") { (rate) in
+                    currency.price = rate
+                    self.tableView.reloadData()
                 }
             }
         }
@@ -96,6 +94,14 @@ class ViewController: UIViewController, Storyboarded {
 extension ViewController: IAxisValueFormatter {
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         dateFormatter.string(from: Date(timeIntervalSince1970: value))
+    }
+}
+
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currency = CustomCurrency.shared.currencies[indexPath.row]
+
+        selectedCrypto = currency.currency!.lowercased().replacingOccurrences(of: " ", with: "-")
     }
 }
 
