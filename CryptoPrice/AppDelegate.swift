@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         
         let vc = ViewController.instantiate()
+        vc.currencies = [Currency(currency: "bitcoin", code: "BTC", price: nil)]
         let navigationController = UINavigationController(rootViewController: vc)
         
         window?.rootViewController = navigationController

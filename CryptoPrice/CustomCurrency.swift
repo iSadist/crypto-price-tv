@@ -17,7 +17,15 @@ class CustomCurrency {
     var price: String?
 }
 
-class Currency {
+class Currency: Hashable {
+    static func == (lhs: Currency, rhs: Currency) -> Bool {
+        return lhs.code == rhs.code
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(currency)
+        hasher.combine(code)
+    }
     
     init(currency: String?, code: String?, price: String?) {
         self.currency = currency

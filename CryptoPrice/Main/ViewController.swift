@@ -12,7 +12,8 @@ import Charts
 
 class ViewController: UIViewController, Storyboarded {
     var timer: Timer?
-    var selectedCrypto: String = "bitcoin" {
+    var currencies: [Currency]?
+    var selectedCrypto: String! {
         didSet {
             topTitle.text = selectedCrypto.capitalizingFirstLetter()
             updatePrice()
@@ -42,6 +43,7 @@ class ViewController: UIViewController, Storyboarded {
         tableView.delegate = self
         tableView.dataSource = self
         
+        selectedCrypto = currencies?.first?.currency ?? "Unknown"
         topTitle.text = selectedCrypto
     }
     
@@ -55,7 +57,7 @@ class ViewController: UIViewController, Storyboarded {
     }
 
     @IBAction func onMoreButtonPressed(_ sender: UIButton) {
-        coordinator?.more()
+        coordinator?.more(currencies ?? [])
     }
 
     @IBAction func onSelectedInterval(_ sender: UISegmentedControl) {
@@ -80,7 +82,8 @@ class ViewController: UIViewController, Storyboarded {
             self.chart.data = data
         }
         
-        for currency in CustomCurrency.shared.currencies {
+        guard let currencies = currencies else { return }
+        for currency in currencies {
             if let customCode = currency.currency {
                 database?.getCurrentPrice(for: customCode.lowercased().replacingOccurrences(of: " ", with: "-"), in: "USD") { (rate) in
                     currency.price = rate
@@ -99,9 +102,9 @@ extension ViewController: IAxisValueFormatter {
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let currency = CustomCurrency.shared.currencies[indexPath.row]
-
-        selectedCrypto = currency.currency!.lowercased().replacingOccurrences(of: " ", with: "-")
+        if let currency = currencies?[indexPath.row] {
+            selectedCrypto = currency.currency!.lowercased().replacingOccurrences(of: " ", with: "-")
+        }
     }
 }
 
@@ -112,18 +115,20 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return CustomCurrency.shared.currencies.count
+        return currencies?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "currencyCell", for: indexPath) as? CurrencyTableViewCell {
-            
-            let currency = CustomCurrency.shared.currencies[indexPath.row]
-            cell.codeLabel.text = currency.code
-            cell.priceLabel.text = currency.price
-            return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "currencyCell", for: indexPath)
+        
+        if let currencyCell = cell as? CurrencyTableViewCell {
+            if let currency = currencies?[indexPath.row] {
+                currencyCell.codeLabel.text = currency.code
+                currencyCell.priceLabel.text = currency.price
+                return currencyCell
+            }
         }
 
-        return tableView.dequeueReusableCell(withIdentifier: "currencyCell", for: indexPath)
+        return cell
     }
 }

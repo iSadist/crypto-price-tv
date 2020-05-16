@@ -11,7 +11,8 @@ import Alamofire
 
 class CurrencyViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, Storyboarded {
     var coordinator: CurrencyCoordinator?
-    var currencies = [(code: String, country: String)]()
+    var currencies = [Currency]()
+    var selectedCurrencies: [Currency]?
     var database: Database?
 
     override func viewDidLoad() {
@@ -22,7 +23,9 @@ class CurrencyViewController: UICollectionViewController, UICollectionViewDelega
     
     private func getCurrencies() {
         database?.getCryptocurrencies(completionHandler: { [weak self] (rates) in
-            self?.currencies = rates
+            self?.currencies = rates.map { (tuple) -> Currency in
+                return Currency(currency: tuple.1, code: tuple.0, price: nil)
+            }
             self?.collectionView.reloadData()
         })
     }
@@ -41,7 +44,7 @@ class CurrencyViewController: UICollectionViewController, UICollectionViewDelega
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "standardCell", for: indexPath) as? CollectionViewCell {
-            cell.label.text = currencies[indexPath.row].country
+            cell.label.text = currencies[indexPath.row].currency
             cell.codeLabel.text = currencies[indexPath.row].code
             return cell
         }
@@ -70,11 +73,14 @@ class CurrencyViewController: UICollectionViewController, UICollectionViewDelega
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let currency = currencies[indexPath.row]
         
-        CustomCurrency.shared.code = currency.code
-        CustomCurrency.shared.currency = currency.country
+        if selectedCurrencies?.contains(currency) ?? false {
+            if let index = selectedCurrencies?.firstIndex(of: currency) {
+                selectedCurrencies?.remove(at: index)                
+            }
+        } else {
+            selectedCurrencies?.append(Currency(currency: currency.currency, code: currency.code, price: nil))
+        }
         
-        CustomCurrency.shared.currencies.append(Currency(currency: currency.country, code: currency.code, price: nil))
-        
-        coordinator?.back()
+        coordinator?.back(selectedCurrencies: selectedCurrencies ?? [])
     }
 }

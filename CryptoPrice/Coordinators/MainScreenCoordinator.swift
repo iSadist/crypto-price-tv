@@ -16,8 +16,9 @@ class MainScreenCoordinator: JSVCoordinator {
         self.navigationController = navigationController
     }
     
-    func more() {
+    func more(_ selectedCurrencies: [Currency]) {
         let vc = CurrencyViewController.instantiate()
+        vc.selectedCurrencies = selectedCurrencies
         vc.coordinator = CurrencyCoordinator(navigationController: navigationController ?? UINavigationController())
         navigationController?.pushViewController(vc, animated: true)
     }
