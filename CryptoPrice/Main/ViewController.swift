@@ -78,8 +78,8 @@ class ViewController: UIViewController, Storyboarded {
     }
     
     @objc private func updatePrice() {
-        database?.getHistorical(for: selectedCrypto, in: "USD", interval: selectedInterval) { (data) in
-            self.chart.data = data
+        database?.getHistorical(for: selectedCrypto, in: "USD", interval: selectedInterval) { [weak self] (data) in
+            self?.chart.data = data
         }
         
         guard let currencies = currencies else { return }
@@ -96,7 +96,7 @@ class ViewController: UIViewController, Storyboarded {
 
 extension ViewController: IAxisValueFormatter {
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        dateFormatter.string(from: Date(timeIntervalSince1970: value))
+        dateFormatter.string(from: Date(timeIntervalSince1970: value/1000))
     }
 }
 

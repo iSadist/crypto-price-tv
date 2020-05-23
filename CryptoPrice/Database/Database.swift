@@ -35,6 +35,9 @@ class Database {
                 }
                 
                 let line = LineChartDataSet(entries: dataPoints, label: "USD")
+                line.drawCirclesEnabled = false
+                line.mode = .cubicBezier
+                line.drawValuesEnabled = true
                 let data = LineChartData()
                 data.addDataSet(line)
                 completionHandler(data)
