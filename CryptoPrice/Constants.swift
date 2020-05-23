@@ -8,10 +8,6 @@
 
 import Foundation
 
-// MARK: Urls
-let currentPriceURL = URL(string: "https://api.coindesk.com/v1/bpi/currentprice.json")!
-let supportedCurrenciesURL = URL(string: "https://api.coindesk.com/v1/bpi/supported-currencies.json")!
-
 extension String {
     func capitalizingFirstLetter() -> String {
         return prefix(1).capitalized + dropFirst()

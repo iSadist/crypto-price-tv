@@ -11,6 +11,7 @@ import Alamofire
 import Charts
 
 class Database {
+    lazy private var decoder = JSONDecoder()
     let dateFormatter = DateFormatter()
     
     init(format: String) {
@@ -21,20 +22,15 @@ class Database {
     internal func getHistorical(for crypto: String, in currency: String, interval: String, completionHandler: @escaping ((LineChartData?) -> ()) ) {
         var dataPoints: [ChartDataEntry] = []
 
-        AF.request("https://api.coincap.io/v2/assets/\(crypto)/history?interval=\(interval)").responseJSON { (response) in
+        AF.request(historicalUrl(crypto: crypto, interval: interval)).response { [weak self] (response) in
             switch response.result {
             case .success(let data):
-                if let json = data as? [String: Any] {
-                    if let prices = json["data"] as? [Any] {
-                        for priceObj in prices {
-                            if let dict = priceObj as? [String: Any] {
-                                let time = dict["time"] as! Double
-                                let price = dict["priceUsd"] as! NSString
-                                let chartDataEntry = ChartDataEntry(x: time, y: price.doubleValue)
-                                dataPoints.append(chartDataEntry)
-                            }
-                            
-                        }
+                if let data = data, let prices = try? self?.decoder.decode(Historical.self, from: data) {
+                    for price in prices.data {
+                        let nsPrice = price.priceUsd as NSString?
+                        guard let time = price.time, let val = nsPrice?.doubleValue else { return }
+                        let chartDataEntry = ChartDataEntry(x: Double(time), y: val)
+                        dataPoints.append(chartDataEntry)
                     }
                 }
                 
@@ -50,17 +46,14 @@ class Database {
     }
 
     internal func getCurrentPrice(for crypto: String, in currency: String, completionHandler: @escaping ((String?) -> ())) {
-        AF.request("https://api.coincap.io/v2/assets/\(crypto)").responseJSON { (response) in
+        AF.request(priceUrl(crypto: crypto)).response { [weak self] (response) in
             var rate: String?
-            
+
             switch response.result {
             case .success(let data):
-                if let json = data as? [String: Any] {
-                    if let asset = json["data"] as? [String: Any] {
-                        rate = asset["priceUsd"] as? String
-                    }
+                if let data = data, let asset = try? self?.decoder.decode(Asset.self, from: data) {
+                    rate = asset.data.priceUsd
                 }
-                
                 completionHandler(rate)
             case .failure(let error):
                 print(error)
@@ -71,22 +64,14 @@ class Database {
 
     internal func getCryptocurrencies(completionHandler: @escaping (([(String, String)]) -> ())) {
         var currencies = [(code: String, country: String)]()
-        
-        let url = URL(string: "https://api.coincap.io/v2/assets")!
-        
-        AF.request(url).responseJSON { (response) in
+
+        AF.request(assetsUrl).response { [weak self] (response) in
             switch response.result {
             case .success(let data):
-                if let json = data as? [String: Any] {
-                    if let cryptos = json["data"] as? [Any] {
-                        for crypto in cryptos {
-                            if let currency = crypto as? [String: Any] {
-                                let code = currency["symbol"] as! String
-                                let name = currency["name"] as! String
-                                let tuple = (code, name)
-                                currencies.append(tuple)
-                            }
-                        }
+                if let data = data, let cryptocurrencies = try? self?.decoder.decode(Assets.self, from: data) {
+                    for crypto in cryptocurrencies.data {
+                        let tuple = (crypto.symbol!, crypto.name!)
+                        currencies.append(tuple)
                     }
                 }
             case .failure(let error):
