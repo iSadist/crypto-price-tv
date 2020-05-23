@@ -30,7 +30,7 @@ struct Asset: Codable {
     var timestamp: Int
 }
 
-struct CryptoCurrency: Codable {
+struct CryptoCurrency: Codable, Equatable {
     var id: String?
     var rank: String?
     var symbol: String?

@@ -11,9 +11,11 @@ import Alamofire
 
 class CurrencyViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, Storyboarded {
     var coordinator: CurrencyCoordinator?
-    var currencies = [Currency]()
-    var selectedCurrencies: [Currency]?
+    var currencies = [CryptoCurrency]()
+    var selectedCurrencies: [CryptoCurrency]?
     var database: Database?
+    
+    private let selectedColor: UIColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0.5)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,11 +23,21 @@ class CurrencyViewController: UICollectionViewController, UICollectionViewDelega
         getCurrencies()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+        let menuGesture = UITapGestureRecognizer()
+        menuGesture.allowedPressTypes = [NSNumber( value: UIPress.PressType.menu.rawValue)]
+        menuGesture.addTarget(self, action: #selector(CurrencyViewController.menuPressed(recognizer:)))
+        view.addGestureRecognizer(menuGesture)
+    }
+    
+    @objc func menuPressed(recognizer: UITapGestureRecognizer) {
+        coordinator?.back(selectedCurrencies: selectedCurrencies ?? [])
+    }
+    
     private func getCurrencies() {
-        database?.getCryptocurrencies(completionHandler: { [weak self] (rates) in
-            self?.currencies = rates.map { (tuple) -> Currency in
-                return Currency(currency: tuple.1, code: tuple.0, price: nil)
-            }
+        database?.getCryptocurrencies(completionHandler: { [weak self] (assets) in
+            self?.currencies = assets
             self?.collectionView.reloadData()
         })
     }
@@ -44,8 +56,12 @@ class CurrencyViewController: UICollectionViewController, UICollectionViewDelega
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "standardCell", for: indexPath) as? CollectionViewCell {
-            cell.label.text = currencies[indexPath.row].currency
-            cell.codeLabel.text = currencies[indexPath.row].code
+            let currency = currencies[indexPath.row]
+            cell.label.text = currency.name
+            cell.codeLabel.text = currency.symbol
+
+            
+            cell.backgroundColor = selectedCurrencies?.contains(currency) ?? false ? selectedColor : UIColor.clear
             return cell
         }
         
@@ -74,13 +90,16 @@ class CurrencyViewController: UICollectionViewController, UICollectionViewDelega
         let currency = currencies[indexPath.row]
         
         if selectedCurrencies?.contains(currency) ?? false {
-            if let index = selectedCurrencies?.firstIndex(of: currency) {
-                selectedCurrencies?.remove(at: index)                
+            if selectedCurrencies?.count ?? 0 > 1,
+                let index = selectedCurrencies?.firstIndex(of: currency) {
+                selectedCurrencies?.remove(at: index)
             }
         } else {
-            selectedCurrencies?.append(Currency(currency: currency.currency, code: currency.code, price: nil))
+            selectedCurrencies?.append(currency)
         }
         
-        coordinator?.back(selectedCurrencies: selectedCurrencies ?? [])
+        if let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell {
+            cell.backgroundColor = selectedCurrencies?.contains(currency) ?? false ? selectedColor : UIColor.clear
+        }
     }
 }

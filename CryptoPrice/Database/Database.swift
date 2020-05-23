@@ -25,6 +25,7 @@ class Database {
         AF.request(historicalUrl(crypto: crypto, interval: interval)).response { [weak self] (response) in
             switch response.result {
             case .success(let data):
+                
                 if let data = data, let prices = try? self?.decoder.decode(Historical.self, from: data) {
                     for price in prices.data {
                         let nsPrice = price.priceUsd as NSString?
@@ -48,16 +49,14 @@ class Database {
         }
     }
 
-    internal func getCurrentPrice(for crypto: String, in currency: String, completionHandler: @escaping ((String?) -> ())) {
+    internal func getAsset(for crypto: String, in currency: String, completionHandler: @escaping ((CryptoCurrency?) -> ())) {
         AF.request(priceUrl(crypto: crypto)).response { [weak self] (response) in
-            var rate: String?
-
             switch response.result {
             case .success(let data):
-                if let data = data, let asset = try? self?.decoder.decode(Asset.self, from: data) {
-                    rate = asset.data.priceUsd
+                guard let data = data, let asset = try? self?.decoder.decode(Asset.self, from: data) else {
+                    completionHandler(nil); return
                 }
-                completionHandler(rate)
+                completionHandler(asset.data)
             case .failure(let error):
                 print(error)
                 completionHandler(nil)
@@ -65,17 +64,14 @@ class Database {
         }
     }
 
-    internal func getCryptocurrencies(completionHandler: @escaping (([(String, String)]) -> ())) {
-        var currencies = [(code: String, country: String)]()
+    internal func getCryptocurrencies(completionHandler: @escaping (([CryptoCurrency]) -> ())) {
+        var currencies = [CryptoCurrency]()
 
         AF.request(assetsUrl).response { [weak self] (response) in
             switch response.result {
             case .success(let data):
                 if let data = data, let cryptocurrencies = try? self?.decoder.decode(Assets.self, from: data) {
-                    for crypto in cryptocurrencies.data {
-                        let tuple = (crypto.symbol!, crypto.name!)
-                        currencies.append(tuple)
-                    }
+                    currencies.append(contentsOf: cryptocurrencies.data)
                 }
             case .failure(let error):
                 print(error)

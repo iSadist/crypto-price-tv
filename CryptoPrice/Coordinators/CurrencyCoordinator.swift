@@ -16,8 +16,8 @@ class CurrencyCoordinator: JSVCoordinator {
         self.navigationController = navigationController
     }
     
-    func back(selectedCurrencies: [Currency]) {
-        if let mainVC = navigationController?.viewControllers.first as? ViewController {
+    func back(selectedCurrencies: [CryptoCurrency]) {
+        if let mainVC = navigationController?.viewControllers.first as? MainViewController {
             mainVC.currencies = selectedCurrencies
             navigationController?.popViewController(animated: true)
         }

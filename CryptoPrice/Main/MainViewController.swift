@@ -10,12 +10,12 @@ import UIKit
 import Alamofire
 import Charts
 
-class ViewController: UIViewController, Storyboarded {
+class MainViewController: UIViewController, Storyboarded {
     var timer: Timer?
-    var currencies: [Currency]?
-    var selectedCrypto: String! {
+    var currencies: [CryptoCurrency]?
+    private var selectedCrypto: CryptoCurrency! {
         didSet {
-            topTitle.text = selectedCrypto.capitalizingFirstLetter()
+            topTitle.text = selectedCrypto.name
             updatePrice()
         }
     }
@@ -43,8 +43,8 @@ class ViewController: UIViewController, Storyboarded {
         tableView.delegate = self
         tableView.dataSource = self
         
-        selectedCrypto = currencies?.first?.currency ?? "Unknown"
-        topTitle.text = selectedCrypto
+        selectedCrypto = currencies?.first
+        topTitle.text = selectedCrypto.name
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -78,37 +78,38 @@ class ViewController: UIViewController, Storyboarded {
     }
     
     @objc private func updatePrice() {
-        database?.getHistorical(for: selectedCrypto, in: "USD", interval: selectedInterval) { [weak self] (data) in
+        database?.getHistorical(for: selectedCrypto.id!, in: "USD", interval: selectedInterval) { [weak self] (data) in
             self?.chart.data = data
         }
         
         guard let currencies = currencies else { return }
         for currency in currencies {
-            if let customCode = currency.currency {
-                database?.getCurrentPrice(for: customCode.lowercased().replacingOccurrences(of: " ", with: "-"), in: "USD") { (rate) in
-                    currency.price = rate
-                    self.tableView.reloadData()
+            if let id = currency.id {
+                database?.getAsset(for: id, in: "USD") { (asset) in
+                    guard let asset = asset else { return }
+                    self.currencies?.replaceFirst(element: currency, with: asset)
                 }
             }
         }
+        self.tableView.reloadData()
     }
 }
 
-extension ViewController: IAxisValueFormatter {
+extension MainViewController: IAxisValueFormatter {
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         dateFormatter.string(from: Date(timeIntervalSince1970: value/1000))
     }
 }
 
-extension ViewController: UITableViewDelegate {
+extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let currency = currencies?[indexPath.row] {
-            selectedCrypto = currency.currency!.lowercased().replacingOccurrences(of: " ", with: "-")
+            selectedCrypto = currency
         }
     }
 }
 
-extension ViewController: UITableViewDataSource {
+extension MainViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -123,8 +124,8 @@ extension ViewController: UITableViewDataSource {
         
         if let currencyCell = cell as? CurrencyTableViewCell {
             if let currency = currencies?[indexPath.row] {
-                currencyCell.codeLabel.text = currency.code
-                currencyCell.priceLabel.text = currency.price
+                currencyCell.codeLabel.text = currency.name
+                currencyCell.priceLabel.text = currency.priceUsd
                 return currencyCell
             }
         }
