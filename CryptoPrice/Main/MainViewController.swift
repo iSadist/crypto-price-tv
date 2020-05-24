@@ -45,10 +45,12 @@ class MainViewController: UIViewController, Storyboarded {
         
         selectedCrypto = currencies?.first
         topTitle.text = selectedCrypto.name
+        
+        updatePrice()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(updatePrice), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(updatePrice), userInfo: nil, repeats: true)
         timer?.fire()
     }
     
@@ -110,7 +112,6 @@ extension MainViewController: UITableViewDelegate {
 }
 
 extension MainViewController: UITableViewDataSource {
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -125,7 +126,12 @@ extension MainViewController: UITableViewDataSource {
         if let currencyCell = cell as? CurrencyTableViewCell {
             if let currency = currencies?[indexPath.row] {
                 currencyCell.codeLabel.text = currency.name
-                currencyCell.priceLabel.text = currency.priceUsd
+                
+                if let price = (currency.priceUsd as? NSString)?.doubleValue {
+                    let priceText = String(format: "%.4f", price)
+                    currencyCell.priceLabel.text = "$\(priceText)"
+                }
+
                 return currencyCell
             }
         }
