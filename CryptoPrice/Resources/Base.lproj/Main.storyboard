@@ -115,9 +115,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="T90-xa-ykc">
+                                <rect key="frame" x="656.5" y="479.5" width="64" height="64"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="T90-xa-ykc" firstAttribute="centerY" secondItem="BAt-E3-2fU" secondAttribute="centerY" id="3vA-jG-v3c"/>
                             <constraint firstItem="iCb-1b-lls" firstAttribute="centerX" secondItem="BAt-E3-2fU" secondAttribute="centerX" id="6Ui-yI-WJo"/>
                             <constraint firstItem="N8n-4x-xEA" firstAttribute="centerX" secondItem="Cwb-iO-U2a" secondAttribute="centerX" id="8Dd-IZ-pt4"/>
                             <constraint firstItem="Anm-n1-pwo" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="8ye-oZ-lh3"/>
@@ -137,6 +142,7 @@
                             <constraint firstItem="Cwb-iO-U2a" firstAttribute="top" secondItem="N8n-4x-xEA" secondAttribute="bottom" constant="25" id="dbM-mX-DCf"/>
                             <constraint firstItem="BAt-E3-2fU" firstAttribute="top" secondItem="iCb-1b-lls" secondAttribute="bottom" constant="25" id="kvE-eZ-aCI"/>
                             <constraint firstItem="IgX-Xm-6xm" firstAttribute="centerY" secondItem="B9T-IX-hTg" secondAttribute="centerY" id="p9p-MU-amB"/>
+                            <constraint firstItem="T90-xa-ykc" firstAttribute="centerX" secondItem="BAt-E3-2fU" secondAttribute="centerX" id="rBe-CH-SA2"/>
                             <constraint firstItem="B9T-IX-hTg" firstAttribute="centerX" secondItem="Cwb-iO-U2a" secondAttribute="centerX" id="vBh-xD-j3T"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wu6-TO-1qx"/>
@@ -144,6 +150,7 @@
                     <navigationItem key="navigationItem" id="qcc-DC-jKb"/>
                     <connections>
                         <outlet property="chart" destination="BAt-E3-2fU" id="Emx-SJ-60f"/>
+                        <outlet property="loadingSpinner" destination="T90-xa-ykc" id="ter-7w-OGq"/>
                         <outlet property="tableView" destination="Cwb-iO-U2a" id="CWb-vo-Jiv"/>
                         <outlet property="topTitle" destination="iCb-1b-lls" id="mIE-Vc-M6c"/>
                     </connections>

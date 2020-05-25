@@ -16,11 +16,14 @@ class MainViewController: UIViewController, Storyboarded {
     private var selectedCrypto: CryptoCurrency! {
         didSet {
             topTitle.text = selectedCrypto.name
+            
+            loadingSpinner.startAnimating()
             updatePrice()
         }
     }
     var selectedInterval: String = "h1" {
         didSet {
+            loadingSpinner.startAnimating()
             updatePrice()
         }
     }
@@ -31,6 +34,7 @@ class MainViewController: UIViewController, Storyboarded {
     @IBOutlet weak var topTitle: UILabel!
     @IBOutlet weak var chart: LineChartView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,10 +84,18 @@ class MainViewController: UIViewController, Storyboarded {
     }
     
     @objc private func updatePrice() {
+        updateHistorical()
+        updateSidebar()
+    }
+    
+    private func updateHistorical() {
         database?.getHistorical(for: selectedCrypto.id!, in: "USD", interval: selectedInterval) { [weak self] (data) in
             self?.chart.data = data
+            self?.loadingSpinner.stopAnimating()
         }
-        
+    }
+    
+    private func updateSidebar() {
         guard let currencies = currencies else { return }
         for currency in currencies {
             if let id = currency.id {
