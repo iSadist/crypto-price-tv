@@ -139,7 +139,15 @@ extension MainViewController: UITableViewDataSource {
             if let currency = currencies?[indexPath.row] {
                 currencyCell.codeLabel.text = currency.name
                 
-                if let price = (currency.priceUsd as? NSString)?.doubleValue {
+                if let changePercent = currency.changePercent24Hr {
+                    let change = (changePercent as NSString).doubleValue
+                    let changeFormattedText = String(format: "%.2f", change)
+                    currencyCell.percentageChangeLabel.text = "\(changeFormattedText)%"
+                    currencyCell.percentageChangeLabel.textColor = change > 0 ? .systemGreen : .systemRed
+                }
+                
+                if let priceUsd = currency.priceUsd {
+                    let price = (priceUsd as NSString).doubleValue
                     let priceText = String(format: "%.4f", price)
                     currencyCell.priceLabel.text = "$\(priceText)"
                 }

@@ -12,6 +12,7 @@ class CurrencyTableViewCell: UITableViewCell {
     
     @IBOutlet weak var codeLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var percentageChangeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

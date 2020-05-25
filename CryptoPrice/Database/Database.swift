@@ -38,6 +38,8 @@ class Database {
                 let line = LineChartDataSet(entries: dataPoints, label: "USD")
                 line.drawCirclesEnabled = false
                 line.mode = .cubicBezier
+                line.fill = Fill(CGColor: UIColor.green.cgColor)
+                line.fillColor = .green
                 line.drawValuesEnabled = true
                 let data = LineChartData()
                 data.addDataSet(line)

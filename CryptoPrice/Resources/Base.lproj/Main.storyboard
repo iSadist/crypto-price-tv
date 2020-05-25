@@ -35,31 +35,41 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3P-wN-XAW">
-                                                    <rect key="frame" x="8" y="10" width="189.5" height="46"/>
+                                                    <rect key="frame" x="8" y="10" width="98.5" height="46"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xxt-kr-Qfc">
-                                                    <rect key="frame" x="222.5" y="10" width="236.5" height="46"/>
+                                                    <rect key="frame" x="131.5" y="10" width="173" height="46"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RD2-c9-vjM">
+                                                    <rect key="frame" x="329.5" y="18" width="129.5" height="30"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="RD2-c9-vjM" firstAttribute="leading" secondItem="Xxt-kr-Qfc" secondAttribute="trailing" constant="25" id="2CV-kY-KJy"/>
+                                                <constraint firstItem="RD2-c9-vjM" firstAttribute="width" secondItem="Xxt-kr-Qfc" secondAttribute="width" multiplier="0.75" id="4fM-Cx-v33"/>
                                                 <constraint firstItem="Xxt-kr-Qfc" firstAttribute="leading" secondItem="l3P-wN-XAW" secondAttribute="trailing" constant="25" id="8Zx-w5-R30"/>
-                                                <constraint firstItem="Xxt-kr-Qfc" firstAttribute="width" secondItem="l3P-wN-XAW" secondAttribute="width" multiplier="1.25" id="DlD-5t-6r6"/>
+                                                <constraint firstItem="Xxt-kr-Qfc" firstAttribute="width" secondItem="l3P-wN-XAW" secondAttribute="width" multiplier="1.75" id="DlD-5t-6r6"/>
                                                 <constraint firstAttribute="bottom" secondItem="Xxt-kr-Qfc" secondAttribute="bottom" constant="10" id="Efb-Fe-hZb"/>
                                                 <constraint firstItem="Xxt-kr-Qfc" firstAttribute="top" secondItem="Qy2-yL-CWl" secondAttribute="top" constant="10" id="KWq-8Z-jGu"/>
+                                                <constraint firstAttribute="trailing" secondItem="RD2-c9-vjM" secondAttribute="trailing" constant="20" id="MS8-Yb-MHj"/>
+                                                <constraint firstItem="RD2-c9-vjM" firstAttribute="centerY" secondItem="Xxt-kr-Qfc" secondAttribute="centerY" id="WNs-2n-3Rq"/>
                                                 <constraint firstAttribute="bottom" secondItem="l3P-wN-XAW" secondAttribute="bottom" constant="10" id="ZgP-Ff-2g2"/>
-                                                <constraint firstAttribute="trailing" secondItem="Xxt-kr-Qfc" secondAttribute="trailing" constant="20" id="gCS-e5-hJa"/>
                                                 <constraint firstItem="l3P-wN-XAW" firstAttribute="leading" secondItem="Qy2-yL-CWl" secondAttribute="leading" constant="8" id="nkE-e6-gt4"/>
                                                 <constraint firstItem="l3P-wN-XAW" firstAttribute="top" secondItem="Qy2-yL-CWl" secondAttribute="top" constant="10" id="vip-2S-dEa"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="codeLabel" destination="l3P-wN-XAW" id="een-rz-fsx"/>
+                                            <outlet property="percentageChangeLabel" destination="RD2-c9-vjM" id="54e-wI-TwZ"/>
                                             <outlet property="priceLabel" destination="Xxt-kr-Qfc" id="yJ6-Hq-Y1h"/>
                                         </connections>
                                     </tableViewCell>
