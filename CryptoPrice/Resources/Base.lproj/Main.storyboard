@@ -35,29 +35,29 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3P-wN-XAW">
-                                                    <rect key="frame" x="8" y="10" width="98.5" height="46"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <rect key="frame" x="8" y="10" width="119" height="46"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xxt-kr-Qfc">
-                                                    <rect key="frame" x="131.5" y="10" width="173" height="46"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                    <rect key="frame" x="137" y="10" width="178" height="46"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RD2-c9-vjM">
-                                                    <rect key="frame" x="329.5" y="18" width="129.5" height="30"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                    <rect key="frame" x="325" y="20" width="134" height="26"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="RD2-c9-vjM" firstAttribute="leading" secondItem="Xxt-kr-Qfc" secondAttribute="trailing" constant="25" id="2CV-kY-KJy"/>
+                                                <constraint firstItem="RD2-c9-vjM" firstAttribute="leading" secondItem="Xxt-kr-Qfc" secondAttribute="trailing" constant="10" id="2CV-kY-KJy"/>
                                                 <constraint firstItem="RD2-c9-vjM" firstAttribute="width" secondItem="Xxt-kr-Qfc" secondAttribute="width" multiplier="0.75" id="4fM-Cx-v33"/>
-                                                <constraint firstItem="Xxt-kr-Qfc" firstAttribute="leading" secondItem="l3P-wN-XAW" secondAttribute="trailing" constant="25" id="8Zx-w5-R30"/>
-                                                <constraint firstItem="Xxt-kr-Qfc" firstAttribute="width" secondItem="l3P-wN-XAW" secondAttribute="width" multiplier="1.75" id="DlD-5t-6r6"/>
+                                                <constraint firstItem="Xxt-kr-Qfc" firstAttribute="leading" secondItem="l3P-wN-XAW" secondAttribute="trailing" constant="10" id="8Zx-w5-R30"/>
+                                                <constraint firstItem="Xxt-kr-Qfc" firstAttribute="width" secondItem="l3P-wN-XAW" secondAttribute="width" multiplier="1.5" id="DlD-5t-6r6"/>
                                                 <constraint firstAttribute="bottom" secondItem="Xxt-kr-Qfc" secondAttribute="bottom" constant="10" id="Efb-Fe-hZb"/>
                                                 <constraint firstItem="Xxt-kr-Qfc" firstAttribute="top" secondItem="Qy2-yL-CWl" secondAttribute="top" constant="10" id="KWq-8Z-jGu"/>
                                                 <constraint firstAttribute="trailing" secondItem="RD2-c9-vjM" secondAttribute="trailing" constant="20" id="MS8-Yb-MHj"/>

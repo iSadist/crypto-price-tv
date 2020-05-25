@@ -42,8 +42,8 @@ class MainViewController: UIViewController, Storyboarded {
         dateFormatter.dateFormat = "yyyy'-'MM'-'dd"
         database = Database(format: "yyyy'-'MM'-'dd")
         
-        chart.xAxis.valueFormatter = self
-        
+        setupChart()
+
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -64,6 +64,24 @@ class MainViewController: UIViewController, Storyboarded {
 
     @IBAction func onMoreButtonPressed(_ sender: UIButton) {
         coordinator?.more(currencies ?? [])
+    }
+    
+    private func setupChart() {
+        chart.xAxis.valueFormatter = self
+        chart.leftAxis.enabled = false
+        chart.xAxis.labelPosition = .bottom
+        chart.xAxis.forceLabelsEnabled = true
+        chart.xAxis.labelTextColor = .label
+        chart.xAxis.labelFont = .boldSystemFont(ofSize: 10)
+
+        let yAxis = chart.rightAxis
+        yAxis.setLabelCount(6, force: false)
+        yAxis.labelFont = .boldSystemFont(ofSize: 12)
+        yAxis.labelTextColor = .label
+        yAxis.labelPosition = .outsideChart
+        yAxis.forceLabelsEnabled = true
+        
+        chart.backgroundColor = .clear
     }
 
     @IBAction func onSelectedInterval(_ sender: UISegmentedControl) {
