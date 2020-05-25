@@ -11,4 +11,5 @@ import UIKit
 class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var codeLabel: UILabel!
+    @IBOutlet weak var checkmark: UIImageView!
 }

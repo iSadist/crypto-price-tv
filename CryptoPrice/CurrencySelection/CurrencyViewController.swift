@@ -27,7 +27,7 @@ class CurrencyViewController: UIViewController, UICollectionViewDelegateFlowLayo
     var selectedCurrencies: [CryptoCurrency]?
     var database: Database?
     
-    private let selectedColor: UIColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0.5)
+    private let selectedColor: UIColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0.1547920335)
     private let selectedTextColor: UIColor = .systemBlue
 
     @IBOutlet weak var searchField: UITextField!
@@ -77,9 +77,9 @@ class CurrencyViewController: UIViewController, UICollectionViewDelegateFlowLayo
             let currency = filtered[indexPath.row]
             cell.label.text = currency.name
             cell.codeLabel.text = currency.symbol
-
             
-            cell.backgroundColor = selectedCurrencies?.contains(currency) ?? false ? selectedColor : UIColor.clear
+            let isSelected = selectedCurrencies?.contains(currency) ?? false
+            cell.checkmark.isHidden = !isSelected
             return cell
         }
         
@@ -125,7 +125,8 @@ class CurrencyViewController: UIViewController, UICollectionViewDelegateFlowLayo
         }
         
         if let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell {
-            cell.backgroundColor = selectedCurrencies?.contains(currency) ?? false ? selectedColor : UIColor.clear
+            let isSelected = selectedCurrencies?.contains(currency) ?? false
+            cell.checkmark.isHidden = !isSelected
         }
     }
 }

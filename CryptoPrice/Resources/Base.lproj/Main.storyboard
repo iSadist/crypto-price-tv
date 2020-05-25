@@ -195,16 +195,27 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.square.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="QD6-Nx-Ge9">
+                                                    <rect key="frame" x="183.5" y="169" width="65" height="62.5"/>
+                                                    <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="65" id="6AU-fM-UIM"/>
+                                                        <constraint firstAttribute="height" constant="65" id="irc-ql-BnB"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="QD6-Nx-Ge9" firstAttribute="centerX" secondItem="2Ut-hh-PqP" secondAttribute="centerX" id="9uX-3x-mnj"/>
                                                 <constraint firstItem="uax-h2-Fcx" firstAttribute="top" secondItem="jYX-EG-f3S" secondAttribute="top" constant="25" id="NJX-JI-HEW"/>
                                                 <constraint firstItem="2Ut-hh-PqP" firstAttribute="centerY" secondItem="jYX-EG-f3S" secondAttribute="centerY" id="YIR-34-Enm"/>
+                                                <constraint firstItem="QD6-Nx-Ge9" firstAttribute="top" secondItem="2Ut-hh-PqP" secondAttribute="bottom" constant="15" id="cxW-Vi-zrd"/>
                                                 <constraint firstItem="2Ut-hh-PqP" firstAttribute="centerX" secondItem="jYX-EG-f3S" secondAttribute="centerX" id="kbA-j0-Ssp"/>
                                                 <constraint firstItem="uax-h2-Fcx" firstAttribute="centerX" secondItem="jYX-EG-f3S" secondAttribute="centerX" id="oij-oL-aAs"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="432" height="237"/>
                                         <connections>
+                                            <outlet property="checkmark" destination="QD6-Nx-Ge9" id="hUf-ns-LeK"/>
                                             <outlet property="codeLabel" destination="2Ut-hh-PqP" id="5s9-vi-Lz4"/>
                                             <outlet property="label" destination="uax-h2-Fcx" id="EO6-8M-P74"/>
                                         </connections>
@@ -214,7 +225,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wnk-Td-lrU">
                                 <rect key="frame" x="660" y="40" width="600" height="47"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="600" id="wgU-86-MjP"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="600" id="wgU-86-MjP"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -239,4 +250,7 @@
             <point key="canvasLocation" x="2338" y="-793"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="checkmark.square.fill" catalog="system" width="128" height="115"/>
+    </resources>
 </document>
