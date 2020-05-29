@@ -9,7 +9,10 @@
 import UIKit
 import Alamofire
 
-class CurrencyViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate, Storyboarded {
+fileprivate let selectedColor: UIColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0.1547920335)
+fileprivate let selectedTextColor: UIColor = .systemBlue
+
+class CurrencyViewController: UIViewController, Storyboarded {
     var coordinator: CurrencyCoordinator?
     var currencies = [CryptoCurrency]()
     
@@ -26,9 +29,6 @@ class CurrencyViewController: UIViewController, UICollectionViewDelegateFlowLayo
     
     var selectedCurrencies: [CryptoCurrency]?
     var database: Database?
-    
-    private let selectedColor: UIColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0.1547920335)
-    private let selectedTextColor: UIColor = .systemBlue
 
     @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -60,43 +60,13 @@ class CurrencyViewController: UIViewController, UICollectionViewDelegateFlowLayo
         })
     }
     
-    func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        1
-    }
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filtered.count
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "standardCell", for: indexPath) as? CollectionViewCell {
-            let currency = filtered[indexPath.row]
-            cell.label.text = currency.name
-            cell.codeLabel.text = currency.symbol
-            
-            let isSelected = selectedCurrencies?.contains(currency) ?? false
-            cell.checkmark.isHidden = !isSelected
-            return cell
-        }
-        
-        return collectionView.dequeueReusableCell(withReuseIdentifier: "standardCell", for: indexPath)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 450, height: 350)
-    }
-    
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         if let nextView = context.nextFocusedView {
             UIView.animate(withDuration: 0.25) {
                 nextView.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
                 if let collectionCell = nextView as? CollectionViewCell {
-                    collectionCell.codeLabel.textColor = self.selectedTextColor
-                    collectionCell.label.textColor = self.selectedTextColor
+                    collectionCell.codeLabel.textColor = selectedTextColor
+                    collectionCell.label.textColor = selectedTextColor
                 }
             }
         }
@@ -110,29 +80,5 @@ class CurrencyViewController: UIViewController, UICollectionViewDelegateFlowLayo
                 }
             }
         }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let currency = filtered[indexPath.row]
-        
-        if selectedCurrencies?.contains(currency) ?? false {
-            if selectedCurrencies?.count ?? 0 > 1,
-                let index = selectedCurrencies?.firstIndex(of: currency) {
-                selectedCurrencies?.remove(at: index)
-            }
-        } else {
-            selectedCurrencies?.append(currency)
-        }
-        
-        if let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell {
-            let isSelected = selectedCurrencies?.contains(currency) ?? false
-            cell.checkmark.isHidden = !isSelected
-        }
-    }
-}
-
-extension CurrencyViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        collectionView.reloadData()
     }
 }

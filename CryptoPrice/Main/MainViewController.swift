@@ -36,6 +36,7 @@ class MainViewController: UIViewController, Storyboarded {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
     
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         coordinator = MainScreenCoordinator(navigationController: navigationController ?? UINavigationController())
@@ -61,9 +62,28 @@ class MainViewController: UIViewController, Storyboarded {
     override func viewDidDisappear(_ animated: Bool) {
         timer?.invalidate()
     }
+    
+    // MARK: Events
 
     @IBAction func onMoreButtonPressed(_ sender: UIButton) {
         coordinator?.more(currencies ?? [])
+    }
+    
+    @IBAction func onSelectedInterval(_ sender: UISegmentedControl) {
+        let selectedIndex = sender.selectedSegmentIndex
+        var interval = "h1"
+
+        switch selectedIndex {
+        case 0: interval = "m15"
+        case 1: interval = "h1"
+        case 2: interval = "h6"
+        case 3: interval = "h12"
+        case 4: interval = "d1"
+        default:
+            interval = "h1"
+        }
+
+        selectedInterval = interval
     }
     
     private func setupChart() {
@@ -82,23 +102,6 @@ class MainViewController: UIViewController, Storyboarded {
         yAxis.forceLabelsEnabled = true
         
         chart.backgroundColor = .clear
-    }
-
-    @IBAction func onSelectedInterval(_ sender: UISegmentedControl) {
-        let selectedIndex = sender.selectedSegmentIndex
-        var interval = "h1"
-
-        switch selectedIndex {
-        case 0: interval = "m15"
-        case 1: interval = "h1"
-        case 2: interval = "h6"
-        case 3: interval = "h12"
-        case 4: interval = "d1"
-        default:
-            interval = "h1"
-        }
-
-        selectedInterval = interval
     }
     
     @objc private func updatePrice() {
@@ -127,6 +130,7 @@ class MainViewController: UIViewController, Storyboarded {
     }
 }
 
+// MARK: Chart Axis formatter
 extension MainViewController: IAxisValueFormatter {
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         dateFormatter.string(from: Date(timeIntervalSince1970: value/1000))
@@ -138,42 +142,5 @@ extension MainViewController: UITableViewDelegate {
         if let currency = currencies?[indexPath.row] {
             selectedCrypto = currency
         }
-    }
-}
-
-extension MainViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currencies?.count ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "currencyCell", for: indexPath)
-        
-        if let currencyCell = cell as? CurrencyTableViewCell {
-            if let currency = currencies?[indexPath.row] {
-                currencyCell.codeLabel.text = currency.name
-                
-                if let changePercent = currency.changePercent24Hr {
-                    let change = (changePercent as NSString).doubleValue
-                    let changeFormattedText = String(format: "%.2f", change)
-                    currencyCell.percentageChangeLabel.text = "\(changeFormattedText)%"
-                    currencyCell.percentageChangeLabel.textColor = change > 0 ? .systemGreen : .systemRed
-                }
-                
-                if let priceUsd = currency.priceUsd {
-                    let price = (priceUsd as NSString).doubleValue
-                    let priceText = String(format: "%.4f", price)
-                    currencyCell.priceLabel.text = "$\(priceText)"
-                }
-
-                return currencyCell
-            }
-        }
-
-        return cell
     }
 }
