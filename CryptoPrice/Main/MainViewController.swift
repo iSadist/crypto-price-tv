@@ -12,24 +12,9 @@ import Charts
 
 class MainViewController: UIViewController, Storyboarded {
     var timer: Timer?
-    var currencies: [CryptoCurrency]?
-    private var selectedCrypto: CryptoCurrency! {
-        didSet {
-            topTitle.text = selectedCrypto.name
-            
-            loadingSpinner.startAnimating()
-            updatePrice()
-        }
-    }
-    var selectedInterval: String = "h1" {
-        didSet {
-            loadingSpinner.startAnimating()
-            updatePrice()
-        }
-    }
-    private var coordinator: MainScreenCoordinator?
+
+    var presenter: MainPresentable?
     let dateFormatter = DateFormatter()
-    var database: Database?
 
     @IBOutlet weak var topTitle: UILabel!
     @IBOutlet weak var chart: LineChartView!
@@ -39,17 +24,19 @@ class MainViewController: UIViewController, Storyboarded {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        coordinator = MainScreenCoordinator(navigationController: navigationController ?? UINavigationController())
+        // TODO: Should be set outside of this class
+        let coordinator = MainScreenCoordinator(navigationController: navigationController ?? UINavigationController())
+        let crypto = [CryptoCurrency(id: "bitcoin", symbol: "B", name: "Bitcoin")]
+        presenter = MainPresenter(crypto, controller: self)
+        presenter?.coordinator = coordinator
+        presenter?.database = Database(format: "yyyy'-'MM'-'dd")
+        
         dateFormatter.dateFormat = "yyyy'-'MM'-'dd"
-        database = Database(format: "yyyy'-'MM'-'dd")
         
         setupChart()
 
         tableView.delegate = self
         tableView.dataSource = self
-        
-        selectedCrypto = currencies?.first
-        topTitle.text = selectedCrypto.name
         
         updatePrice()
     }
@@ -66,24 +53,16 @@ class MainViewController: UIViewController, Storyboarded {
     // MARK: Events
 
     @IBAction func onMoreButtonPressed(_ sender: UIButton) {
-        coordinator?.more(currencies ?? [])
+        presenter?.onMore()
     }
     
     @IBAction func onSelectedInterval(_ sender: UISegmentedControl) {
         let selectedIndex = sender.selectedSegmentIndex
-        var interval = "h1"
-
-        switch selectedIndex {
-        case 0: interval = "m15"
-        case 1: interval = "h1"
-        case 2: interval = "h6"
-        case 3: interval = "h12"
-        case 4: interval = "d1"
-        default:
-            interval = "h1"
-        }
-
-        selectedInterval = interval
+        presenter?.onSelectedInterval(selectedIndex)
+    }
+    
+    @objc private func updatePrice() {
+        presenter?.refreshPrice()
     }
     
     private func setupChart() {
@@ -103,31 +82,6 @@ class MainViewController: UIViewController, Storyboarded {
         
         chart.backgroundColor = .clear
     }
-    
-    @objc private func updatePrice() {
-        updateHistorical()
-        updateSidebar()
-    }
-    
-    private func updateHistorical() {
-        database?.getHistorical(for: selectedCrypto.id!, in: "USD", interval: selectedInterval) { [weak self] (data) in
-            self?.chart.data = data
-            self?.loadingSpinner.stopAnimating()
-        }
-    }
-    
-    private func updateSidebar() {
-        guard let currencies = currencies else { return }
-        for currency in currencies {
-            if let id = currency.id {
-                database?.getAsset(for: id, in: "USD") { (asset) in
-                    guard let asset = asset else { return }
-                    self.currencies?.replaceFirst(element: currency, with: asset)
-                }
-            }
-        }
-        self.tableView.reloadData()
-    }
 }
 
 // MARK: Chart Axis formatter
@@ -139,8 +93,6 @@ extension MainViewController: IAxisValueFormatter {
 
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let currency = currencies?[indexPath.row] {
-            selectedCrypto = currency
-        }
+        presenter?.onSelectedCurrency(on: indexPath.row)
     }
 }

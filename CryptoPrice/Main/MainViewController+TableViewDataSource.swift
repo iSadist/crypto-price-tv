@@ -14,14 +14,14 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currencies?.count ?? 0
+        return presenter?.currencies.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "currencyCell", for: indexPath)
         
         if let currencyCell = cell as? CurrencyTableViewCell {
-            if let currency = currencies?[indexPath.row] {
+            if let currency = presenter?.currencies[indexPath.row] {
                 currencyCell.codeLabel.text = currency.name
                 
                 if let changePercent = currency.changePercent24Hr {
@@ -36,8 +36,6 @@ extension MainViewController: UITableViewDataSource {
                     let priceText = String(format: "%.4f", price)
                     currencyCell.priceLabel.text = "$\(priceText)"
                 }
-
-                return currencyCell
             }
         }
 

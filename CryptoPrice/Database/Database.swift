@@ -35,6 +35,7 @@ class Database {
                     }
                 }
                 
+                // TODO: Move this out to the Main View
                 let line = LineChartDataSet(entries: dataPoints, label: "USD")
                 line.drawCirclesEnabled = false
                 line.mode = .linear

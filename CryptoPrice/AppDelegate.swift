@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         
         let vc = MainViewController.instantiate()
-        vc.currencies = [CryptoCurrency(id: "bitcoin", rank: nil, symbol: "B", name: "Bitcoin", supply: nil, maxSupply: nil, marketCapUsd: nil, volumeUsd24Hr: nil, priceUsd: nil, changePercent24Hr: nil, vwap24Hr: nil)]
         let navigationController = UINavigationController(rootViewController: vc)
         
         window?.rootViewController = navigationController
