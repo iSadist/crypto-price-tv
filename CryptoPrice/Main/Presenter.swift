@@ -81,22 +81,33 @@ class MainPresenter: MainPresentable {
     }
     
     private func refreshHistoricalData() {
-        database?.getHistorical(for: selectedCrypto.id!, in: "USD", interval: selectedInterval) { [weak self] (data) in
-            self?.controller?.chart.data = data
-            self?.controller?.loadingSpinner.stopAnimating()
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            guard let `self` = self else { return }
+            self.database?.getHistorical(for: self.selectedCrypto.id!, in: "USD", interval: self.selectedInterval) { [weak self] (data) in
+                DispatchQueue.main.async {
+                    self?.controller?.chart.data = data
+                    self?.controller?.loadingSpinner.stopAnimating()
+                }
+            }
         }
     }
     
     private func populatePriceTable() {
         for currency in currencies {
             if let id = currency.id {
-                database?.getAsset(for: id, in: "USD") { (asset) in
-                    guard let asset = asset else { return }
-                    self.currencies.replaceFirst(element: currency, with: asset)
+                DispatchQueue.global(qos: .background).async { [weak self] in
+                    guard let `self` = self else { return }
+                    self.database?.getAsset(for: id, in: "USD") { (asset) in
+                        guard let asset = asset else { return }
+                        self.currencies.replaceFirst(element: currency, with: asset)
+                        
+                        DispatchQueue.main.async {
+                            self.controller?.tableView.reloadData()
+                        }
+                    }
                 }
             }
         }
-        self.controller?.tableView.reloadData()
     }
 }
 
