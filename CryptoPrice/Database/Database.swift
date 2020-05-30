@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import Charts
+import simd
 
 class Database {
     lazy private var decoder = JSONDecoder()
@@ -19,37 +20,21 @@ class Database {
     }
     
     // https://api.coincap.io/v2/assets/ethereum/history?interval=h1
-    internal func getHistorical(for crypto: String, in currency: String, interval: String, completionHandler: @escaping ((LineChartData?) -> ()) ) {
-        var dataPoints: [ChartDataEntry] = []
+    internal func getHistorical(for crypto: String, in currency: String, interval: String, completionHandler: @escaping (([vector_double2]?) -> ()) ) {
+        var points: [vector_double2] = []
 
         AF.request(historicalUrl(crypto: crypto, interval: interval)).response { [weak self] (response) in
             switch response.result {
             case .success(let data):
-                
                 if let data = data, let prices = try? self?.decoder.decode(Historical.self, from: data) {
                     for price in prices.data {
                         let nsPrice = price.priceUsd as NSString?
                         guard let time = price.time, let val = nsPrice?.doubleValue else { return }
-                        let chartDataEntry = ChartDataEntry(x: Double(time), y: val)
-                        dataPoints.append(chartDataEntry)
+                        points.append(vector_double2(x: time, y: val))
                     }
                 }
-                
-                // TODO: Move this out to the Main View
-                let line = LineChartDataSet(entries: dataPoints, label: "USD")
-                line.drawCirclesEnabled = false
-                line.mode = .linear
 
-                line.fill = Fill(color: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1))
-                line.fillAlpha = 0.8
-                line.drawFilledEnabled = true
-                
-                line.setColor(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1))
-                line.lineWidth = 2
-                line.drawValuesEnabled = true
-                let data = LineChartData()
-                data.addDataSet(line)
-                completionHandler(data)
+                completionHandler(points)
             case .failure(let error):
                 print(error)
                 completionHandler(nil)
