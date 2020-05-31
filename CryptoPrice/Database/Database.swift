@@ -73,31 +73,18 @@ class Database {
             completionHandler(currencies)
         }
     }
-    
-    // https://api.coincap.io/v2/rates
-    internal func getRates(completionHandler: @escaping (([(String, String)]) -> ())) {
-        var currencies = [(code: String, country: String)]()
-        
-        AF.request(supportedCurrenciesURL).responseJSON { (response) in
+
+    internal func getRates(completionHandler: @escaping ((Rates?) -> ())) {
+        AF.request(supportedCurrenciesURL).response { [weak self] (response) in
             switch response.result {
             case .success(let data):
-                if let array = data as? [Any] {
-                    
-                    for entry in array {
-                        if let currency = entry as? [String: String] {
-                            let code = currency["currency"]!
-                            let country = currency["country"]!
-                            let tuple = (code, country)
-                            currencies.append(tuple)
-                        }
-                    }
+                if let data = data, let rates = try? self?.decoder.decode(Rates.self, from: data) {
+                    completionHandler(rates)
                 }
-                
             case .failure(let error):
+                completionHandler(nil)
                 print(error)
             }
-            
-            completionHandler(currencies)
         }
     }
 }

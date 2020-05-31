@@ -30,6 +30,19 @@ struct Asset: Codable {
     var timestamp: Int
 }
 
+struct Rates: Codable {
+    var data: [Rate]
+    var timestamp: Int
+}
+
+struct Rate: Codable {
+    var id: String?
+    var symbol: String?
+    var currencySymbol: String?
+    var type: String?
+    var rateUsd: String?
+}
+
 struct CryptoCurrency: Codable, Equatable {
     var id: String?
     var rank: String?

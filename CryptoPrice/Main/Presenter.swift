@@ -13,6 +13,7 @@ protocol MainPresentable: class {
     func onSelectedInterval(_ selectedIndex: Int)
     func onSelectedCurrency(on row: Int)
     func onMore()
+    func onCurrency()
     func refreshPrice()
     
     var coordinator: MainScreenCoordinator? { get set }
@@ -21,6 +22,7 @@ protocol MainPresentable: class {
     var currencies: [CryptoCurrency] { get set }
     var selectedCrypto: CryptoCurrency { get }
     var selectedInterval: String { get }
+    var selectedRate: Rate { get set }
 }
 
 class MainPresenter: MainPresentable {
@@ -40,6 +42,11 @@ class MainPresenter: MainPresentable {
         didSet {
             controller?.loadingSpinner.startAnimating()
             refreshPrice()
+        }
+    }
+    var selectedRate: Rate = Rate(id: "american-dollar", symbol: "USD", currencySymbol: "$", type: "fiat", rateUsd: "1.0") {
+        didSet {
+            controller?.rateButton.setTitle(selectedRate.symbol, for: .normal) // Default rate is USD
         }
     }
     
@@ -81,13 +88,18 @@ class MainPresenter: MainPresentable {
         coordinator?.more(currencies)
     }
     
+    func onCurrency() {
+        coordinator?.currency()
+    }
+    
     private func refreshHistoricalData() {
         DispatchQueue.global(qos: .background).async { [weak self] in
             guard let `self` = self else { return }
             self.database?.getHistorical(for: self.selectedCrypto.id!, in: "USD", interval: self.selectedInterval) { [weak self] (data) in
-                
-                let dataPoints = data?.map({
-                    ChartDataEntry(x: $0.x, y: $0.y)
+                let dataPoints = data?.map({ [weak self] (point) -> ChartDataEntry in
+                    let rate = self?.selectedRate.rateUsd as NSString?
+                    let doubleValue = rate?.doubleValue
+                    return ChartDataEntry(x: point.x, y: point.y * (doubleValue ?? 1.0))
                 })
                 
                 let line = LineChartDataSet(entries: dataPoints, label: "USD")

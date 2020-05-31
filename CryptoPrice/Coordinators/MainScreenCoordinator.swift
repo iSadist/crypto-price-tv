@@ -22,4 +22,10 @@ class MainScreenCoordinator: JSVCoordinator {
         vc.coordinator = CurrencyCoordinator(navigationController: navigationController ?? UINavigationController())
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    func currency() {
+        let vc = CurrencyCollectionViewController.instantiate()
+        vc.coordinator = RateSelectorCoordinator(navigationController: navigationController ?? UINavigationController())
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }

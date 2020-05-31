@@ -20,6 +20,7 @@ class MainViewController: UIViewController, Storyboarded {
     @IBOutlet weak var chart: LineChartView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
+    @IBOutlet weak var rateButton: UIButton!
     
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -54,6 +55,10 @@ class MainViewController: UIViewController, Storyboarded {
 
     @IBAction func onMoreButtonPressed(_ sender: UIButton) {
         presenter?.onMore()
+    }
+
+    @IBAction func onCurrencyButtonPressed(_ sender: UIButton) {
+        presenter?.onCurrency()
     }
     
     @IBAction func onSelectedInterval(_ sender: UISegmentedControl) {

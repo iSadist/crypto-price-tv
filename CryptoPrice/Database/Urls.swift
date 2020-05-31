@@ -9,7 +9,7 @@
 import Foundation
 
 let currentPriceURL = URL(string: "https://api.coindesk.com/v1/bpi/currentprice.json")!
-let supportedCurrenciesURL = URL(string: "https://api.coindesk.com/v1/bpi/supported-currencies.json")!
+let supportedCurrenciesURL = URL(string: "https://api.coincap.io/v2/rates")!
 let assetsUrl = URL(string: "https://api.coincap.io/v2/assets")!
 
 func priceUrl(crypto: String) -> URL {

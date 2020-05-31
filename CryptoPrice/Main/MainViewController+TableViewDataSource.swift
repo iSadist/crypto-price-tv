@@ -32,9 +32,10 @@ extension MainViewController: UITableViewDataSource {
                 }
                 
                 if let priceUsd = currency.priceUsd {
-                    let price = (priceUsd as NSString).doubleValue
+                    let rate = presenter?.selectedRate.rateUsd as? NSString
+                    let price = (priceUsd as NSString).doubleValue / (rate?.doubleValue ?? 1.0)
                     let priceText = String(format: "%.4f", price)
-                    currencyCell.priceLabel.text = "$\(priceText)"
+                    currencyCell.priceLabel.text = "\(presenter?.selectedRate.currencySymbol ?? "$")\(priceText)"
                 }
             }
         }
