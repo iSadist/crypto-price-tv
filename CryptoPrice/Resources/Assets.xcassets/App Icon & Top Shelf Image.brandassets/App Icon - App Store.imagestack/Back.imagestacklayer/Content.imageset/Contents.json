@@ -1,11 +1,12 @@
 {
   "images" : [
     {
+      "filename" : "background-crypto 2.jpg",
       "idiom" : "tv"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }

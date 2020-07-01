@@ -26,6 +26,12 @@ class MainScreenCoordinator: JSVCoordinator {
     func currency() {
         let vc = CurrencyCollectionViewController.instantiate()
         vc.coordinator = RateSelectorCoordinator(navigationController: navigationController ?? UINavigationController())
-        navigationController?.pushViewController(vc, animated: true)
+        
+        let searchController = UISearchController(searchResultsController: vc)
+        searchController.searchResultsUpdater = vc
+        let searchContainer = UISearchContainerViewController(searchController: searchController)
+        searchContainer.title = "Search"
+        
+        navigationController?.pushViewController(searchContainer, animated: true)
     }
 }

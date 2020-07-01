@@ -122,3 +122,9 @@ class CurrencyCollectionViewController: UICollectionViewController, Storyboarded
     
     }
 }
+
+extension CurrencyCollectionViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        print("updating search")
+    }
+}

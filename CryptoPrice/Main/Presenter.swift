@@ -56,7 +56,7 @@ class MainPresenter: MainPresentable {
         self.controller = controller
         
         controller.topTitle.text = selectedCrypto.name
-        
+        controller.rateButton.setTitle(selectedRate.symbol, for: .normal)
     }
     
     func onSelectedInterval(_ selectedIndex: Int) {
@@ -99,7 +99,7 @@ class MainPresenter: MainPresentable {
                 let dataPoints = data?.map({ [weak self] (point) -> ChartDataEntry in
                     let rate = self?.selectedRate.rateUsd as NSString?
                     let doubleValue = rate?.doubleValue
-                    return ChartDataEntry(x: point.x, y: point.y * (doubleValue ?? 1.0))
+                    return ChartDataEntry(x: point.x, y: point.y / (doubleValue ?? 1.0))
                 })
                 
                 let line = LineChartDataSet(entries: dataPoints, label: "USD")
