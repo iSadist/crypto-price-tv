@@ -101,21 +101,23 @@ extension InAppPurchaseClient: SKPaymentTransactionObserver {
     public func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction in transactions where transaction.transactionState == .purchased ||
             transaction.transactionState == .restored {
-            if let product = (products.first { (prod) -> Bool in
-                prod.productIdentifier == transaction.payment.productIdentifier
-            }) {
-                DispatchQueue.main.async { [weak self] in
-                    guard let `self` = self else { return }
-                    self.purchasedProducts.append(product)
-                    self.paymentCallback?(self.purchasedProducts, transaction.error)
+                if let product = (products.first { (prod) -> Bool in
+                    prod.productIdentifier == transaction.payment.productIdentifier
+                }) {
+                    DispatchQueue.main.async { [weak self] in
+                        guard let `self` = self else { return }
+                        self.purchasedProducts.append(product)
+                        self.paymentCallback?(self.purchasedProducts, transaction.error)
+                    }
                 }
-            }
+                queue.finishTransaction(transaction)
         }
         
         for transaction in transactions where transaction.transactionState == .failed {
             DispatchQueue.main.async {
                 self.paymentCallback?(self.purchasedProducts, transaction.error)
             }
+            queue.finishTransaction(transaction)
         }
     }
     
