@@ -35,7 +35,11 @@ struct Rates: Codable {
     var timestamp: Int
 }
 
-struct Rate: Codable {
+struct Rate: Codable, Comparable {
+    static func < (lhs: Rate, rhs: Rate) -> Bool {
+        lhs.id == rhs.id
+    }
+    
     var id: String?
     var symbol: String?
     var currencySymbol: String?

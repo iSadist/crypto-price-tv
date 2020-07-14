@@ -55,7 +55,7 @@ class CurrencyViewController: UIViewController, Storyboarded {
         IAPClient.fetchProducts(identifiers: iapIdentifiers)
         
         #if true
-        UserDefaults.standard.unlimitedCurrencies = true
+        UserDefaults.standard.unlimitedCurrencies = false
         #endif
         
         database = Database(format: "yyyy'-'MM'-'dd")
