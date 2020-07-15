@@ -12,13 +12,12 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
+    lazy var vc = MainViewController.instantiate()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        
-        let vc = MainViewController.instantiate()
         let navigationController = UINavigationController(rootViewController: vc)
         
         window?.rootViewController = navigationController
@@ -28,7 +27,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        print(url.absoluteString)
+        let index = url.lastPathComponent
+        
+        var crypto: CryptoCurrency!
+        
+        switch index {
+        case "1":
+            crypto = CryptoCurrency(id: "bitcoin", rank: nil, symbol: "btc", name: "Bitcoin")
+        case "2":
+            crypto = CryptoCurrency(id: "ethereum", rank: nil, symbol: "eth", name: "Ethereum")
+        case "3":
+            crypto = CryptoCurrency(id: "litecoin", rank: nil, symbol: "ltc", name: "Litecoin")
+        default:
+            fatalError("Unknown url index for opening the app")
+        }
+        
+        vc.presenter?.selectedCrypto = crypto
+        
+        if let currencyIndex = vc.presenter?.currencies.firstIndex(of: crypto) {
+            vc.presenter?.currencies.swapAt(0, currencyIndex)
+        } else {
+            vc.presenter?.currencies.insert(crypto, at: 0)
+        }
         
         return true
     }

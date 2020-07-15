@@ -20,7 +20,7 @@ protocol MainPresentable: class {
     var database: Database? { get set }
     var controller: MainViewController? { get set }
     var currencies: [CryptoCurrency] { get set }
-    var selectedCrypto: CryptoCurrency { get }
+    var selectedCrypto: CryptoCurrency { get set }
     var selectedInterval: String { get }
     var selectedRate: Rate { get set }
 }
