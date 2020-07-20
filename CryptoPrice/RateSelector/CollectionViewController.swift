@@ -19,16 +19,12 @@ class CurrencyCollectionViewController: UICollectionViewController, Storyboarded
     var coordinator: RateSelectorCoordinator?
     var visibleRates: [Rate]! = []
     var rates: [Rate]! = []
+    
+    fileprivate var previousSearchText: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-//         self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-//        self.collectionView!.register(RateCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        
+        self.clearsSelectionOnViewWillAppear = false
         database = Database(format: "yyyy'-'MM'-'dd")
     }
     
@@ -37,9 +33,10 @@ class CurrencyCollectionViewController: UICollectionViewController, Storyboarded
             guard let `self` = self else { return }
             
             if let fiatRates = rates?.data.filter({ (rate) -> Bool in
-                return rate.type == "fiat"
+                return rate.type == "fiat" && rate.currencySymbol != nil
             }) {
                 self.rates.append(contentsOf: fiatRates)
+                self.visibleRates.append(contentsOf: self.rates)
                 self.collectionView.reloadData()
             }
         })
@@ -72,13 +69,11 @@ class CurrencyCollectionViewController: UICollectionViewController, Storyboarded
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         return visibleRates.count
     }
 
@@ -96,43 +91,25 @@ class CurrencyCollectionViewController: UICollectionViewController, Storyboarded
     }
 
     // MARK: UICollectionViewDelegate
-
-    /*
-     Uncomment this method to specify if the specified item should be highlighted during tracking
-     */
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedRate = visibleRates[indexPath.row]
         coordinator?.back(selectedRate)
     }
+}
 
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
+extension CurrencyCollectionViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 450, height: 300)
     }
 }
 
 extension CurrencyCollectionViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text?.localizedLowercase else { return }
+        guard previousSearchText != searchText else { return }
+        previousSearchText = searchText
+        
         visibleRates.removeAll()
         
         if searchText.isEmpty {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="16096" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="16097.2" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="appleTV" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -294,41 +294,41 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RateCell" id="8O0-cR-kTn" customClass="RateCollectionViewCell" customModule="CryptoPrice" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="340" height="267"/>
+                                <rect key="frame" x="0.0" y="0.0" width="500" height="300"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5ad-Sd-Gls" customClass="RateCollectionViewCell" customModule="CryptoPrice" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="340" height="267"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="500" height="300"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lWQ-Pk-hJU">
-                                            <rect key="frame" x="20" y="25" width="92" height="46"/>
+                                            <rect key="frame" x="204" y="25" width="92" height="46"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cwm-j1-Kuu">
-                                            <rect key="frame" x="20" y="110.5" width="92" height="46"/>
+                                            <rect key="frame" x="204" y="127" width="92" height="46"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KMA-ch-4oe">
-                                            <rect key="frame" x="20" y="196" width="92" height="46"/>
+                                            <rect key="frame" x="204" y="229" width="92" height="46"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Cwm-j1-Kuu" firstAttribute="centerY" secondItem="5ad-Sd-Gls" secondAttribute="centerY" id="DXS-67-N0C"/>
-                                        <constraint firstItem="KMA-ch-4oe" firstAttribute="leading" secondItem="Cwm-j1-Kuu" secondAttribute="leading" id="UIY-9z-9Te"/>
-                                        <constraint firstItem="lWQ-Pk-hJU" firstAttribute="leading" secondItem="5ad-Sd-Gls" secondAttribute="leading" constant="20" id="ZZ6-h6-FoP"/>
-                                        <constraint firstItem="lWQ-Pk-hJU" firstAttribute="top" secondItem="5ad-Sd-Gls" secondAttribute="top" constant="25" id="byd-PP-WSK"/>
-                                        <constraint firstAttribute="bottom" secondItem="KMA-ch-4oe" secondAttribute="bottom" constant="25" id="cXw-qM-rRW"/>
-                                        <constraint firstItem="Cwm-j1-Kuu" firstAttribute="leading" secondItem="lWQ-Pk-hJU" secondAttribute="leading" id="k0H-bv-PHA"/>
+                                        <constraint firstItem="KMA-ch-4oe" firstAttribute="centerX" secondItem="5ad-Sd-Gls" secondAttribute="centerX" id="XTb-xr-l1z"/>
+                                        <constraint firstItem="lWQ-Pk-hJU" firstAttribute="top" secondItem="5ad-Sd-Gls" secondAttribute="top" constant="25" id="ZVk-lx-yag"/>
+                                        <constraint firstItem="Cwm-j1-Kuu" firstAttribute="centerY" secondItem="5ad-Sd-Gls" secondAttribute="centerY" id="jLB-2Y-eNK"/>
+                                        <constraint firstAttribute="bottom" secondItem="KMA-ch-4oe" secondAttribute="bottom" constant="25" id="jmy-VX-Sce"/>
+                                        <constraint firstItem="Cwm-j1-Kuu" firstAttribute="centerX" secondItem="lWQ-Pk-hJU" secondAttribute="centerX" id="pPd-Qy-u6a"/>
+                                        <constraint firstItem="lWQ-Pk-hJU" firstAttribute="centerX" secondItem="5ad-Sd-Gls" secondAttribute="centerX" id="rCZ-Xc-wZo"/>
                                     </constraints>
                                 </collectionViewCellContentView>
-                                <size key="customSize" width="340" height="267"/>
+                                <size key="customSize" width="500" height="300"/>
                                 <connections>
                                     <outlet property="bottomLabel" destination="KMA-ch-4oe" id="bjD-D3-9yd"/>
                                     <outlet property="centerLabel" destination="Cwm-j1-Kuu" id="ye9-mB-E60"/>

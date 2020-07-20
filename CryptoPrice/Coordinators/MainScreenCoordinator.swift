@@ -29,6 +29,7 @@ class MainScreenCoordinator: JSVCoordinator {
         
         let searchController = UISearchController(searchResultsController: vc)
         searchController.searchResultsUpdater = vc
+        searchController.hidesNavigationBarDuringPresentation = true
         let searchContainer = UISearchContainerViewController(searchController: searchController)
         searchContainer.title = "Search"
         
