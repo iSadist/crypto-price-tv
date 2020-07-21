@@ -37,7 +37,9 @@ struct Rates: Codable {
 
 struct Rate: Codable, Comparable {
     static func < (lhs: Rate, rhs: Rate) -> Bool {
-        lhs.id == rhs.id
+        guard let lhsSymbol = lhs.symbol else { return  true }
+        guard let rhsSymbol = rhs.symbol else { return false }
+        return lhsSymbol < rhsSymbol
     }
     
     var id: String?
