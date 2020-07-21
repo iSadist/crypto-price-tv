@@ -96,13 +96,17 @@ class MainPresenter: MainPresentable {
         DispatchQueue.global(qos: .background).async { [weak self] in
             guard let `self` = self else { return }
             self.database?.getHistorical(for: self.selectedCrypto.id!, in: "USD", interval: self.selectedInterval) { [weak self] (data) in
-                let dataPoints = data?.map({ [weak self] (point) -> ChartDataEntry in
+                guard let dataPoints = data?.map({ [weak self] (point) -> ChartDataEntry in
                     let rate = self?.selectedRate.rateUsd as NSString?
                     let doubleValue = rate?.doubleValue
                     return ChartDataEntry(x: point.x, y: point.y / (doubleValue ?? 1.0))
-                })
+                }) else { return }
+
+                let nrbOfDataPoints = 200
                 
-                let line = LineChartDataSet(entries: dataPoints, label: "USD")
+                let nbrOfPointsToDrop = dataPoints.count > nrbOfDataPoints ? dataPoints.count - nrbOfDataPoints : 0
+                
+                let line = LineChartDataSet(entries: Array(dataPoints.dropFirst(nbrOfPointsToDrop)), label: "USD")
                 line.drawCirclesEnabled = false
                 line.mode = .linear
 
