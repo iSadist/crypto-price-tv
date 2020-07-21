@@ -14,7 +14,7 @@ fileprivate let selectedColor: UIColor = #colorLiteral(red: 0.8039215803, green:
 fileprivate let selectedTextColor: UIColor = .systemBlue
 
 
-class CurrencyCollectionViewController: UICollectionViewController, Storyboarded {
+class RateSelectorViewController: UITableViewController, Storyboarded {
     var database: Database?
     var coordinator: RateSelectorCoordinator?
     var visibleRates: [Rate]! = []
@@ -37,54 +37,31 @@ class CurrencyCollectionViewController: UICollectionViewController, Storyboarded
             }) {
                 self.rates.append(contentsOf: fiatRates)
                 self.visibleRates.append(contentsOf: self.rates)
-                self.collectionView.reloadData()
+                self.tableView.reloadData()
             }
         })
     }
     
-    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
-        if let nextView = context.nextFocusedView {
-            UIView.animate(withDuration: 0.25) {
-                nextView.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
-                if let rateCell = nextView as? RateCollectionViewCell {
-                    rateCell.topLabel.textColor = selectedTextColor
-                    rateCell.centerLabel.textColor = selectedTextColor
-                    rateCell.bottomLabel.textColor = selectedTextColor
-                }
-            }
-        }
-        
-        if let previousView = context.previouslyFocusedView {
-            UIView.animate(withDuration: 0.25) {
-                previousView.transform = CGAffineTransform(scaleX: 1, y: 1)
-                if let rateCell = previousView as? RateCollectionViewCell {
-                    rateCell.topLabel.textColor = .label
-                    rateCell.centerLabel.textColor = .label
-                    rateCell.bottomLabel.textColor = .label
-                }
-            }
-        }
-    }
-
-    // MARK: UICollectionViewDataSource
-
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+    // MARK: UITableViewDataSource
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
-
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return visibleRates.count
     }
-
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
     
-        if let rateCell = cell as? RateCollectionViewCell {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Rates"
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+        
+        if let rateCell = cell as? RateViewCell {
             let rate = visibleRates[indexPath.row]
-            rateCell.topLabel.text = rate.id
-            rateCell.centerLabel.text = rate.rateUsd
-            rateCell.bottomLabel.text = rate.symbol
+            rateCell.centerLabel.text = "\(rate.symbol ?? "") - \(rate.id?.replacingOccurrences(of: "-", with: " ").capitalizingFirstLetter() ?? "")"
         }
     
         return cell
@@ -92,19 +69,13 @@ class CurrencyCollectionViewController: UICollectionViewController, Storyboarded
 
     // MARK: UICollectionViewDelegate
     
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedRate = visibleRates[indexPath.row]
         coordinator?.back(selectedRate)
     }
 }
 
-extension CurrencyCollectionViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 450, height: 300)
-    }
-}
-
-extension CurrencyCollectionViewController: UISearchResultsUpdating {
+extension RateSelectorViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text?.localizedLowercase else { return }
         guard previousSearchText != searchText else { return }
@@ -121,6 +92,6 @@ extension CurrencyCollectionViewController: UISearchResultsUpdating {
         
         visibleRates.sort()
         
-        self.collectionView.reloadData()
+        tableView.reloadData()
     }
 }

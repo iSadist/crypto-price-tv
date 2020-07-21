@@ -180,7 +180,52 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-162" y="-793"/>
+            <point key="canvasLocation" x="-159" y="-793"/>
+        </scene>
+        <!--Rate Selector View Controller-->
+        <scene sceneID="Jn0-1d-wAi">
+            <objects>
+                <tableViewController storyboardIdentifier="RateSelectorViewController" id="duS-f0-s1R" customClass="RateSelectorViewController" customModule="CryptoPrice" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" sectionHeaderHeight="66" sectionFooterHeight="66" id="1lC-13-bgY">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RateCell" id="GPL-Cp-Tfd" customClass="RateViewCell" customModule="CryptoPrice" customModuleProvider="target">
+                                <rect key="frame" x="106" y="66" width="1708" height="66"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GPL-Cp-Tfd" id="y2o-OT-OI4" customClass="RateViewCell" customModule="CryptoPrice" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="1708" height="66"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KJt-LS-ocr">
+                                            <rect key="frame" x="808" y="10" width="92" height="46"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="KJt-LS-ocr" firstAttribute="centerY" secondItem="y2o-OT-OI4" secondAttribute="centerY" id="JCz-qV-guP"/>
+                                        <constraint firstItem="KJt-LS-ocr" firstAttribute="centerX" secondItem="y2o-OT-OI4" secondAttribute="centerX" id="mC6-Uy-epm"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="centerLabel" destination="KJt-LS-ocr" id="ori-An-wGB"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="duS-f0-s1R" id="GlO-4y-YvU"/>
+                            <outlet property="delegate" destination="duS-f0-s1R" id="h59-mc-BeK"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="tabBarObservedScrollView" destination="1lC-13-bgY" id="1H6-dr-qbE"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="68l-cY-c04" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-159" y="701"/>
         </scene>
         <!--Currency View Controller-->
         <scene sceneID="RyB-Wq-XSp">
@@ -278,76 +323,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sdr-zy-j6b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2109" y="-793"/>
-        </scene>
-        <!--Currency Collection View Controller-->
-        <scene sceneID="4Ur-QD-DWg">
-            <objects>
-                <collectionViewController storyboardIdentifier="CurrencyCollectionViewController" id="b1M-ep-gqg" customClass="CurrencyCollectionViewController" customModule="CryptoPrice" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="igb-yX-2Im">
-                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ttG-jU-bfG">
-                            <size key="itemSize" width="340" height="267"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RateCell" id="8O0-cR-kTn" customClass="RateCollectionViewCell" customModule="CryptoPrice" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="500" height="300"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5ad-Sd-Gls" customClass="RateCollectionViewCell" customModule="CryptoPrice" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="500" height="300"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lWQ-Pk-hJU">
-                                            <rect key="frame" x="204" y="25" width="92" height="46"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cwm-j1-Kuu">
-                                            <rect key="frame" x="204" y="127" width="92" height="46"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KMA-ch-4oe">
-                                            <rect key="frame" x="204" y="229" width="92" height="46"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="KMA-ch-4oe" firstAttribute="centerX" secondItem="5ad-Sd-Gls" secondAttribute="centerX" id="XTb-xr-l1z"/>
-                                        <constraint firstItem="lWQ-Pk-hJU" firstAttribute="top" secondItem="5ad-Sd-Gls" secondAttribute="top" constant="25" id="ZVk-lx-yag"/>
-                                        <constraint firstItem="Cwm-j1-Kuu" firstAttribute="centerY" secondItem="5ad-Sd-Gls" secondAttribute="centerY" id="jLB-2Y-eNK"/>
-                                        <constraint firstAttribute="bottom" secondItem="KMA-ch-4oe" secondAttribute="bottom" constant="25" id="jmy-VX-Sce"/>
-                                        <constraint firstItem="Cwm-j1-Kuu" firstAttribute="centerX" secondItem="lWQ-Pk-hJU" secondAttribute="centerX" id="pPd-Qy-u6a"/>
-                                        <constraint firstItem="lWQ-Pk-hJU" firstAttribute="centerX" secondItem="5ad-Sd-Gls" secondAttribute="centerX" id="rCZ-Xc-wZo"/>
-                                    </constraints>
-                                </collectionViewCellContentView>
-                                <size key="customSize" width="500" height="300"/>
-                                <connections>
-                                    <outlet property="bottomLabel" destination="KMA-ch-4oe" id="bjD-D3-9yd"/>
-                                    <outlet property="centerLabel" destination="Cwm-j1-Kuu" id="ye9-mB-E60"/>
-                                    <outlet property="topLabel" destination="lWQ-Pk-hJU" id="qej-JS-gAc"/>
-                                </connections>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="b1M-ep-gqg" id="LMs-BV-dxn"/>
-                            <outlet property="delegate" destination="b1M-ep-gqg" id="Xne-Ra-yFQ"/>
-                        </connections>
-                    </collectionView>
-                    <connections>
-                        <outlet property="tabBarObservedScrollView" destination="igb-yX-2Im" id="HF8-r9-mja"/>
-                    </connections>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GEs-Ae-cgg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-162" y="764"/>
         </scene>
     </scenes>
     <resources>

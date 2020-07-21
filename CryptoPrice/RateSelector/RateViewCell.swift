@@ -8,8 +8,8 @@
 
 import UIKit
 
-class RateCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var topLabel: UILabel!
+class RateViewCell: UITableViewCell {
+//    @IBOutlet weak var leftLabel: UILabel!
     @IBOutlet weak var centerLabel: UILabel!
-    @IBOutlet weak var bottomLabel: UILabel!
+//    @IBOutlet weak var rightLabel: UILabel!
 }

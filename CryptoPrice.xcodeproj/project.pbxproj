@@ -26,7 +26,7 @@
 		59A8D20D24813BDD00766294 /* MainViewController+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A8D20C24813BDD00766294 /* MainViewController+TableViewDataSource.swift */; };
 		59A8D20F248158EF00766294 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A8D20E248158EF00766294 /* Presenter.swift */; };
 		59A8D2122482CAED00766294 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A8D2112482CAED00766294 /* CollectionViewController.swift */; };
-		59A8D2142482D78000766294 /* RateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A8D2132482D78000766294 /* RateCollectionViewCell.swift */; };
+		59A8D2142482D78000766294 /* RateViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A8D2132482D78000766294 /* RateViewCell.swift */; };
 		59AB88142467F8FB00765B46 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AB88132467F8FB00765B46 /* Constants.swift */; };
 		59AB88162468039200765B46 /* CurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AB88152468039200765B46 /* CurrencyViewController.swift */; };
 		59AB88182468057300765B46 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AB88172468057300765B46 /* CollectionViewCell.swift */; };
@@ -110,7 +110,7 @@
 		59A8D20C24813BDD00766294 /* MainViewController+TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+TableViewDataSource.swift"; sourceTree = "<group>"; };
 		59A8D20E248158EF00766294 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
 		59A8D2112482CAED00766294 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
-		59A8D2132482D78000766294 /* RateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateCollectionViewCell.swift; sourceTree = "<group>"; };
+		59A8D2132482D78000766294 /* RateViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateViewCell.swift; sourceTree = "<group>"; };
 		59AB88132467F8FB00765B46 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		59AB88152468039200765B46 /* CurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewController.swift; sourceTree = "<group>"; };
 		59AB88172468057300765B46 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
@@ -231,7 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				59A8D2112482CAED00766294 /* CollectionViewController.swift */,
-				59A8D2132482D78000766294 /* RateCollectionViewCell.swift */,
+				59A8D2132482D78000766294 /* RateViewCell.swift */,
 			);
 			path = RateSelector;
 			sourceTree = "<group>";
@@ -645,7 +645,7 @@
 				59A8D20B24813B3B00766294 /* CurrencyViewController+UITextFieldDelegate.swift in Sources */,
 				595B7F95247965E3003FAB76 /* Array+Extensions.swift in Sources */,
 				59A8D20F248158EF00766294 /* Presenter.swift in Sources */,
-				59A8D2142482D78000766294 /* RateCollectionViewCell.swift in Sources */,
+				59A8D2142482D78000766294 /* RateViewCell.swift in Sources */,
 				59AB88162468039200765B46 /* CurrencyViewController.swift in Sources */,
 				59AB881A24681A1600765B46 /* CustomCurrency.swift in Sources */,
 				59D83B27246A7426005FB817 /* Database.swift in Sources */,
