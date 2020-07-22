@@ -37,7 +37,7 @@ class CurrencyViewController: UIViewController, Storyboarded {
 
     @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,39 +45,43 @@ class CurrencyViewController: UIViewController, Storyboarded {
         let focusGuideRight = UIFocusGuide()
         view.addLayoutGuide(focusGuideLeft)
         view.addLayoutGuide(focusGuideRight)
-        
+
         focusGuideLeft.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         focusGuideLeft.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         focusGuideLeft.rightAnchor.constraint(equalTo: searchField.leftAnchor).isActive = true
         focusGuideLeft.bottomAnchor.constraint(equalTo: searchField.bottomAnchor).isActive = true
-        
+
         focusGuideRight.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         focusGuideRight.leftAnchor.constraint(equalTo: searchField.rightAnchor).isActive = true
         focusGuideRight.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         focusGuideRight.bottomAnchor.constraint(equalTo: searchField.bottomAnchor).isActive = true
-        
+
         focusGuideLeft.preferredFocusEnvironments = [searchField]
         focusGuideRight.preferredFocusEnvironments = [searchField]
-        
+
         let menuGesture = UITapGestureRecognizer()
         menuGesture.allowedPressTypes = [NSNumber( value: UIPress.PressType.menu.rawValue)]
         menuGesture.addTarget(self, action: #selector(CurrencyViewController.menuPressed(recognizer:)))
         view.addGestureRecognizer(menuGesture)
-        
+
         collectionView.dataSource = self
         collectionView.delegate = self
         searchField.delegate = self
-        
+
         IAPClient.productsCallback = prodsCallback(_:)
         IAPClient.paymentCallback = paymentCallback(_:error:)
         IAPClient.fetchProducts(identifiers: iapIdentifiers)
-        
+
         #if true
         UserDefaults.standard.unlimitedCurrencies = false
         #endif
-        
+
         database = Database(format: "yyyy'-'MM'-'dd")
         getCurrencies()
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        IAPClient.productsCallback = nil
+        IAPClient.paymentCallback = nil
     }
     
     @objc func menuPressed(recognizer: UITapGestureRecognizer) {
@@ -98,7 +102,7 @@ class CurrencyViewController: UIViewController, Storyboarded {
                 alertController.dismiss(animated: true, completion: nil)
             }
             alertController.addAction(okAction)
-            
+
             if IAPClient.canMakePayments() {
                 let unlockAction = UIAlertAction(title: "Unlock unlimited", style: .default) { [weak self] (action) in
                     guard let product = self?.availableProducts.first else { return }
@@ -106,7 +110,7 @@ class CurrencyViewController: UIViewController, Storyboarded {
                 }
                 alertController.addAction(unlockAction)
             }
-            
+
             present(alertController, animated: true, completion: nil)
             return
         } else if selectedCurrencies.count >= 20 {
@@ -118,7 +122,7 @@ class CurrencyViewController: UIViewController, Storyboarded {
             present(alertController, animated: true, completion: nil)
             return
         }
-        
+
         selectedCurrencies.append(crypto)
     }
     
@@ -140,7 +144,7 @@ class CurrencyViewController: UIViewController, Storyboarded {
                 }
             }
         }
-        
+
         if let previousView = context.previouslyFocusedView {
             UIView.animate(withDuration: 0.25) {
                 previousView.transform = CGAffineTransform(scaleX: 1, y: 1)
@@ -167,7 +171,7 @@ extension CurrencyViewController {
             alertController.addAction(dismissAction)
             present(alertController, animated: true, completion: nil)
         }
-        
+
         if prods.contains(where: { $0.productIdentifier == unlimitedCurrenciesIdentifier }) {
             UserDefaults.standard.unlimitedCurrencies = true
         }

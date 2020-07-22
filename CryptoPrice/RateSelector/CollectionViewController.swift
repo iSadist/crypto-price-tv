@@ -21,6 +21,10 @@ class RateSelectorViewController: UITableViewController, Storyboarded {
     var rates: [Rate]! = []
     
     fileprivate var previousSearchText: String?
+    
+    deinit {
+        print("deinit rate")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

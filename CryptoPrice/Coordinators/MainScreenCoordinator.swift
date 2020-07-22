@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class MainScreenCoordinator: JSVCoordinator {
-    var navigationController: UINavigationController?
+    weak var navigationController: UINavigationController?
     
     required init(navigationController: UINavigationController) {
         self.navigationController = navigationController
