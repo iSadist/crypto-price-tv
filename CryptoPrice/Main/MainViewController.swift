@@ -43,7 +43,7 @@ class MainViewController: UIViewController, Storyboarded {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(updatePrice), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(updatePrice), userInfo: nil, repeats: true)
         timer?.fire()
     }
     

@@ -93,7 +93,7 @@ class CurrencyViewController: UIViewController, Storyboarded {
     
     func append(_ crypto: CryptoCurrency) {
         if selectedCurrencies.count >= 3 && !UserDefaults.standard.unlimitedCurrencies {
-            let alertController = UIAlertController(title: "Hello", message: "Limited to three cryptos", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Free limit exceeded", message: "Having more than 3 crypto currencies at the same time can be unlocked with an in-app purchase.", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
                 alertController.dismiss(animated: true, completion: nil)
             }
@@ -107,6 +107,14 @@ class CurrencyViewController: UIViewController, Storyboarded {
                 alertController.addAction(unlockAction)
             }
             
+            present(alertController, animated: true, completion: nil)
+            return
+        } else if selectedCurrencies.count >= 20 {
+            let alertController = UIAlertController(title: "Max limit reached", message: "A maximim of 20 crypto currencies can be selected at one time.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Dismiss", style: .cancel) { (action) in
+                alertController.dismiss(animated: true, completion: nil)
+            }
+            alertController.addAction(okAction)
             present(alertController, animated: true, completion: nil)
             return
         }

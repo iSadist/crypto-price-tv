@@ -35,7 +35,7 @@ class MainPresenter: MainPresentable {
         didSet {
             controller?.topTitle.text = selectedCrypto.name
             controller?.loadingSpinner.startAnimating()
-            refreshPrice()
+            refreshHistoricalData()
         }
     }
     var selectedInterval: String = "h1" {
@@ -100,10 +100,12 @@ class MainPresenter: MainPresentable {
                     let rate = self?.selectedRate.rateUsd as NSString?
                     let doubleValue = rate?.doubleValue
                     return ChartDataEntry(x: point.x, y: point.y / (doubleValue ?? 1.0))
-                }) else { return }
+                }) else { self?.controller?.loadingSpinner.stopAnimating(); return }
+                guard dataPoints.count > 100 else { self?.controller?.loadingSpinner.stopAnimating(); return }
 
                 let nrbOfDataPoints = 200
                 let nbrOfPointsToDrop = dataPoints.count > nrbOfDataPoints ? dataPoints.count - nrbOfDataPoints : 0
+                
                 let dataSlice = Array(dataPoints.dropFirst(nbrOfPointsToDrop))
                 
                 let line = LineChartDataSet(entries: dataSlice, label: "USD")
