@@ -103,10 +103,10 @@ class MainPresenter: MainPresentable {
                 }) else { return }
 
                 let nrbOfDataPoints = 200
-                
                 let nbrOfPointsToDrop = dataPoints.count > nrbOfDataPoints ? dataPoints.count - nrbOfDataPoints : 0
+                let dataSlice = Array(dataPoints.dropFirst(nbrOfPointsToDrop))
                 
-                let line = LineChartDataSet(entries: Array(dataPoints.dropFirst(nbrOfPointsToDrop)), label: "USD")
+                let line = LineChartDataSet(entries: dataSlice, label: "USD")
                 line.drawCirclesEnabled = false
                 line.mode = .linear
 
@@ -119,6 +119,8 @@ class MainPresenter: MainPresentable {
                 line.drawValuesEnabled = true
                 let data = LineChartData()
                 data.addDataSet(line)
+                data.addDataSet(self?.movingAverage(data: Array(dataPoints.dropFirst(nbrOfPointsToDrop - 51)), length: 50, color: .purple))
+                data.addDataSet(self?.movingAverage(data: Array(dataPoints.dropFirst(nbrOfPointsToDrop - 101)), length: 100, color: .orange))
                 
                 DispatchQueue.main.async {
                     self?.controller?.chart.data = data
@@ -126,6 +128,27 @@ class MainPresenter: MainPresentable {
                 }
             }
         }
+    }
+    
+    private func movingAverage(data: [ChartDataEntry], length: Int, color: UIColor) -> LineChartDataSet {
+        var movingAverageData = [ChartDataEntry]()
+        
+        for (index, dataPoint) in data.enumerated() {
+            guard index > length else { continue }
+            
+            let slice = data[index - length...index - 1]
+            let sum = slice.reduce(0) { (result, entry) -> Double in
+                return entry.y + result
+            }
+            let average = sum / Double(length)
+            movingAverageData.append(ChartDataEntry(x: dataPoint.x, y: average))
+        }
+        
+        let line = LineChartDataSet(entries: movingAverageData, label: "MA \(length)")
+        line.drawCirclesEnabled = false
+        line.setColor(color)
+        line.lineWidth = 1
+        return line
     }
     
     private func populatePriceTable() {
