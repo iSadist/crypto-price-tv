@@ -9,7 +9,5 @@
 import UIKit
 
 class RateViewCell: UITableViewCell {
-//    @IBOutlet weak var leftLabel: UILabel!
     @IBOutlet weak var centerLabel: UILabel!
-//    @IBOutlet weak var rightLabel: UILabel!
 }

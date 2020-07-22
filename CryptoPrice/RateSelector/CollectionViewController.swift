@@ -13,13 +13,12 @@ private let reuseIdentifier = "RateCell"
 fileprivate let selectedColor: UIColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0.1547920335)
 fileprivate let selectedTextColor: UIColor = .systemBlue
 
-
 class RateSelectorViewController: UITableViewController, Storyboarded {
     var database: Database?
     var coordinator: RateSelectorCoordinator?
     var visibleRates: [Rate]! = []
     var rates: [Rate]! = []
-    
+
     fileprivate var previousSearchText: String?
     
     deinit {
@@ -33,9 +32,10 @@ class RateSelectorViewController: UITableViewController, Storyboarded {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         database?.getRates(completionHandler: { [weak self] (rates) in
             guard let `self` = self else { return }
-            
+
             if let fiatRates = rates?.data.filter({ (rate) -> Bool in
                 return rate.type == "fiat" && rate.currencySymbol != nil
             }) {
@@ -84,18 +84,18 @@ extension RateSelectorViewController: UISearchResultsUpdating {
         guard let searchText = searchController.searchBar.text?.localizedLowercase else { return }
         guard previousSearchText != searchText else { return }
         previousSearchText = searchText
-        
+
         visibleRates.removeAll()
-        
+
         if searchText.isEmpty {
             visibleRates.append(contentsOf: rates)
         } else {
             let filteredResult = self.rates.filter({ ($0.id?.localizedLowercase.contains(searchText) ?? false) || ($0.symbol?.localizedLowercase.contains(searchText) ?? false) })
             visibleRates.append(contentsOf: filteredResult)
         }
-        
+
         visibleRates.sort()
-        
+
         tableView.reloadData()
     }
 }

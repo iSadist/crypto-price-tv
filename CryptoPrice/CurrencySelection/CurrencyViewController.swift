@@ -80,6 +80,7 @@ class CurrencyViewController: UIViewController, Storyboarded {
         getCurrencies()
     }
     override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         IAPClient.productsCallback = nil
         IAPClient.paymentCallback = nil
     }

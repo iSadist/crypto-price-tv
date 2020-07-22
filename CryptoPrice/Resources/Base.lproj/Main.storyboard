@@ -190,27 +190,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RateCell" id="GPL-Cp-Tfd" customClass="RateViewCell" customModule="CryptoPrice" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RateCell" id="PNj-bW-1IY" customClass="RateViewCell" customModule="CryptoPrice" customModuleProvider="target">
                                 <rect key="frame" x="106" y="66" width="1708" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GPL-Cp-Tfd" id="y2o-OT-OI4" customClass="RateViewCell" customModule="CryptoPrice" customModuleProvider="target">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PNj-bW-1IY" id="LKG-rx-LTE">
                                     <rect key="frame" x="0.0" y="0.0" width="1708" height="66"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KJt-LS-ocr">
-                                            <rect key="frame" x="808" y="10" width="92" height="46"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="51x-3y-voo">
+                                            <rect key="frame" x="8" y="10" width="92" height="46"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="KJt-LS-ocr" firstAttribute="centerY" secondItem="y2o-OT-OI4" secondAttribute="centerY" id="JCz-qV-guP"/>
-                                        <constraint firstItem="KJt-LS-ocr" firstAttribute="centerX" secondItem="y2o-OT-OI4" secondAttribute="centerX" id="mC6-Uy-epm"/>
+                                        <constraint firstItem="51x-3y-voo" firstAttribute="centerY" secondItem="LKG-rx-LTE" secondAttribute="centerY" id="cOi-0V-lU2"/>
+                                        <constraint firstItem="51x-3y-voo" firstAttribute="leading" secondItem="LKG-rx-LTE" secondAttribute="leading" constant="8" id="wV7-fh-xVh"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="centerLabel" destination="KJt-LS-ocr" id="ori-An-wGB"/>
+                                    <outlet property="centerLabel" destination="51x-3y-voo" id="LcD-GS-IBD"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
