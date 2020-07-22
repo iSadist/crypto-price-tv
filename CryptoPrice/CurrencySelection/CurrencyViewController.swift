@@ -41,6 +41,24 @@ class CurrencyViewController: UIViewController, Storyboarded {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let focusGuideLeft = UIFocusGuide()
+        let focusGuideRight = UIFocusGuide()
+        view.addLayoutGuide(focusGuideLeft)
+        view.addLayoutGuide(focusGuideRight)
+        
+        focusGuideLeft.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        focusGuideLeft.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        focusGuideLeft.rightAnchor.constraint(equalTo: searchField.leftAnchor).isActive = true
+        focusGuideLeft.bottomAnchor.constraint(equalTo: searchField.bottomAnchor).isActive = true
+        
+        focusGuideRight.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        focusGuideRight.leftAnchor.constraint(equalTo: searchField.rightAnchor).isActive = true
+        focusGuideRight.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        focusGuideRight.bottomAnchor.constraint(equalTo: searchField.bottomAnchor).isActive = true
+        
+        focusGuideLeft.preferredFocusEnvironments = [searchField]
+        focusGuideRight.preferredFocusEnvironments = [searchField]
+        
         let menuGesture = UITapGestureRecognizer()
         menuGesture.allowedPressTypes = [NSNumber( value: UIPress.PressType.menu.rawValue)]
         menuGesture.addTarget(self, action: #selector(CurrencyViewController.menuPressed(recognizer:)))
@@ -104,6 +122,7 @@ class CurrencyViewController: UIViewController, Storyboarded {
     }
     
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        super.didUpdateFocus(in: context, with: coordinator)
         if let nextView = context.nextFocusedView {
             UIView.animate(withDuration: 0.25) {
                 nextView.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
