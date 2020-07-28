@@ -72,10 +72,6 @@ class CurrencyViewController: UIViewController, Storyboarded {
         IAPClient.paymentCallback = paymentCallback(_:error:)
         IAPClient.fetchProducts(identifiers: iapIdentifiers)
 
-        #if true
-        UserDefaults.standard.unlimitedCurrencies = false
-        #endif
-
         database = Database(format: "yyyy'-'MM'-'dd")
         getCurrencies()
     }
