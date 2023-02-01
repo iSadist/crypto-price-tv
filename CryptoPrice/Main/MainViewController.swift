@@ -71,7 +71,7 @@ class MainViewController: UIViewController, Storyboarded {
     }
     
     private func setupChart() {
-        chart.xAxis.valueFormatter = self
+//        chart.xAxis.valueFormatter = self
         chart.leftAxis.enabled = false
         chart.xAxis.labelPosition = .bottom
         chart.xAxis.forceLabelsEnabled = true
@@ -90,11 +90,11 @@ class MainViewController: UIViewController, Storyboarded {
 }
 
 // MARK: Chart Axis formatter
-extension MainViewController: IAxisValueFormatter {
-    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        dateFormatter.string(from: Date(timeIntervalSince1970: value/1000))
-    }
-}
+//extension MainViewController: IAxisValueFormatter {
+//    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+//        dateFormatter.string(from: Date(timeIntervalSince1970: value/1000))
+//    }
+//}
 
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

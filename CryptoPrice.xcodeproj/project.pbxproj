@@ -168,13 +168,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		05D659A24DF98D4451EC4BCB /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		592135BA24792D45009A24A9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,7 +252,6 @@
 				59FA9B282467EF1B00635AD1 /* CryptoPriceUITests */,
 				596E341E24BEEA5100F715C7 /* TopShelf */,
 				59FA9B042467EF1A00635AD1 /* Products */,
-				05D659A24DF98D4451EC4BCB /* Pods */,
 				C01748300CECD9D9CEDF7804 /* Frameworks */,
 			);
 			sourceTree = "<group>";

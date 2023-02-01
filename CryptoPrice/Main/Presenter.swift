@@ -8,8 +8,9 @@
 
 import Foundation
 import Charts
+import class UIKit.UIColor
 
-protocol MainPresentable: class {
+protocol MainPresentable: AnyObject {
     func onSelectedInterval(_ selectedIndex: Int)
     func onSelectedCurrency(on row: Int)
     func onMore()
@@ -112,7 +113,7 @@ class MainPresenter: MainPresentable {
                 line.drawCirclesEnabled = false
                 line.mode = .linear
 
-                line.fill = Fill(color: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1))
+//                line.fill = Fill(color: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1))
                 line.fillAlpha = 0.8
                 line.drawFilledEnabled = true
                 
@@ -120,9 +121,9 @@ class MainPresenter: MainPresentable {
                 line.lineWidth = 2
                 line.drawValuesEnabled = true
                 let data = LineChartData()
-                data.addDataSet(line)
-                data.addDataSet(self?.movingAverage(data: Array(dataPoints.dropFirst(nbrOfPointsToDrop - 51)), length: 50, color: .purple))
-                data.addDataSet(self?.movingAverage(data: Array(dataPoints.dropFirst(nbrOfPointsToDrop - 101)), length: 100, color: .orange))
+//                data.addDataSet(line)
+//                data.addDataSet(self?.movingAverage(data: Array(dataPoints.dropFirst(nbrOfPointsToDrop - 51)), length: 50, color: .purple))
+//                data.addDataSet(self?.movingAverage(data: Array(dataPoints.dropFirst(nbrOfPointsToDrop - 101)), length: 100, color: .orange))
                 
                 DispatchQueue.main.async {
                     self?.controller?.chart.data = data
