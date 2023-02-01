@@ -6,8 +6,6 @@ target 'CryptoPrice' do
   use_frameworks!
 
   # Pods for CryptoPrice
-  pod 'Alamofire'
-  pod 'Charts', '~> 3.5'
 
   target 'CryptoPriceTests' do
     inherit! :search_paths
