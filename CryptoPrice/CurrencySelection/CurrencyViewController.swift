@@ -102,7 +102,10 @@ class CurrencyViewController: UIViewController, Storyboarded {
 
             if IAPClient.canMakePayments() {
                 let unlockAction = UIAlertAction(title: "Unlock unlimited", style: .default) { [weak self] (action) in
-                    guard let product = self?.availableProducts.first else { return }
+                    guard let product = self?.availableProducts.first else {
+                        self?.presentError(error: nil)
+                        return
+                    }
                     self?.IAPClient.purchase(product: product)
                 }
                 alertController.addAction(unlockAction)
@@ -161,16 +164,21 @@ extension CurrencyViewController {
     
     func paymentCallback(_ prods: [SKProduct], error: Error?) {
         if let error = error {
-            let alertController = UIAlertController(title: "Something went wrong", message: error.localizedDescription, preferredStyle: .alert)
-            let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel) { (action) in
-                alertController.dismiss(animated: true, completion: nil)
-            }
-            alertController.addAction(dismissAction)
-            present(alertController, animated: true, completion: nil)
+            presentError(error: error)
         }
 
         if prods.contains(where: { $0.productIdentifier == unlimitedCurrenciesIdentifier }) {
             UserDefaults.standard.unlimitedCurrencies = true
         }
+    }
+
+    func presentError(error: Error?) {
+        let errorMessage = error?.localizedDescription ?? "Unknown error"
+        let alertController = UIAlertController(title: "Something went wrong", message: errorMessage, preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel) { (action) in
+            alertController.dismiss(animated: true, completion: nil)
+        }
+        alertController.addAction(dismissAction)
+        present(alertController, animated: true, completion: nil)
     }
 }
