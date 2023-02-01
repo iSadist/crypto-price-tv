@@ -103,33 +103,38 @@ class MainPresenter: MainPresentable {
                     return ChartDataEntry(x: point.x, y: point.y / (doubleValue ?? 1.0))
                 }) else { self?.controller?.loadingSpinner.stopAnimating(); return }
                 guard dataPoints.count > 100 else { self?.controller?.loadingSpinner.stopAnimating(); return }
-
-                let nrbOfDataPoints = 200
-                let nbrOfPointsToDrop = dataPoints.count > nrbOfDataPoints ? dataPoints.count - nrbOfDataPoints : 0
-                
-                let dataSlice = Array(dataPoints.dropFirst(nbrOfPointsToDrop))
-                
-                let line = LineChartDataSet(entries: dataSlice, label: "USD")
-                line.drawCirclesEnabled = false
-                line.mode = .linear
-
-//                line.fill = Fill(color: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1))
-                line.fillAlpha = 0.8
-                line.drawFilledEnabled = true
-                
-                line.setColor(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1))
-                line.lineWidth = 2
-                line.drawValuesEnabled = true
-                let data = LineChartData()
-//                data.addDataSet(line)
-//                data.addDataSet(self?.movingAverage(data: Array(dataPoints.dropFirst(nbrOfPointsToDrop - 51)), length: 50, color: .purple))
-//                data.addDataSet(self?.movingAverage(data: Array(dataPoints.dropFirst(nbrOfPointsToDrop - 101)), length: 100, color: .orange))
-                
-                DispatchQueue.main.async {
-                    self?.controller?.chart.data = data
-                    self?.controller?.loadingSpinner.stopAnimating()
-                }
+                self?.updateChart(dataPoints: dataPoints)
             }
+        }
+    }
+
+    private func updateChart(dataPoints: [ChartDataEntry]) {
+        let nrbOfDataPoints = 200
+        let nbrOfPointsToDrop = dataPoints.count > nrbOfDataPoints ? dataPoints.count - nrbOfDataPoints : 0
+        
+        let dataSlice = Array(dataPoints.dropFirst(nbrOfPointsToDrop))
+        
+        let line = LineChartDataSet(entries: dataSlice, label: "USD")
+        line.drawCirclesEnabled = false
+        line.mode = .linear
+
+                line.fill = ColorFill(color: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1))
+        line.fillAlpha = 0.8
+        line.drawFilledEnabled = true
+        
+        line.setColor(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1))
+        line.lineWidth = 2
+        line.drawValuesEnabled = true
+
+        let data = LineChartData(dataSets: [
+            line,
+            movingAverage(data: Array(dataPoints.dropFirst(nbrOfPointsToDrop - 51)), length: 50, color: .purple),
+            movingAverage(data: Array(dataPoints.dropFirst(nbrOfPointsToDrop - 101)), length: 100, color: .orange)
+        ])
+
+        DispatchQueue.main.async {
+            self.controller?.chart.data = data
+            self.controller?.loadingSpinner.stopAnimating()
         }
     }
     
