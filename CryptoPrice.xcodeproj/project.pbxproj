@@ -37,6 +37,7 @@
 		59C57BBF298B15670076F802 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 59C57BBE298B15670076F802 /* Alamofire */; };
 		59C57BC2298B16920076F802 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 59C57BC1298B16920076F802 /* Charts */; };
 		59D83B27246A7426005FB817 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D83B26246A7426005FB817 /* Database.swift */; };
+		59EBC6DD298BB937005AFFA6 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59EBC6DC298BB937005AFFA6 /* StoreKit.framework */; };
 		59ECCF4D24AD0E70008FE0F1 /* UserDefaults+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ECCF4C24AD0E70008FE0F1 /* UserDefaults+extensions.swift */; };
 		59FA9B072467EF1A00635AD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FA9B062467EF1A00635AD1 /* AppDelegate.swift */; };
 		59FA9B092467EF1A00635AD1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FA9B082467EF1A00635AD1 /* MainViewController.swift */; };
@@ -116,6 +117,7 @@
 		59AD8E32246952AD006D5756 /* CurrencyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCoordinator.swift; sourceTree = "<group>"; };
 		59AD8E3D24697A7B006D5756 /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
 		59D83B26246A7426005FB817 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		59EBC6DC298BB937005AFFA6 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		59ECCF4C24AD0E70008FE0F1 /* UserDefaults+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+extensions.swift"; sourceTree = "<group>"; };
 		59FA9B032467EF1A00635AD1 /* CryptoPrice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoPrice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59FA9B062467EF1A00635AD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59EBC6DD298BB937005AFFA6 /* StoreKit.framework in Frameworks */,
 				59C57BC2298B16920076F802 /* Charts in Frameworks */,
 				59C57BBF298B15670076F802 /* Alamofire in Frameworks */,
 			);
@@ -309,6 +312,7 @@
 		C01748300CECD9D9CEDF7804 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				59EBC6DC298BB937005AFFA6 /* StoreKit.framework */,
 				596E341C24BEEA5100F715C7 /* TVServices.framework */,
 			);
 			name = Frameworks;
