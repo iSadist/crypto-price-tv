@@ -12,8 +12,16 @@ import StoreKit
 
 fileprivate let selectedColor: UIColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0.1547920335)
 fileprivate let selectedTextColor: UIColor = .systemBlue
-fileprivate let unlimitedCurrenciesIdentifier = "unlimited_currencies"
-fileprivate let iapIdentifiers = ["unlimited_currencies"]
+fileprivate let unlimitedCurrenciesIdentifier = "com.jansvenssoncv.cryptochartstv.premium"
+fileprivate let iapIdentifiers = ["com.jansvenssoncv.cryptochartstv.premium"]
+
+protocol ErrorPresentable {
+    func presentError(error: Error?)
+}
+
+protocol Promptable {
+    func prompt(_ message: String)
+}
 
 class CurrencyViewController: UIViewController, Storyboarded {
     var coordinator: CurrencyCoordinator?
@@ -35,6 +43,8 @@ class CurrencyViewController: UIViewController, Storyboarded {
     private var IAPClient = InAppPurchaseClient()
     private var availableProducts: [SKProduct] = []
 
+    @IBOutlet weak var premiumButton: UIButton!
+    @IBOutlet weak var restoreButton: UIButton!
     @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -45,6 +55,9 @@ class CurrencyViewController: UIViewController, Storyboarded {
         let focusGuideRight = UIFocusGuide()
         view.addLayoutGuide(focusGuideLeft)
         view.addLayoutGuide(focusGuideRight)
+
+        premiumButton.isEnabled = !UserDefaults.standard.unlimitedCurrencies
+        restoreButton.isEnabled = !UserDefaults.standard.unlimitedCurrencies
 
         focusGuideLeft.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         focusGuideLeft.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
@@ -71,6 +84,7 @@ class CurrencyViewController: UIViewController, Storyboarded {
         IAPClient.productsCallback = prodsCallback(_:)
         IAPClient.paymentCallback = paymentCallback(_:error:)
         IAPClient.fetchProducts(identifiers: iapIdentifiers)
+        IAPClient.restoreCallback = restorePurchaseCallback(_:)
 
         database = Database(format: "yyyy'-'MM'-'dd")
         getCurrencies()
@@ -80,7 +94,15 @@ class CurrencyViewController: UIViewController, Storyboarded {
         IAPClient.productsCallback = nil
         IAPClient.paymentCallback = nil
     }
-    
+
+    @IBAction func didPressPremium(_ sender: UIButton) {
+        promptPurchase("Get premium", with: "Unlock the possibility to view as many cryptos at the same time as you want.")
+    }
+
+    @IBAction func didPressRestore(_ sender: UIButton) {
+        IAPClient.restorePurchase()
+    }
+
     @objc func menuPressed(recognizer: UITapGestureRecognizer) {
         coordinator?.back(selectedCurrencies: selectedCurrencies)
     }
@@ -91,27 +113,31 @@ class CurrencyViewController: UIViewController, Storyboarded {
             self?.collectionView.reloadData()
         })
     }
-    
+
+    private func promptPurchase(_ title: String, with message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
+            alertController.dismiss(animated: true, completion: nil)
+        }
+        alertController.addAction(okAction)
+
+        if IAPClient.canMakePayments() {
+            let unlockAction = UIAlertAction(title: "Unlock unlimited", style: .default) { [weak self] (action) in
+                guard let product = self?.availableProducts.first else {
+                    self?.presentError(error: nil)
+                    return
+                }
+                self?.IAPClient.purchase(product: product)
+            }
+            alertController.addAction(unlockAction)
+        }
+
+        present(alertController, animated: true, completion: nil)
+    }
+
     func append(_ crypto: CryptoCurrency) {
         if selectedCurrencies.count >= 3 && !UserDefaults.standard.unlimitedCurrencies {
-            let alertController = UIAlertController(title: "Free limit exceeded", message: "Having more than 3 crypto currencies at the same time can be unlocked with an in-app purchase.", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
-                alertController.dismiss(animated: true, completion: nil)
-            }
-            alertController.addAction(okAction)
-
-            if IAPClient.canMakePayments() {
-                let unlockAction = UIAlertAction(title: "Unlock unlimited", style: .default) { [weak self] (action) in
-                    guard let product = self?.availableProducts.first else {
-                        self?.presentError(error: nil)
-                        return
-                    }
-                    self?.IAPClient.purchase(product: product)
-                }
-                alertController.addAction(unlockAction)
-            }
-
-            present(alertController, animated: true, completion: nil)
+            promptPurchase("Free limit exceeded", with: "Having more than 3 crypto currencies at the same time can be unlocked with an in-app purchase.")
             return
         } else if selectedCurrencies.count >= 20 {
             let alertController = UIAlertController(title: "Max limit reached", message: "A maximim of 20 crypto currencies can be selected at one time.", preferredStyle: .alert)
@@ -158,6 +184,14 @@ class CurrencyViewController: UIViewController, Storyboarded {
 }
 
 extension CurrencyViewController {
+    func restorePurchaseCallback(_ success: Bool) {
+        if success {
+            prompt("Your purchase has been restored")
+        } else {
+            prompt("Could not restore purchase")
+        }
+    }
+
     func prodsCallback(_ prods: [SKProduct]) {
         availableProducts = prods
     }
@@ -171,10 +205,23 @@ extension CurrencyViewController {
             UserDefaults.standard.unlimitedCurrencies = true
         }
     }
+}
 
+extension CurrencyViewController: ErrorPresentable {
     func presentError(error: Error?) {
         let errorMessage = error?.localizedDescription ?? "Unknown error"
         let alertController = UIAlertController(title: "Something went wrong", message: errorMessage, preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel) { (action) in
+            alertController.dismiss(animated: true, completion: nil)
+        }
+        alertController.addAction(dismissAction)
+        present(alertController, animated: true, completion: nil)
+    }
+}
+
+extension CurrencyViewController: Promptable {
+    func prompt(_ message: String) {
+        let alertController = UIAlertController(title: "Message", message: message, preferredStyle: .alert)
         let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel) { (action) in
             alertController.dismiss(animated: true, completion: nil)
         }
