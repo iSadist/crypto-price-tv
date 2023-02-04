@@ -12,8 +12,8 @@ import StoreKit
 
 fileprivate let selectedColor: UIColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0.1547920335)
 fileprivate let selectedTextColor: UIColor = .systemBlue
-fileprivate let unlimitedCurrenciesIdentifier = "com.jansvenssoncv.cryptochartstv.premium"
-fileprivate let iapIdentifiers = ["com.jansvenssoncv.cryptochartstv.premium"]
+fileprivate let unlimitedCurrenciesIdentifier = "com.jansvenssoncv.cryptochartstv.unlimited"
+fileprivate let iapIdentifiers = ["com.jansvenssoncv.cryptochartstv.unlimited"]
 
 protocol ErrorPresentable {
     func presentError(error: Error?)
