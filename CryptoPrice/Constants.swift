@@ -17,3 +17,20 @@ extension String {
         self = self.capitalizingFirstLetter()
     }
 }
+
+struct RevenueCat {
+
+    static let apiKey = "appl_KQhkWTWuYvnZZXBhuxoKaQATGsD"
+
+    static let entitlementID = "entl94c81b65af"
+
+    static let unlimitedProductIdentifier = "se.nedralia.cryptotv.unlimited_currencies.monthly"
+
+    static let unlimitedProductIdentifiers = [
+        "se.nedralia.cryptotv.unlimited_currencies.monthly",
+        "se.nedralia.cryptotv.unlimited_currencies.half_year",
+        "se.nedralia.cryptotv.unlimited_currencies.annual"
+    ]
+
+    static let unlimitedOfferingID = "ofrng3c58a33892"
+}

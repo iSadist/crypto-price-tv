@@ -4,10 +4,10 @@
 //
 //  Created by Jan Svensson on 2020-05-10.
 //  Copyright © 2020 Jan Svensson. All rights reserved.
-//
 
 import UIKit
 import CoreData
+import RevenueCat
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,7 +22,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
-        
+
+        Purchases.configure(with:
+                                Configuration.Builder(
+                                    withAPIKey: RevenueCat.apiKey
+                                )
+                                    .with(storeKitVersion: .storeKit2)
+                                    .build()
+        )
+        Purchases.shared.delegate = self
+        Purchases.logLevel = .debug
+
         return true
     }
     
@@ -119,3 +129,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate: PurchasesDelegate {
+    func purchases(_ purchases: Purchases, receivedUpdated customerInfo: CustomerInfo) {
+        print("modified")
+    }
+}

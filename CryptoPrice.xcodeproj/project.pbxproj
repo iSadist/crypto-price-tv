@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,12 +12,16 @@
 		592699A124840F64000AE68F /* RateSelectorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592699A024840F64000AE68F /* RateSelectorCoordinator.swift */; };
 		59539BE524AB8C4000D7C3CC /* IAPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59539BE424AB8C4000D7C3CC /* IAPClient.swift */; };
 		595B7F95247965E3003FAB76 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595B7F94247965E3003FAB76 /* Array+Extensions.swift */; };
+		5969A9202D5E27BE00F69CC8 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 5969A91F2D5E27BE00F69CC8 /* RevenueCat */; };
+		5969A9222D5E27BE00F69CC8 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 5969A9212D5E27BE00F69CC8 /* RevenueCatUI */; };
 		596E341D24BEEA5100F715C7 /* TVServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 596E341C24BEEA5100F715C7 /* TVServices.framework */; };
 		596E342024BEEA5100F715C7 /* ContentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596E341F24BEEA5100F715C7 /* ContentProvider.swift */; };
 		596E342424BEEA5100F715C7 /* TopShelf.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 596E341B24BEEA5100F715C7 /* TopShelf.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		596E343A24BF059B00F715C7 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 596E343924BF059A00F715C7 /* 2.jpg */; };
 		596E344024BF07D200F715C7 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 596E343F24BF07D200F715C7 /* 1.jpg */; };
 		596E344224BF085000F715C7 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 596E344124BF085000F715C7 /* 3.jpg */; };
+		599ABBF22D64AC5F00BBF6F7 /* Paywalls.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 599ABBF12D64AC5F00BBF6F7 /* Paywalls.storyboard */; };
+		599ABBF52D64C08400BBF6F7 /* UnlimitedPaywallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599ABBF42D64C08400BBF6F7 /* UnlimitedPaywallViewController.swift */; };
 		59A8D2072481380D00766294 /* CurrencyViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A8D2062481380D00766294 /* CurrencyViewController+DataSource.swift */; };
 		59A8D2092481385800766294 /* CurrencyViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A8D2082481385800766294 /* CurrencyViewController+Delegate.swift */; };
 		59A8D20B24813B3B00766294 /* CurrencyViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A8D20A24813B3B00766294 /* CurrencyViewController+UITextFieldDelegate.swift */; };
@@ -100,6 +104,8 @@
 		596E343924BF059A00F715C7 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 		596E343F24BF07D200F715C7 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		596E344124BF085000F715C7 /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
+		599ABBF12D64AC5F00BBF6F7 /* Paywalls.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Paywalls.storyboard; sourceTree = "<group>"; };
+		599ABBF42D64C08400BBF6F7 /* UnlimitedPaywallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlimitedPaywallViewController.swift; sourceTree = "<group>"; };
 		59A8D2062481380D00766294 /* CurrencyViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrencyViewController+DataSource.swift"; sourceTree = "<group>"; };
 		59A8D2082481385800766294 /* CurrencyViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrencyViewController+Delegate.swift"; sourceTree = "<group>"; };
 		59A8D20A24813B3B00766294 /* CurrencyViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrencyViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
@@ -148,8 +154,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5969A9202D5E27BE00F69CC8 /* RevenueCat in Frameworks */,
 				59EBC6DD298BB937005AFFA6 /* StoreKit.framework in Frameworks */,
 				59C57BC2298B16920076F802 /* Charts in Frameworks */,
+				5969A9222D5E27BE00F69CC8 /* RevenueCatUI in Frameworks */,
 				59C57BBF298B15670076F802 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -175,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				59FA9B0A2467EF1A00635AD1 /* Main.storyboard */,
+				599ABBF12D64AC5F00BBF6F7 /* Paywalls.storyboard */,
 				59FA9B122467EF1B00635AD1 /* LaunchScreen.storyboard */,
 				59FA9B102467EF1B00635AD1 /* Assets.xcassets */,
 				59FA9B0D2467EF1A00635AD1 /* CryptoPrice.xcdatamodeld */,
@@ -204,6 +213,14 @@
 				596E342124BEEA5100F715C7 /* Info.plist */,
 			);
 			path = TopShelf;
+			sourceTree = "<group>";
+		};
+		599ABBF32D64BFCB00BBF6F7 /* Paywall */ = {
+			isa = PBXGroup;
+			children = (
+				599ABBF42D64C08400BBF6F7 /* UnlimitedPaywallViewController.swift */,
+			);
+			path = Paywall;
 			sourceTree = "<group>";
 		};
 		59A8D2102482CA8400766294 /* RateSelector */ = {
@@ -273,6 +290,7 @@
 		59FA9B052467EF1A00635AD1 /* CryptoPrice */ = {
 			isa = PBXGroup;
 			children = (
+				599ABBF32D64BFCB00BBF6F7 /* Paywall */,
 				59A8D2102482CA8400766294 /* RateSelector */,
 				592135BD247941E4009A24A9 /* CurrencySelection */,
 				59B973052479187000CAE33B /* Database */,
@@ -356,6 +374,8 @@
 			packageProductDependencies = (
 				59C57BBE298B15670076F802 /* Alamofire */,
 				59C57BC1298B16920076F802 /* Charts */,
+				5969A91F2D5E27BE00F69CC8 /* RevenueCat */,
+				5969A9212D5E27BE00F69CC8 /* RevenueCatUI */,
 			);
 			productName = CryptoPrice;
 			productReference = 59FA9B032467EF1A00635AD1 /* CryptoPrice.app */;
@@ -435,6 +455,7 @@
 			packageReferences = (
 				59C57BBD298B15670076F802 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				59C57BC0298B16920076F802 /* XCRemoteSwiftPackageReference "Charts" */,
+				5969A91E2D5E27BE00F69CC8 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
 			);
 			productRefGroup = 59FA9B042467EF1A00635AD1 /* Products */;
 			projectDirPath = "";
@@ -466,6 +487,7 @@
 				59FA9B142467EF1B00635AD1 /* LaunchScreen.storyboard in Resources */,
 				59FA9B112467EF1B00635AD1 /* Assets.xcassets in Resources */,
 				59FA9B0C2467EF1A00635AD1 /* Main.storyboard in Resources */,
+				599ABBF22D64AC5F00BBF6F7 /* Paywalls.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,6 +534,7 @@
 				59A8D2122482CAED00766294 /* CollectionViewController.swift in Sources */,
 				59AB88142467F8FB00765B46 /* Constants.swift in Sources */,
 				59AD8E2C24694293006D5756 /* JSVStoryboarded.swift in Sources */,
+				599ABBF52D64C08400BBF6F7 /* UnlimitedPaywallViewController.swift in Sources */,
 				59ECCF4D24AD0E70008FE0F1 /* UserDefaults+extensions.swift in Sources */,
 				59A8D2072481380D00766294 /* CurrencyViewController+DataSource.swift in Sources */,
 				59A8D20B24813B3B00766294 /* CurrencyViewController+UITextFieldDelegate.swift in Sources */,
@@ -920,6 +943,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5969A91E2D5E27BE00F69CC8 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.16.1;
+			};
+		};
 		59C57BBD298B15670076F802 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -939,6 +970,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5969A91F2D5E27BE00F69CC8 /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5969A91E2D5E27BE00F69CC8 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCat;
+		};
+		5969A9212D5E27BE00F69CC8 /* RevenueCatUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5969A91E2D5E27BE00F69CC8 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCatUI;
+		};
 		59C57BBE298B15670076F802 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 59C57BBD298B15670076F802 /* XCRemoteSwiftPackageReference "Alamofire" */;

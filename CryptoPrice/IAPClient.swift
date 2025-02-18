@@ -1,9 +1,8 @@
 import Foundation
 import StoreKit
+import RevenueCat
 
-protocol Purchasing {
-    
-}
+protocol Purchasing {}
 
 public class InAppPurchaseClient: NSObject, Purchasing {
     private let purchasedProductsKey = "in-app-purchase_products"
@@ -42,20 +41,45 @@ public class InAppPurchaseClient: NSObject, Purchasing {
         request.start()
         productRequest = request
     }
-    
+
     public func purchase(product: SKProduct) {
-        if SKPaymentQueue.canMakePayments() {
-            let payment = SKPayment(product: product)
-            paymentQueue.add(payment)
-        } else {
-            paymentCallback?(purchasedProducts, nil)
+        purchaseUnlimited()
+    }
+
+    public func purchaseUnlimited() {
+        Purchases.shared.getProducts([RevenueCat.unlimitedProductIdentifier]) { results in
+            for product in results {
+                print("\(product.subscriptionPeriod?.value) \(product.subscriptionPeriod?.unit)")
+
+                Purchases.shared.purchase(product: product) { transaction, info, error, bool in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+
+                    print(transaction?.transactionIdentifier)
+                }
+            }
         }
     }
-    
+
     public func restorePurchase() { // There must be some functionality for the user to restore non-consumable IAP's
         paymentQueue.restoreCompletedTransactions()
+        Purchases.shared.restorePurchases { info, error in
+            guard error != nil else {
+                print(error?.localizedDescription)
+                return
+            }
+
+            guard let info = info else {
+                self.restoreCallback?(false)
+                return
+            }
+
+            // TODO: Restore successful! Take action
+            //       ...
+        }
     }
-    
+
     public func isPurchased(identifier: String) -> Bool {
         guard let product = (products.filter { (p) -> Bool in
             return p.productIdentifier == identifier

@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import StoreKit
+import RevenueCat
 
 fileprivate let selectedColor: UIColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0.1547920335)
 fileprivate let selectedTextColor: UIColor = .systemBlue
@@ -96,7 +97,7 @@ class CurrencyViewController: UIViewController, Storyboarded {
     }
 
     @IBAction func didPressPremium(_ sender: UIButton) {
-        promptPurchase("Get premium", with: "Unlock the possibility to view as many cryptos at the same time as you want.")
+        presentPaywall()
     }
 
     @IBAction func didPressRestore(_ sender: UIButton) {
@@ -114,30 +115,25 @@ class CurrencyViewController: UIViewController, Storyboarded {
         })
     }
 
-    private func promptPurchase(_ title: String, with message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
-            alertController.dismiss(animated: true, completion: nil)
-        }
-        alertController.addAction(okAction)
 
-        if IAPClient.canMakePayments() {
-            let unlockAction = UIAlertAction(title: "Unlock unlimited", style: .default) { [weak self] (action) in
-                guard let product = self?.availableProducts.first else {
-                    self?.presentError(error: nil)
-                    return
-                }
-                self?.IAPClient.purchase(product: product)
-            }
-            alertController.addAction(unlockAction)
-        }
+    /// Presents the UnlimitedPaywallViewController from Paywalls.storyboard as a modal view
+    private func presentPaywall() {
+        let storyboard = UIStoryboard(name: "Paywalls", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "UnlimitedPaywallViewController") as! UnlimitedPaywallViewController
 
-        present(alertController, animated: true, completion: nil)
+        Purchases.shared.getProducts(RevenueCat.unlimitedProductIdentifiers) { products in
+            let viewModel = UnlimitedPaywallViewModel(products: products)
+            vc.viewModel = viewModel
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: nil)
+        }
     }
 
+    /// Appends a crypto to the selected list
+    /// - Parameter crypto: The crypto to add
     func append(_ crypto: CryptoCurrency) {
         if selectedCurrencies.count >= 3 && !UserDefaults.standard.unlimitedCurrencies {
-            promptPurchase("Free limit exceeded", with: "Having more than 3 crypto currencies at the same time can be unlocked with an in-app purchase.")
+            presentPaywall()
             return
         } else if selectedCurrencies.count >= 20 {
             let alertController = UIAlertController(title: "Max limit reached", message: "A maximim of 20 crypto currencies can be selected at one time.", preferredStyle: .alert)
