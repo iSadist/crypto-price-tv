@@ -40,6 +40,7 @@
 		59AD8E3E24697A7B006D5756 /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AD8E3D24697A7B006D5756 /* CurrencyTableViewCell.swift */; };
 		59BD5FBF2D6729BD0084E066 /* UnlimitedPaywallViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BD5FBE2D6729BD0084E066 /* UnlimitedPaywallViewModel.swift */; };
 		59BD5FC12D6731C50084E066 /* UnlimitedPaywallInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BD5FC02D6731C50084E066 /* UnlimitedPaywallInteractor.swift */; };
+		59BD5FC42D674E820084E066 /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 59BD5FC32D674E820084E066 /* StoreKitTestCertificate.cer */; };
 		59C57BBF298B15670076F802 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 59C57BBE298B15670076F802 /* Alamofire */; };
 		59C57BC2298B16920076F802 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 59C57BC1298B16920076F802 /* Charts */; };
 		59D83B27246A7426005FB817 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D83B26246A7426005FB817 /* Database.swift */; };
@@ -126,6 +127,8 @@
 		59AD8E3D24697A7B006D5756 /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
 		59BD5FBE2D6729BD0084E066 /* UnlimitedPaywallViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlimitedPaywallViewModel.swift; sourceTree = "<group>"; };
 		59BD5FC02D6731C50084E066 /* UnlimitedPaywallInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlimitedPaywallInteractor.swift; sourceTree = "<group>"; };
+		59BD5FC22D6745C10084E066 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
+		59BD5FC32D674E820084E066 /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; name = StoreKitTestCertificate.cer; path = ../../../../../Downloads/StoreKitTestCertificate.cer; sourceTree = "<group>"; };
 		59D83B26246A7426005FB817 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		59EBC6DC298BB937005AFFA6 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		59ECCF4C24AD0E70008FE0F1 /* UserDefaults+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+extensions.swift"; sourceTree = "<group>"; };
@@ -191,6 +194,8 @@
 				59FA9B122467EF1B00635AD1 /* LaunchScreen.storyboard */,
 				59FA9B102467EF1B00635AD1 /* Assets.xcassets */,
 				59FA9B0D2467EF1A00635AD1 /* CryptoPrice.xcdatamodeld */,
+				59BD5FC22D6745C10084E066 /* Configuration.storekit */,
+				59BD5FC32D674E820084E066 /* StoreKitTestCertificate.cer */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -490,6 +495,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59BD5FC42D674E820084E066 /* StoreKitTestCertificate.cer in Resources */,
 				59FA9B142467EF1B00635AD1 /* LaunchScreen.storyboard in Resources */,
 				59FA9B112467EF1B00635AD1 /* Assets.xcassets in Resources */,
 				59FA9B0C2467EF1A00635AD1 /* Main.storyboard in Resources */,

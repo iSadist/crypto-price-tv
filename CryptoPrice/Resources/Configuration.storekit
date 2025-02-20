@@ -1,0 +1,207 @@
+{
+  "identifier" : "4BD51836",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "6445601150",
+      "localizations" : [
+        {
+          "description" : "Add how many cryptos as you want.",
+          "displayName" : "Premium",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "This unlocks all features in the app.",
+          "displayName" : "Premium",
+          "locale" : "en_GB"
+        }
+      ],
+      "productID" : "com.jansvenssoncv.cryptochartstv.premium",
+      "referenceName" : "Premium",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "6445626590",
+      "localizations" : [
+        {
+          "description" : "Be able to select more than 3 cryptos",
+          "displayName" : "Unlimited",
+          "locale" : "en_GB"
+        }
+      ],
+      "productID" : "com.jansvenssoncv.cryptochartstv.unlimited",
+      "referenceName" : "Unlimited",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "1521485581",
+      "localizations" : [
+        {
+          "description" : "Add an unlimited amounts of cryptos",
+          "displayName" : "Unlimited",
+          "locale" : "en_GB"
+        }
+      ],
+      "productID" : "unlimited_currencies",
+      "referenceName" : "Unlimited currencies",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "1520184652",
+    "_compatibilityTimeRate" : {
+      "3" : 5
+    },
+    "_developerTeamID" : "Q9L559MT2U",
+    "_failTransactionsEnabled" : false,
+    "_lastSynchronizedDate" : 761742790.08894503,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
+    "_storeKitErrors" : [
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Load Products"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Purchase"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Verification"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Store Sync"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Subscription Status"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Transaction"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Manage Subscriptions Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Refund Request Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Offer Code Redeem Sheet"
+      }
+    ],
+    "_timeRate" : 1000
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "21635506",
+      "localizations" : [
+
+      ],
+      "name" : "Unlimited Currencies",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "3.99",
+          "familyShareable" : false,
+          "groupNumber" : 3,
+          "internalID" : "6741915786",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "View an unlimited amount of cryptos",
+              "displayName" : "6 Months",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "se.nedralia.cryptotv.unlimited_currencies.half_year",
+          "recurringSubscriptionPeriod" : "P6M",
+          "referenceName" : "6 Month",
+          "subscriptionGroupID" : "21635506",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "6.99",
+          "familyShareable" : false,
+          "groupNumber" : 2,
+          "internalID" : "6741915930",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "View an unlimited amount of cryptos",
+              "displayName" : "Annual",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "se.nedralia.cryptotv.unlimited_currencies.annual",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Annual",
+          "subscriptionGroupID" : "21635506",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "0.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "6741915582",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "View an unlimited amount of cryptos",
+              "displayName" : "Monthly",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "se.nedralia.cryptotv.unlimited_currencies.monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Monthly",
+          "subscriptionGroupID" : "21635506",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}

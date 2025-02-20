@@ -20,17 +20,19 @@ extension CurrencyViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let currency = filtered[indexPath.row]
-
-        if selectedCurrencies.contains(currency) {
-            remove(currency)
-        } else {
-            append(currency)
-        }
-
-        if let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell {
-            let isSelected = selectedCurrencies.contains(currency)
-            cell.checkmark.isHidden = !isSelected
+        Task {
+            let currency = filtered[indexPath.row]
+            
+            if selectedCurrencies.contains(currency) {
+                remove(currency)
+            } else {
+                await append(currency)
+            }
+            
+            if let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell {
+                let isSelected = selectedCurrencies.contains(currency)
+                cell.checkmark.isHidden = !isSelected
+            }
         }
     }
 }

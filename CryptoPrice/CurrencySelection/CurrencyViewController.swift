@@ -126,17 +126,40 @@ class CurrencyViewController: UIViewController, Storyboarded {
             vc.viewModel = viewModel
 
             let interactor = UnlimitedPaywallInteractor(products: products)
+            interactor.navigationController = self.navigationController
             vc.interactor = interactor
 
             vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true, completion: nil)
+
+            self.navigationController?.pushViewController(vc, animated: true)
         }
+    }
+
+    /// Checks whether the user has a valid subscription.
+    /// It is valid either if the user has previously bought the lifetime deal,
+    /// or a current RevenueCat subscription exists.
+    ///
+    /// - Returns: True if user is subscribed
+    private func checkUserSubscription() async -> Bool {
+        let result = await withCheckedContinuation { continuation in
+            Purchases.shared.getCustomerInfo { info, error in
+                let active = info?.activeSubscriptions
+                let unlimited = active?.contains(where: {
+                    RevenueCat.unlimitedProductIdentifiers.contains($0)
+                })
+                continuation.resume(returning: unlimited ?? false)
+            }
+        }
+
+        return result || UserDefaults.standard.unlimitedCurrencies
     }
 
     /// Appends a crypto to the selected list
     /// - Parameter crypto: The crypto to add
-    func append(_ crypto: CryptoCurrency) {
-        if selectedCurrencies.count >= 3 && !UserDefaults.standard.unlimitedCurrencies {
+    func append(_ crypto: CryptoCurrency) async {
+        let userHasValidSubscription = await checkUserSubscription()
+
+        if selectedCurrencies.count >= 3 && !userHasValidSubscription {
             presentPaywall()
             return
         } else if selectedCurrencies.count >= 20 {
