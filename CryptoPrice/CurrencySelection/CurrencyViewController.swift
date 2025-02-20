@@ -124,6 +124,10 @@ class CurrencyViewController: UIViewController, Storyboarded {
         Purchases.shared.getProducts(RevenueCat.unlimitedProductIdentifiers) { products in
             let viewModel = UnlimitedPaywallViewModel(products: products)
             vc.viewModel = viewModel
+
+            let interactor = UnlimitedPaywallInteractor(products: products)
+            vc.interactor = interactor
+
             vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: true, completion: nil)
         }

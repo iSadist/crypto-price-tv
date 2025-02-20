@@ -38,6 +38,8 @@
 		59AD8E31246950D6006D5756 /* MainScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AD8E30246950D6006D5756 /* MainScreenCoordinator.swift */; };
 		59AD8E33246952AD006D5756 /* CurrencyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AD8E32246952AD006D5756 /* CurrencyCoordinator.swift */; };
 		59AD8E3E24697A7B006D5756 /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AD8E3D24697A7B006D5756 /* CurrencyTableViewCell.swift */; };
+		59BD5FBF2D6729BD0084E066 /* UnlimitedPaywallViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BD5FBE2D6729BD0084E066 /* UnlimitedPaywallViewModel.swift */; };
+		59BD5FC12D6731C50084E066 /* UnlimitedPaywallInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BD5FC02D6731C50084E066 /* UnlimitedPaywallInteractor.swift */; };
 		59C57BBF298B15670076F802 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 59C57BBE298B15670076F802 /* Alamofire */; };
 		59C57BC2298B16920076F802 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 59C57BC1298B16920076F802 /* Charts */; };
 		59D83B27246A7426005FB817 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D83B26246A7426005FB817 /* Database.swift */; };
@@ -122,6 +124,8 @@
 		59AD8E30246950D6006D5756 /* MainScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenCoordinator.swift; sourceTree = "<group>"; };
 		59AD8E32246952AD006D5756 /* CurrencyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCoordinator.swift; sourceTree = "<group>"; };
 		59AD8E3D24697A7B006D5756 /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
+		59BD5FBE2D6729BD0084E066 /* UnlimitedPaywallViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlimitedPaywallViewModel.swift; sourceTree = "<group>"; };
+		59BD5FC02D6731C50084E066 /* UnlimitedPaywallInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlimitedPaywallInteractor.swift; sourceTree = "<group>"; };
 		59D83B26246A7426005FB817 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		59EBC6DC298BB937005AFFA6 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		59ECCF4C24AD0E70008FE0F1 /* UserDefaults+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+extensions.swift"; sourceTree = "<group>"; };
@@ -219,6 +223,8 @@
 			isa = PBXGroup;
 			children = (
 				599ABBF42D64C08400BBF6F7 /* UnlimitedPaywallViewController.swift */,
+				59BD5FBE2D6729BD0084E066 /* UnlimitedPaywallViewModel.swift */,
+				59BD5FC02D6731C50084E066 /* UnlimitedPaywallInteractor.swift */,
 			);
 			path = Paywall;
 			sourceTree = "<group>";
@@ -523,6 +529,7 @@
 				59FA9B092467EF1A00635AD1 /* MainViewController.swift in Sources */,
 				592699A124840F64000AE68F /* RateSelectorCoordinator.swift in Sources */,
 				59AD8E31246950D6006D5756 /* MainScreenCoordinator.swift in Sources */,
+				59BD5FC12D6731C50084E066 /* UnlimitedPaywallInteractor.swift in Sources */,
 				59AD8E33246952AD006D5756 /* CurrencyCoordinator.swift in Sources */,
 				59FA9B0F2467EF1A00635AD1 /* CryptoPrice.xcdatamodeld in Sources */,
 				59A8D20D24813BDD00766294 /* MainViewController+TableViewDataSource.swift in Sources */,
@@ -535,6 +542,7 @@
 				59AB88142467F8FB00765B46 /* Constants.swift in Sources */,
 				59AD8E2C24694293006D5756 /* JSVStoryboarded.swift in Sources */,
 				599ABBF52D64C08400BBF6F7 /* UnlimitedPaywallViewController.swift in Sources */,
+				59BD5FBF2D6729BD0084E066 /* UnlimitedPaywallViewModel.swift in Sources */,
 				59ECCF4D24AD0E70008FE0F1 /* UserDefaults+extensions.swift in Sources */,
 				59A8D2072481380D00766294 /* CurrencyViewController+DataSource.swift in Sources */,
 				59A8D20B24813B3B00766294 /* CurrencyViewController+UITextFieldDelegate.swift in Sources */,
