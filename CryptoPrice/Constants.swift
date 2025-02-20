@@ -22,7 +22,7 @@ struct RevenueCat {
 
     static let apiKey = "appl_KQhkWTWuYvnZZXBhuxoKaQATGsD"
 
-    static let entitlementID = "entl94c81b65af"
+    static let entitlementID = "Unlimited Currencies"
 
     static let unlimitedProductIdentifier = "se.nedralia.cryptotv.unlimited_currencies.monthly"
 

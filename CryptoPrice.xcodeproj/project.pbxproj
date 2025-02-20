@@ -41,6 +41,7 @@
 		59BD5FBF2D6729BD0084E066 /* UnlimitedPaywallViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BD5FBE2D6729BD0084E066 /* UnlimitedPaywallViewModel.swift */; };
 		59BD5FC12D6731C50084E066 /* UnlimitedPaywallInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BD5FC02D6731C50084E066 /* UnlimitedPaywallInteractor.swift */; };
 		59BD5FC42D674E820084E066 /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 59BD5FC32D674E820084E066 /* StoreKitTestCertificate.cer */; };
+		59BD5FC62D6763A40084E066 /* PaywallCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BD5FC52D6763A40084E066 /* PaywallCoordinator.swift */; };
 		59C57BBF298B15670076F802 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 59C57BBE298B15670076F802 /* Alamofire */; };
 		59C57BC2298B16920076F802 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 59C57BC1298B16920076F802 /* Charts */; };
 		59D83B27246A7426005FB817 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D83B26246A7426005FB817 /* Database.swift */; };
@@ -129,6 +130,7 @@
 		59BD5FC02D6731C50084E066 /* UnlimitedPaywallInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlimitedPaywallInteractor.swift; sourceTree = "<group>"; };
 		59BD5FC22D6745C10084E066 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		59BD5FC32D674E820084E066 /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; name = StoreKitTestCertificate.cer; path = ../../../../../Downloads/StoreKitTestCertificate.cer; sourceTree = "<group>"; };
+		59BD5FC52D6763A40084E066 /* PaywallCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallCoordinator.swift; sourceTree = "<group>"; };
 		59D83B26246A7426005FB817 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		59EBC6DC298BB937005AFFA6 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		59ECCF4C24AD0E70008FE0F1 /* UserDefaults+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+extensions.swift"; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				59AD8E30246950D6006D5756 /* MainScreenCoordinator.swift */,
 				59AD8E32246952AD006D5756 /* CurrencyCoordinator.swift */,
 				592699A024840F64000AE68F /* RateSelectorCoordinator.swift */,
+				59BD5FC52D6763A40084E066 /* PaywallCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				59AD8E3E24697A7B006D5756 /* CurrencyTableViewCell.swift in Sources */,
 				59FA9B072467EF1A00635AD1 /* AppDelegate.swift in Sources */,
 				59A8D2122482CAED00766294 /* CollectionViewController.swift in Sources */,
+				59BD5FC62D6763A40084E066 /* PaywallCoordinator.swift in Sources */,
 				59AB88142467F8FB00765B46 /* Constants.swift in Sources */,
 				59AD8E2C24694293006D5756 /* JSVStoryboarded.swift in Sources */,
 				599ABBF52D64C08400BBF6F7 /* UnlimitedPaywallViewController.swift in Sources */,

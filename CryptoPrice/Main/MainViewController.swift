@@ -28,25 +28,28 @@ class MainViewController: UIViewController, Storyboarded {
         super.viewDidLoad()
         // TODO: Should be set outside of this class
         let coordinator = MainScreenCoordinator(navigationController: navigationController ?? UINavigationController())
+
+        // TODO: Make selection persistent
         let crypto = [CryptoCurrency(id: "bitcoin", symbol: "B", name: "Bitcoin")]
         presenter = MainPresenter(crypto, controller: self)
         presenter?.coordinator = coordinator
         presenter?.database = Database(format: "yyyy'-'MM'-'dd")
-        
+
         dateFormatter.dateFormat = "yyyy'-'MM'-'dd"
-        
+
         setupChart()
 
         tableView.delegate = self
         tableView.dataSource = self
-        
+
         updatePrice()
-        testRevenueCat()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(updatePrice), userInfo: nil, repeats: true)
         timer?.fire()
+
+        checkUnlimitedSubscription()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -71,7 +74,20 @@ class MainViewController: UIViewController, Storyboarded {
     @objc private func updatePrice() {
         presenter?.refreshPrice()
     }
-    
+
+    private func checkUnlimitedSubscription() {
+        Purchases.shared.getCustomerInfo { info, error in
+            let active = info?.entitlements[RevenueCat.entitlementID]?.isActive == true
+
+            if !active {
+                // Remove all but the top 3 currencies
+                let allCurrencies = self.presenter?.currencies
+                let topCurrencies = allCurrencies?.prefix(3)
+                self.presenter?.currencies = Array(topCurrencies ?? [])
+            }
+        }
+    }
+
     private func setupChart() {
         chart.xAxis.valueFormatter = self
         chart.leftAxis.enabled = false
@@ -88,39 +104,6 @@ class MainViewController: UIViewController, Storyboarded {
         yAxis.forceLabelsEnabled = true
         
         chart.backgroundColor = .clear
-    }
-
-    private func testRevenueCat() {
-        // TODO: Check if the user has a valid subscription for Unlimited Currencies.
-        // If not, remove all but the first three selected currencies.
-        // Also, make sure to let users with the old purchases keep their functionality.
-
-        Purchases.shared.getOfferings { offering, error in
-            if let error = error {
-                // TODO: Handle error
-                print(error.localizedDescription)
-            } else {
-                print(offering?.current?.identifier ?? "No offering ID")
-            }
-        }
-
-        Purchases.shared.getCustomerInfo { info, error in
-            guard error == nil else {
-                // TODO: Handle error
-                return
-            }
-
-            guard let info = info else {
-                print("No customer info")
-                return
-            }
-
-            if info.entitlements[RevenueCat.entitlementID]?.isActive == true {
-                print("User has valid subscription")
-            } else {
-                print("User has no valid subscription")
-            }
-        }
     }
 }
 

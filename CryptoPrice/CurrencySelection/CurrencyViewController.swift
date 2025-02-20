@@ -43,6 +43,7 @@ class CurrencyViewController: UIViewController, Storyboarded {
     var database: Database?
     private var IAPClient = InAppPurchaseClient()
     private var availableProducts: [SKProduct] = []
+    private var isSubscribed = false
 
     @IBOutlet weak var premiumButton: UIButton!
     @IBOutlet weak var restoreButton: UIButton!
@@ -90,6 +91,15 @@ class CurrencyViewController: UIViewController, Storyboarded {
         database = Database(format: "yyyy'-'MM'-'dd")
         getCurrencies()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        Task {
+            self.isSubscribed = await checkUserSubscription()
+        }
+    }
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         IAPClient.productsCallback = nil
@@ -97,7 +107,7 @@ class CurrencyViewController: UIViewController, Storyboarded {
     }
 
     @IBAction func didPressPremium(_ sender: UIButton) {
-        presentPaywall()
+        coordinator?.presentPaywall()
     }
 
     @IBAction func didPressRestore(_ sender: UIButton) {
@@ -115,26 +125,6 @@ class CurrencyViewController: UIViewController, Storyboarded {
         })
     }
 
-
-    /// Presents the UnlimitedPaywallViewController from Paywalls.storyboard as a modal view
-    private func presentPaywall() {
-        let storyboard = UIStoryboard(name: "Paywalls", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "UnlimitedPaywallViewController") as! UnlimitedPaywallViewController
-
-        Purchases.shared.getProducts(RevenueCat.unlimitedProductIdentifiers) { products in
-            let viewModel = UnlimitedPaywallViewModel(products: products)
-            vc.viewModel = viewModel
-
-            let interactor = UnlimitedPaywallInteractor(products: products)
-            interactor.navigationController = self.navigationController
-            vc.interactor = interactor
-
-            vc.modalPresentationStyle = .fullScreen
-
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-    }
-
     /// Checks whether the user has a valid subscription.
     /// It is valid either if the user has previously bought the lifetime deal,
     /// or a current RevenueCat subscription exists.
@@ -142,12 +132,9 @@ class CurrencyViewController: UIViewController, Storyboarded {
     /// - Returns: True if user is subscribed
     private func checkUserSubscription() async -> Bool {
         let result = await withCheckedContinuation { continuation in
-            Purchases.shared.getCustomerInfo { info, error in
-                let active = info?.activeSubscriptions
-                let unlimited = active?.contains(where: {
-                    RevenueCat.unlimitedProductIdentifiers.contains($0)
-                })
-                continuation.resume(returning: unlimited ?? false)
+            Purchases.shared.getCustomerInfo(fetchPolicy: .fetchCurrent) { info, error in
+                let unlimited = info?.entitlements[RevenueCat.entitlementID]?.isActive == true
+                continuation.resume(returning: unlimited)
             }
         }
 
@@ -157,10 +144,8 @@ class CurrencyViewController: UIViewController, Storyboarded {
     /// Appends a crypto to the selected list
     /// - Parameter crypto: The crypto to add
     func append(_ crypto: CryptoCurrency) async {
-        let userHasValidSubscription = await checkUserSubscription()
-
-        if selectedCurrencies.count >= 3 && !userHasValidSubscription {
-            presentPaywall()
+        if selectedCurrencies.count >= 3 && !isSubscribed {
+            coordinator?.presentPaywall()
             return
         } else if selectedCurrencies.count >= 20 {
             let alertController = UIAlertController(title: "Max limit reached", message: "A maximim of 20 crypto currencies can be selected at one time.", preferredStyle: .alert)

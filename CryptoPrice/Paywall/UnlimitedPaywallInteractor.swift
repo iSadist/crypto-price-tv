@@ -10,7 +10,7 @@ import UIKit
 import RevenueCat
 
 protocol UnlimitedPaywallInteractorProtocol {
-    var navigationController: UINavigationController? { get set }
+    var coordinator: PaywallCoordinator? { get set }
     func subscribeLeft()
     func subscribeCenter()
     func subscribeRight()
@@ -18,7 +18,7 @@ protocol UnlimitedPaywallInteractorProtocol {
 
 class UnlimitedPaywallInteractor: UnlimitedPaywallInteractorProtocol {
 
-    weak var navigationController: UINavigationController?
+    var coordinator: PaywallCoordinator?
 
     private let leftProduct: StoreProduct
 
@@ -37,7 +37,7 @@ class UnlimitedPaywallInteractor: UnlimitedPaywallInteractorProtocol {
     }
 
     private func subscribe(_ product: StoreProduct) {
-        Purchases.shared.purchase(product: leftProduct) { transaction, info, error, cancelled in
+        Purchases.shared.purchase(product: product) { transaction, info, error, cancelled in
             if let error = error {
                 self.presentError("Error purchasing: \(error.localizedDescription)")
             } else if cancelled {
@@ -47,15 +47,13 @@ class UnlimitedPaywallInteractor: UnlimitedPaywallInteractorProtocol {
             }
         }
     }
-    
+
     private func presentError(_ message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        navigationController?.present(alert, animated: true, completion: nil)
+        coordinator?.presentError(message)
     }
 
     private func purchaseSuccessful() {
-        navigationController?.popViewController(animated: true)
+        coordinator?.back()
     }
 
     public func subscribeLeft() {
