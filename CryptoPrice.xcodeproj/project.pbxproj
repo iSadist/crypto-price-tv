@@ -38,9 +38,9 @@
 		59AD8E31246950D6006D5756 /* MainScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AD8E30246950D6006D5756 /* MainScreenCoordinator.swift */; };
 		59AD8E33246952AD006D5756 /* CurrencyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AD8E32246952AD006D5756 /* CurrencyCoordinator.swift */; };
 		59AD8E3E24697A7B006D5756 /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AD8E3D24697A7B006D5756 /* CurrencyTableViewCell.swift */; };
+		59BAEB912D6A39BD0038D5B1 /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 59BAEB902D6A39BD0038D5B1 /* StoreKitTestCertificate.cer */; };
 		59BD5FBF2D6729BD0084E066 /* UnlimitedPaywallViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BD5FBE2D6729BD0084E066 /* UnlimitedPaywallViewModel.swift */; };
 		59BD5FC12D6731C50084E066 /* UnlimitedPaywallInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BD5FC02D6731C50084E066 /* UnlimitedPaywallInteractor.swift */; };
-		59BD5FC42D674E820084E066 /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 59BD5FC32D674E820084E066 /* StoreKitTestCertificate.cer */; };
 		59BD5FC62D6763A40084E066 /* PaywallCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BD5FC52D6763A40084E066 /* PaywallCoordinator.swift */; };
 		59C57BBF298B15670076F802 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 59C57BBE298B15670076F802 /* Alamofire */; };
 		59C57BC2298B16920076F802 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 59C57BC1298B16920076F802 /* Charts */; };
@@ -126,10 +126,10 @@
 		59AD8E30246950D6006D5756 /* MainScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenCoordinator.swift; sourceTree = "<group>"; };
 		59AD8E32246952AD006D5756 /* CurrencyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCoordinator.swift; sourceTree = "<group>"; };
 		59AD8E3D24697A7B006D5756 /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
+		59BAEB902D6A39BD0038D5B1 /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitTestCertificate.cer; sourceTree = "<group>"; };
 		59BD5FBE2D6729BD0084E066 /* UnlimitedPaywallViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlimitedPaywallViewModel.swift; sourceTree = "<group>"; };
 		59BD5FC02D6731C50084E066 /* UnlimitedPaywallInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlimitedPaywallInteractor.swift; sourceTree = "<group>"; };
 		59BD5FC22D6745C10084E066 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
-		59BD5FC32D674E820084E066 /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; name = StoreKitTestCertificate.cer; path = ../../../../../Downloads/StoreKitTestCertificate.cer; sourceTree = "<group>"; };
 		59BD5FC52D6763A40084E066 /* PaywallCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallCoordinator.swift; sourceTree = "<group>"; };
 		59D83B26246A7426005FB817 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		59EBC6DC298BB937005AFFA6 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -197,7 +197,7 @@
 				59FA9B102467EF1B00635AD1 /* Assets.xcassets */,
 				59FA9B0D2467EF1A00635AD1 /* CryptoPrice.xcdatamodeld */,
 				59BD5FC22D6745C10084E066 /* Configuration.storekit */,
-				59BD5FC32D674E820084E066 /* StoreKitTestCertificate.cer */,
+				59BAEB902D6A39BD0038D5B1 /* StoreKitTestCertificate.cer */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -498,11 +498,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				59BD5FC42D674E820084E066 /* StoreKitTestCertificate.cer in Resources */,
 				59FA9B142467EF1B00635AD1 /* LaunchScreen.storyboard in Resources */,
 				59FA9B112467EF1B00635AD1 /* Assets.xcassets in Resources */,
 				59FA9B0C2467EF1A00635AD1 /* Main.storyboard in Resources */,
 				599ABBF22D64AC5F00BBF6F7 /* Paywalls.storyboard in Resources */,
+				59BAEB912D6A39BD0038D5B1 /* StoreKitTestCertificate.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -788,14 +788,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q9L559MT2U;
 				INFOPLIST_FILE = CryptoPrice/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jansvenssoncv.CryptoPrice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -810,14 +810,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q9L559MT2U;
 				INFOPLIST_FILE = CryptoPrice/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jansvenssoncv.CryptoPrice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

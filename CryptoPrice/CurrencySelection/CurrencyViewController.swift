@@ -112,6 +112,7 @@ class CurrencyViewController: UIViewController, Storyboarded {
 
     @IBAction func didPressRestore(_ sender: UIButton) {
         IAPClient.restorePurchase()
+        Purchases.shared.restorePurchases() // Should probably not need to do this for RenevueCat
     }
 
     @objc func menuPressed(recognizer: UITapGestureRecognizer) {

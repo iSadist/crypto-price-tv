@@ -4,6 +4,9 @@ import RevenueCat
 
 protocol Purchasing {}
 
+// TODO: Remove below on next release
+
+@available(iOS, introduced: 1.0, deprecated: 1.3, message: "Replaced by using RevenueCat instead")
 public class InAppPurchaseClient: NSObject, Purchasing {
     private let purchasedProductsKey = "in-app-purchase_products"
 
