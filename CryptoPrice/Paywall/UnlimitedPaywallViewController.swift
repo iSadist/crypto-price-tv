@@ -60,4 +60,11 @@ class UnlimitedPaywallViewController: UIViewController {
     @IBAction func rightButtonAction(_ sender: UIButton) {
         interactor?.subscribeRight()
     }
+
+    @IBAction func onTOU(_ sender: UIButton) {
+        
+    }
+
+    @IBAction func onPrivacyPolicy(_ sender: UIButton) {
+    }
 }
