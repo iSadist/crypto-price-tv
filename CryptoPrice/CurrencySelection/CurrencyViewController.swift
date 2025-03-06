@@ -45,8 +45,6 @@ class CurrencyViewController: UIViewController, Storyboarded {
     private var availableProducts: [SKProduct] = []
     private var isSubscribed = false
 
-    @IBOutlet weak var premiumButton: UIButton!
-    @IBOutlet weak var restoreButton: UIButton!
     @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -57,9 +55,6 @@ class CurrencyViewController: UIViewController, Storyboarded {
         let focusGuideRight = UIFocusGuide()
         view.addLayoutGuide(focusGuideLeft)
         view.addLayoutGuide(focusGuideRight)
-
-        premiumButton.isEnabled = !UserDefaults.standard.unlimitedCurrencies
-        restoreButton.isEnabled = !UserDefaults.standard.unlimitedCurrencies
 
         focusGuideLeft.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         focusGuideLeft.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
@@ -104,15 +99,6 @@ class CurrencyViewController: UIViewController, Storyboarded {
         super.viewDidDisappear(animated)
         IAPClient.productsCallback = nil
         IAPClient.paymentCallback = nil
-    }
-
-    @IBAction func didPressPremium(_ sender: UIButton) {
-        coordinator?.presentPaywall()
-    }
-
-    @IBAction func didPressRestore(_ sender: UIButton) {
-        IAPClient.restorePurchase()
-        Purchases.shared.restorePurchases() // Should probably not need to do this for RenevueCat
     }
 
     @objc func menuPressed(recognizer: UITapGestureRecognizer) {

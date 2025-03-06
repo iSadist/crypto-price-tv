@@ -242,7 +242,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="buN-6o-Hnk">
-                                <rect key="frame" x="377" y="137" width="1543" height="943"/>
+                                <rect key="frame" x="80" y="137" width="1760" height="943"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wf5-iS-2ek">
                                     <size key="itemSize" width="432" height="237"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -304,47 +304,19 @@
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mN0-YO-azL">
-                                <rect key="frame" x="80" y="258" width="237" height="86"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="237" id="CAu-FU-PYt"/>
-                                </constraints>
-                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
-                                <state key="normal" title="Restore"/>
-                                <connections>
-                                    <action selector="didPressRestore:" destination="Bh9-v2-rQv" eventType="primaryActionTriggered" id="vS3-qm-0au"/>
-                                    <action selector="onCurrencyButtonPressed:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="HXm-cw-Fu8"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvj-iI-idw">
-                                <rect key="frame" x="80" y="137" width="237" height="86"/>
-                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
-                                <state key="normal" title="Premium"/>
-                                <connections>
-                                    <action selector="didPressPremium:" destination="Bh9-v2-rQv" eventType="primaryActionTriggered" id="cMP-V4-vIs"/>
-                                    <action selector="onCurrencyButtonPressed:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="ahA-7l-1We"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="o3n-8d-DdV"/>
                         <constraints>
                             <constraint firstItem="buN-6o-Hnk" firstAttribute="top" secondItem="Wnk-Td-lrU" secondAttribute="bottom" constant="50" id="9iM-oo-0pj"/>
-                            <constraint firstItem="o3n-8d-DdV" firstAttribute="leading" secondItem="gvj-iI-idw" secondAttribute="leading" id="ECd-Cp-QC8"/>
-                            <constraint firstItem="buN-6o-Hnk" firstAttribute="trailing" secondItem="UbE-Gz-3cb" secondAttribute="trailing" id="KGG-Ur-TgQ"/>
-                            <constraint firstItem="o3n-8d-DdV" firstAttribute="leading" secondItem="mN0-YO-azL" secondAttribute="leading" id="OaZ-hi-8aB"/>
-                            <constraint firstItem="gvj-iI-idw" firstAttribute="width" secondItem="mN0-YO-azL" secondAttribute="width" id="Uag-I0-1T3"/>
+                            <constraint firstItem="buN-6o-Hnk" firstAttribute="trailing" secondItem="o3n-8d-DdV" secondAttribute="trailing" id="KGG-Ur-TgQ"/>
+                            <constraint firstItem="buN-6o-Hnk" firstAttribute="leading" secondItem="o3n-8d-DdV" secondAttribute="leading" id="Qdx-ng-4mJ"/>
                             <constraint firstAttribute="bottom" secondItem="buN-6o-Hnk" secondAttribute="bottom" id="Wvu-ki-Aff"/>
                             <constraint firstItem="Wnk-Td-lrU" firstAttribute="top" secondItem="o3n-8d-DdV" secondAttribute="top" constant="-20" id="csv-WU-z2e"/>
                             <constraint firstItem="Wnk-Td-lrU" firstAttribute="centerX" secondItem="o3n-8d-DdV" secondAttribute="centerX" id="dgk-BU-vuV"/>
-                            <constraint firstItem="buN-6o-Hnk" firstAttribute="leading" secondItem="mN0-YO-azL" secondAttribute="trailing" constant="60" symbolic="YES" id="fqj-g0-Kef"/>
-                            <constraint firstItem="mN0-YO-azL" firstAttribute="top" secondItem="gvj-iI-idw" secondAttribute="bottom" constant="35" id="knA-yp-0BT"/>
-                            <constraint firstItem="gvj-iI-idw" firstAttribute="top" secondItem="buN-6o-Hnk" secondAttribute="top" id="q9J-0a-lnj"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="buN-6o-Hnk" id="cBS-hD-om9"/>
-                        <outlet property="premiumButton" destination="gvj-iI-idw" id="hu3-SP-IHE"/>
-                        <outlet property="restoreButton" destination="mN0-YO-azL" id="Io7-r3-hXe"/>
                         <outlet property="searchField" destination="Wnk-Td-lrU" id="rZi-rv-oKW"/>
                     </connections>
                 </viewController>
@@ -374,7 +346,7 @@
     <resources>
         <image name="checkmark.square.fill" catalog="system" width="128" height="115"/>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

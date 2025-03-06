@@ -17,6 +17,8 @@ class UnlimitedPaywallViewController: UIViewController {
     /// The interactor
     public var interactor: UnlimitedPaywallInteractorProtocol?
 
+    private var IAPClient = InAppPurchaseClient()
+
     @IBOutlet weak var leftTitleLabel: UILabel!
     @IBOutlet weak var centerTitleLabel: UILabel!
     @IBOutlet weak var rightTitleLabel: UILabel!
@@ -61,10 +63,12 @@ class UnlimitedPaywallViewController: UIViewController {
         interactor?.subscribeRight()
     }
 
-    @IBAction func onTOU(_ sender: UIButton) {
-        
-    }
+    @IBAction func onTOU(_ sender: UIButton) {}
 
-    @IBAction func onPrivacyPolicy(_ sender: UIButton) {
+    @IBAction func onPrivacyPolicy(_ sender: UIButton) {}
+
+    @IBAction func didPressRestore(_ sender: UIButton) {
+        IAPClient.restorePurchase()
+        Purchases.shared.restorePurchases() // Should probably not need to do this for RenevueCat
     }
 }
