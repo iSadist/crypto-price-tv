@@ -29,9 +29,8 @@ class MainViewController: UIViewController, Storyboarded {
         // TODO: Should be set outside of this class
         let coordinator = MainScreenCoordinator(navigationController: navigationController ?? UINavigationController())
 
-        // TODO: Make selection persistent
-        let crypto = [CryptoCurrency(id: "bitcoin", symbol: "B", name: "Bitcoin")]
-        presenter = MainPresenter(crypto, controller: self)
+        let cryptos = self.retrieveSelectedCurrencies()
+        presenter = MainPresenter(cryptos, controller: self)
         presenter?.coordinator = coordinator
         presenter?.database = Database(format: "yyyy'-'MM'-'dd")
 
@@ -50,12 +49,36 @@ class MainViewController: UIViewController, Storyboarded {
         timer?.fire()
 
         checkUnlimitedSubscription()
+
+        // Store the currently selected currencies
+        if let currencies = presenter?.currencies {
+            storeSelectedCurrencies(currencies)
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         timer?.invalidate()
     }
-    
+
+    /// Stores the currencies to UserDefaults
+    /// - Parameter currencies: The currencies
+    private func storeSelectedCurrencies(_ currencies: [CryptoCurrency]) {
+        let storedCurrencies = StoredCryptoCurrencies(values: currencies)
+        UserDefaults.standard.selectedCurrencies = storedCurrencies
+    }
+
+    /// Fetch the previously selected currencies from UserDefaults
+    /// - Returns: The previously selected currencies
+    private func retrieveSelectedCurrencies() -> [CryptoCurrency] {
+        let stored = UserDefaults.standard.selectedCurrencies
+
+        if stored.values.isEmpty {
+            return [CryptoCurrency(id: "bitcoin", symbol: "B", name: "Bitcoin")]
+        }
+
+        return stored.values
+    }
+
     // MARK: Events
 
     @IBAction func onMoreButtonPressed(_ sender: UIButton) {

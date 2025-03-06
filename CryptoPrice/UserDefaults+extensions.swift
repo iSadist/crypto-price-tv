@@ -17,4 +17,21 @@ extension UserDefaults {
             set(newValue, forKey: "unlimited_currencies")
         }
     }
+
+    var selectedCurrencies: StoredCryptoCurrencies {
+        get {
+            let decoder = JSONDecoder()
+            if let storedData = data(forKey: "selectedCurrencies") {
+                let result = try? decoder.decode(StoredCryptoCurrencies.self, from: storedData)
+                return result ?? StoredCryptoCurrencies(values: [])
+            }
+
+            return StoredCryptoCurrencies(values: [])
+        }
+        set {
+            let encoder = JSONEncoder()
+            let data = try? encoder.encode(newValue)
+            set(data, forKey: "selectedCurrencies")
+        }
+    }
 }

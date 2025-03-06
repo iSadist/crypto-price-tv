@@ -61,8 +61,12 @@ struct CryptoCurrency: Codable, Equatable {
     var priceUsd: String?
     var changePercent24Hr: String?
     var vwap24Hr: String?
-    
+
     static func ==(lhs: CryptoCurrency, rhs: CryptoCurrency) -> Bool {
         return lhs.id == rhs.id
     }
+}
+
+struct StoredCryptoCurrencies: Codable {
+    var values: [CryptoCurrency]
 }
