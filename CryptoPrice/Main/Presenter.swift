@@ -30,7 +30,7 @@ class MainPresenter: MainPresentable {
     var coordinator: MainScreenCoordinator?
     var database: Database?
     weak var controller: MainViewController?
-    
+
     var currencies: [CryptoCurrency]
     var selectedCrypto: CryptoCurrency {
         didSet {
@@ -95,8 +95,9 @@ class MainPresenter: MainPresentable {
     
     private func refreshHistoricalData() {
         DispatchQueue.global(qos: .background).async { [weak self] in
-            guard let `self` = self else { return }
-            self.database?.getHistorical(for: self.selectedCrypto.id!, in: "USD", interval: self.selectedInterval) { [weak self] (data) in
+            guard let `self` = self, let id = self.selectedCrypto.id else { return }
+
+            self.database?.getHistorical(for: id, in: "USD", interval: self.selectedInterval) { [weak self] (data) in
                 guard let dataPoints = data?.map({ [weak self] (point) -> ChartDataEntry in
                     let rate = self?.selectedRate.rateUsd as NSString?
                     let doubleValue = rate?.doubleValue

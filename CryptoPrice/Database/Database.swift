@@ -49,7 +49,12 @@ class Database {
                 guard let data = data, let asset = try? self?.decoder.decode(Asset.self, from: data) else {
                     completionHandler(nil); return
                 }
-                completionHandler(asset.data)
+
+                if asset.data.isEmpty() {
+                    completionHandler(nil)
+                } else {
+                    completionHandler(asset.data)
+                }
             case .failure(let error):
                 print(error)
                 completionHandler(nil)

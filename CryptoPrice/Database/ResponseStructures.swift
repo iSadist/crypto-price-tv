@@ -8,6 +8,10 @@
 
 import Foundation
 
+protocol Emptyable {
+    func isEmpty() -> Bool
+}
+
 struct Historical: Codable {
     var data: [Price]
     var timestamp: Int
@@ -49,7 +53,7 @@ struct Rate: Codable, Comparable {
     var rateUsd: String?
 }
 
-struct CryptoCurrency: Codable, Equatable {
+struct CryptoCurrency: Codable, Equatable, Emptyable {
     var id: String?
     var rank: String?
     var symbol: String?
@@ -64,6 +68,12 @@ struct CryptoCurrency: Codable, Equatable {
 
     static func ==(lhs: CryptoCurrency, rhs: CryptoCurrency) -> Bool {
         return lhs.id == rhs.id
+    }
+
+    func isEmpty() -> Bool {
+        id?.isEmpty ?? true ||
+        name?.isEmpty ?? true ||
+        symbol?.isEmpty ?? true
     }
 }
 
