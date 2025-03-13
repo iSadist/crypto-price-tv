@@ -33,14 +33,36 @@ class UnlimitedPaywallViewModel {
         self.rightButtonTitle = rightButtonTitle
     }
 
-    init(products: [StoreProduct]) {
+    convenience init(products: [StoreProduct]) {
         guard products.count == 3 else {
-            fatalError("There must be exactly 3 products")
+            self.init()
+            return
         }
 
-        let firstProduct = products[0]
-        let secondProduct = products[1]
-        let thirdProduct = products[2]
+        self.init(left: products[0],
+                  center: products[1],
+                  right: products[2])
+    }
+
+    /// Init empty
+    init() {
+        leftTitle = ""
+        leftDescription = ""
+        leftButtonTitle = "Subscribe"
+
+        centerTitle = ""
+        centerDescription = ""
+        centerButtonTitle = "Subscribe"
+
+        rightTitle = ""
+        rightDescription = ""
+        rightButtonTitle = "Subscribe"
+    }
+
+    init(left: StoreProduct, center: StoreProduct, right: StoreProduct) {
+        let firstProduct = left
+        let secondProduct = center
+        let thirdProduct = right
 
         leftTitle = firstProduct.localizedTitle
         leftDescription =

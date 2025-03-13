@@ -20,15 +20,16 @@ class UnlimitedPaywallInteractor: UnlimitedPaywallInteractorProtocol {
 
     var coordinator: PaywallCoordinator?
 
-    private let leftProduct: StoreProduct
-
-    private let centerProduct: StoreProduct
-
-    private let rightProduct: StoreProduct
+    private let leftProduct: StoreProduct?
+    private let centerProduct: StoreProduct?
+    private let rightProduct: StoreProduct?
 
     init(products: [StoreProduct]) {
         guard products.count == 3 else {
-            fatalError("There must be exactly 3 products")
+            self.leftProduct = nil
+            self.centerProduct = nil
+            self.rightProduct = nil
+            return
         }
 
         self.leftProduct = products[0]
@@ -36,7 +37,9 @@ class UnlimitedPaywallInteractor: UnlimitedPaywallInteractorProtocol {
         self.rightProduct = products[2]
     }
 
-    private func subscribe(_ product: StoreProduct) {
+    private func subscribe(_ product: StoreProduct?) {
+        guard let product = product else { return }
+
         Purchases.shared.purchase(product: product) { transaction, info, error, cancelled in
             if let error = error {
                 self.presentError("Error purchasing: \(error.localizedDescription)")
